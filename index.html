@@ -84,8 +84,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#协议概述<br>HTTP（英文全称：HyperText Transfer Protocol，中文：超文本传输协议）是一个客户端和服务器端之间请求和应答的标准。通常，由客户端发起一个HTTP<em>请求</em>到服务器上的指定端口（默认80端口），服务器则在端口接收客户端请求并作出<em>响应</em>。</p>
-<p>#请求部分<br>HTTP请求信息包括以下几点：</p>
+        <h2 id="协议概述"><a href="#协议概述" class="headerlink" title="协议概述"></a>协议概述</h2><p>HTTP（英文全称：HyperText Transfer Protocol，中文：超文本传输协议）是一个客户端和服务器端之间请求和应答的标准。通常，由客户端发起一个HTTP<strong>请求</strong>到服务器上的指定端口（默认80端口），服务器则在端口接收客户端请求并作出<strong>响应</strong>。</p>
+<h2 id="请求部分"><a href="#请求部分" class="headerlink" title="请求部分"></a>请求部分</h2><p>HTTP请求信息包括以下几点：</p>
 <ol>
 <li>请求行（动作 路径 协议/版本）</li>
 <li>请求头</li>
@@ -104,15 +104,15 @@ HOST: www.baidu.com
 <li>第二行header作用为指定主机</li>
 <li>末尾有空行</li>
 </ul>
-<p>#响应部分<br>HTTP响应信息包括以下几点：</p>
+<h2 id="响应部分"><a href="#响应部分" class="headerlink" title="响应部分"></a>响应部分</h2><p>HTTP响应信息包括以下几点:</p>
 <ol>
 <li>状态行（协议/版本 状态码 状态路径）</li>
 <li>响应头（key: value)</li>
 <li>空行</li>
 <li>其他信息体（要下载的内容）</li>
 </ol>
-<p>状态码由3位数字组成，第一个数字代表当前应的类型</p>
 <ul>
+<li>状态码由3位数字组成，第一个数字代表当前应的类型</li>
 <li>1xx—-请求已被服务器接受，继续处理</li>
 <li>2xx—-请求成功</li>
 <li>3xx—-重定向，文件暂时或永久地搬走了</li>
@@ -125,7 +125,7 @@ Content-Type: image/gif
 </code></pre><ul>
 <li>Content-Type表示的是响应信息第4部分的格式。</li>
 </ul>
-<h1 id="使用Chrome开发者工具查看-HTTP-内容"><a href="#使用Chrome开发者工具查看-HTTP-内容" class="headerlink" title="使用Chrome开发者工具查看 HTTP 内容"></a>使用Chrome开发者工具查看 HTTP 内容</h1><ol>
+<h2 id="使用Chrome开发者工具查看-HTTP-内容"><a href="#使用Chrome开发者工具查看-HTTP-内容" class="headerlink" title="使用Chrome开发者工具查看 HTTP 内容"></a>使用Chrome开发者工具查看 HTTP 内容</h2><ol>
 <li>打开 Network（在Chrome中点击鼠标右键→选择检查→点击Network）；</li>
 <li>在地址栏输入网址（eg：<a href="http://www.baidu.com)；" target="_blank" rel="noopener">www.baidu.com)；</a></li>
 <li>点击第一个request；</li>
@@ -133,15 +133,15 @@ Content-Type: image/gif
 <li>查看 Response Headers，点击 view source 即可看到上述<em>响应</em>信息；</li>
 <li>如果有第4部分，那么在 FormData 或 Payload 里面可以看到。<br><img src="http基础/eg.jpg" alt="请求"></li>
 </ol>
-<h1 id="使用curl命令发起请求"><a href="#使用curl命令发起请求" class="headerlink" title="使用curl命令发起请求"></a>使用curl命令发起请求</h1><p>cURL是一个利用URL规则在<em>命令行</em>下工作的文件传输工具。</p>
+<h1 id="使用curl命令发起请求"><a href="#使用curl命令发起请求" class="headerlink" title="使用curl命令发起请求"></a>使用curl命令发起请求</h1><p>cURL是一个利用URL规则在<strong>命令行</strong>下工作的文件传输工具。</p>
 <h3 id="请求示例1"><a href="#请求示例1" class="headerlink" title="请求示例1"></a>请求示例1</h3><pre><code>curl -s -v -H &quot;xxx: yyy&quot; -- &quot;https://www.baidu.com&quot;
 </code></pre><p>请求的内容为：<br>    GET / HTTP/1.1<br>    Host: <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a><br>    User-Agent: curl/7.55.0<br>    Accept: <em>/</em><br>    xxx:yyy</p>
 <p>响应内容为：<br>    HTTP/1.1 200 OK<br>    Accept-Ranges: bytes<br>    Cache-Control: private, no-cache, no-store, proxy-revalidate, no-transform<br>    Connection: Keep-Alive<br>    Content-Length: 2443<br>    Content-Type: text/html<br>    Date: Sat, 21 Apr 2018 08:31:17 GMT<br>    Etag: “58860411-98b”<br>    Last-Modified: Mon, 23 Jan 2017 13:24:33 GMT<br>    Pragma: no-cache<br>    Server: bfe/1.0.8.18<br>    Set-Cookie: BDORZ=27315; max-age=86400; domain=.baidu.com; path=/</p>
 <h3 id="请求示例2"><a href="#请求示例2" class="headerlink" title="请求示例2"></a>请求示例2</h3><pre><code>curl -X POST -d &quot;hello&quot; -s -v -H &quot;xxx: yyy&quot; -- &quot;https://www.baidu.com&quot;
 </code></pre><p>请求内容为：<br>    POST / HTTP/1.1<br>    Host: <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a><br>    User-Agent: curl/7.55.0<br>    Accept: <em>/</em><br>    xxx: yyy<br>    Content-Length: 5<br>    Content-Type: application/x-www-form-urlencoded</p>
 <p>响应内容为：<br>    HTTP/1.1 302 Found<br>    Connection: Keep-Alive<br>    Content-Length: 17931<br>    Content-Type: text/html<br>    Date: Sat, 21 Apr 2018 08:36:38 GMT<br>    Etag: “54d9748e-460b”<br>    Server: bfe/1.0.8.18</p>
-<p>举例中-X -d -s -v -H等均为curl参数，可根据需要改变。</p>
 <ul>
+<li>举例中-X -d -s -v -H等均为curl参数，可根据需要改变。</li>
 <li>-X—-指定什么命令</li>
 <li>-d—-使用POST方式提交数据</li>
 <li>-s—-silent静音模式，不输出任何东西</li>
@@ -152,7 +152,7 @@ Content-Type: image/gif
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/21/http基础/" data-id="cjg96pozx000354y4ggdje6oz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/21/http基础/" data-id="cjg97dngm0003g8y4z24eyf0y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li></ul>
@@ -193,7 +193,7 @@ Content-Type: image/gif
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/17/Git入门命令/" data-id="cjg96pozk000054y4qqqcyqyg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/17/Git入门命令/" data-id="cjg97dng40000g8y4rjso2t6d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git入门/">git入门</a></li></ul>
@@ -236,7 +236,7 @@ Content-Type: image/gif
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/16/命令行相关命令/" data-id="cjg96pp05000454y4xw5grmtw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/16/命令行相关命令/" data-id="cjg97dngq0004g8y46goxxk56" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ls-cat-mv-touch/">ls cat mv touch</a></li></ul>
@@ -275,7 +275,7 @@ Content-Type: image/gif
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/开博大吉/" data-id="cjg96pp09000554y4c5z15nen" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/15/开博大吉/" data-id="cjg97dngs0005g8y435gad86r" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开博/">开博</a></li></ul>
@@ -322,7 +322,7 @@ Content-Type: image/gif
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/hello-world/" data-id="cjg96pozq000154y4c5iz8tp7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/15/hello-world/" data-id="cjg97dnga0001g8y433k5jpje" class="article-share-link">Share</a>
       
       
     </footer>
