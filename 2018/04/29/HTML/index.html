@@ -5,15 +5,20 @@
   
 
   
-  <title>lxiaox</title>
+  <title>HTML5标签列表 | lxiaox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="lxiaox">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="以下为所有标准化的、有效的HTML5元素。根元素                    Element            Description                            &amp;lt;html&amp;gt;            代表 HTML 或 XHTML 文档的根。其他所有元素必须是这个元素的子节点。            ## 文档元数据">
+<meta name="keywords" content="html标签">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML5标签列表">
+<meta property="og:url" content="http://yoursite.com/2018/04/29/HTML/index.html">
 <meta property="og:site_name" content="lxiaox">
+<meta property="og:description" content="以下为所有标准化的、有效的HTML5元素。根元素                    Element            Description                            &amp;lt;html&amp;gt;            代表 HTML 或 XHTML 文档的根。其他所有元素必须是这个元素的子节点。            ## 文档元数据">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-29T14:14:35.412Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="lxiaox">
+<meta name="twitter:title" content="HTML5标签列表">
+<meta name="twitter:description" content="以下为所有标准化的、有效的HTML5元素。根元素                    Element            Description                            &amp;lt;html&amp;gt;            代表 HTML 或 XHTML 文档的根。其他所有元素必须是这个元素的子节点。            ## 文档元数据">
   
     <link rel="alternate" href="/atom.xml" title="lxiaox" type="application/atom+xml">
   
@@ -60,9 +65,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-HTML" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-HTML" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/29/HTML/" class="article-date">
   <time datetime="2018-04-29T11:35:35.000Z" itemprop="datePublished">2018-04-29</time>
@@ -75,8 +78,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/29/HTML/">HTML5标签列表</a>
+    <h1 class="article-title" itemprop="name">
+      HTML5标签列表
     </h1>
   
 
@@ -98,313 +101,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-http请求与响应" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/21/http请求与响应/" class="article-date">
-  <time datetime="2018-04-21T10:33:33.000Z" itemprop="datePublished">2018-04-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/21/http请求与响应/">http基础</a>
-    </h1>
+    <a href="/2018/04/21/http请求与响应/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">http基础</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-协议概述"><a href="#1-协议概述" class="headerlink" title="1.协议概述"></a>1.协议概述</h2><p>HTTP（英文全称：HyperText Transfer Protocol，中文：超文本传输协议）是一个客户端和服务器端之间请求和应答的标准。通常，由客户端发起一个HTTP<strong>请求</strong>到服务器上的指定端口（默认80端口），服务器则在端口接收客户端请求并作出<strong>响应</strong>。</p>
-<h2 id="2-请求部分"><a href="#2-请求部分" class="headerlink" title="2.请求部分"></a>2.请求部分</h2><p>HTTP请求信息包括以下几点：</p>
-<ol>
-<li>请求行（动作 路径 协议/版本）</li>
-<li>请求头</li>
-<li>空行</li>
-<li>其他信息体（要上传的数据，可以为空）</li>
-</ol>
-<ul>
-<li>1中的动词为HTTP/1.1协议中定义的用来操作指定资源的方法，有GET、HEAD、POST、PUT、DELETE、TRACE、OPTIONS、CONNECT等。</li>
-<li>请求行格式为：key+英文:+空格+value（key: value)，可以有多行。</li>
-<li>路径不写时默认为/。</li>
-<li>请求的1、2、3部分必须包括，4部分可以为空。</li>
-</ul>
-<h3 id="请求举例"><a href="#请求举例" class="headerlink" title="请求举例"></a>请求举例</h3><pre><code>GET / HTTP/1.1
-HOST: www.baidu.com
-</code></pre><ul>
-<li>第二行header作用为指定主机</li>
-<li>末尾加空行</li>
-</ul>
-<h2 id="3-响应部分"><a href="#3-响应部分" class="headerlink" title="3.响应部分"></a>3.响应部分</h2><p>HTTP响应信息包括以下几点:</p>
-<ol>
-<li>状态行（协议/版本 状态码 状态路径）</li>
-<li>响应头（key: value)</li>
-<li>空行</li>
-<li>其他信息体（要下载的内容）</li>
-</ol>
-<ul>
-<li>状态码由3位数字组成，第一个数字代表当前应的类型</li>
-<li>1xx—-请求已被服务器接受，继续处理</li>
-<li>2xx—-请求成功</li>
-<li>3xx—-重定向，文件暂时或永久地搬走了</li>
-<li>4xx—-请求错误，无法被执行</li>
-<li>5xx—-服务器发生错误<br>具体参见 <a href="https://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81" target="_blank" rel="noopener">HTTP状态码</a></li>
-</ul>
-<h3 id="响应举例"><a href="#响应举例" class="headerlink" title="响应举例"></a>响应举例</h3><pre><code>HTTP/1.1 200 OK
-Content-Length: 0
-Content-Type: image/gif
-</code></pre><ul>
-<li>Content-Type表示的是响应信息第4部分的格式</li>
-<li>末尾加空行</li>
-</ul>
-<h2 id="4-使用Chrome开发者工具查看-HTTP-内容"><a href="#4-使用Chrome开发者工具查看-HTTP-内容" class="headerlink" title="4.使用Chrome开发者工具查看 HTTP 内容"></a>4.使用Chrome开发者工具查看 HTTP 内容</h2><ol>
-<li>打开 Network（在Chrome中点击鼠标右键→选择检查→点击Network）；</li>
-<li>在地址栏输入网址（eg：<a href="http://www.baidu.com）；" target="_blank" rel="noopener">www.baidu.com）；</a></li>
-<li>点击第一个request；</li>
-<li>查看 Request Headers，点击 view source 即可看到上述<strong>请求</strong>信息；</li>
-<li>查看 Response Headers，点击 view source 即可看到上述<strong>响应</strong>信息；</li>
-<li>如果有第4部分，那么在 FormData 或 Payload 里面可以看到。</li>
-</ol>
-<img src="/2018/04/21/http请求与响应/eg.png" title="eg">
-<h2 id="5-使用curl命令发起请求"><a href="#5-使用curl命令发起请求" class="headerlink" title="5.使用curl命令发起请求"></a>5.使用curl命令发起请求</h2><p>cURL是一个利用URL规则在<strong>命令行</strong>下工作的文件传输工具。</p>
-<h3 id="请求示例1"><a href="#请求示例1" class="headerlink" title="请求示例1"></a>请求示例1</h3><pre><code>curl -s -v -H &quot;xxx: yyy&quot; -- &quot;https://www.baidu.com&quot;
-</code></pre><p>请求内容为：</p>
-<pre><code>GET / HTTP/1.1
-Host: www.baidu.com
-User-Agent: curl/7.55.0
-Accept: */*
-xxx:yyy
-</code></pre><p>响应内容为：</p>
-<pre><code>HTTP/1.1 200 OK
-Accept-Ranges: bytes
-Cache-Control: private, no-cache, no-store, proxy-revalidate, no-transform
-Connection: Keep-Alive
-Content-Length: 2443
-Content-Type: text/html
-Date: Sat, 21 Apr 2018 08:31:17 GMT
-Etag: &quot;58860411-98b&quot;
-Last-Modified: Mon, 23 Jan 2017 13:24:33 GMT
-Pragma: no-cache
-Server: bfe/1.0.8.18
-Set-Cookie: BDORZ=27315; max-age=86400; domain=.baidu.com; path=/
-</code></pre><h3 id="请求示例2"><a href="#请求示例2" class="headerlink" title="请求示例2"></a>请求示例2</h3><pre><code>curl -X POST -d &quot;hello&quot; -s -v -H &quot;xxx: yyy&quot; -- &quot;https://www.baidu.com&quot;
-</code></pre><p>请求内容为：</p>
-<pre><code>POST / HTTP/1.1
-Host: www.baidu.com
-User-Agent: curl/7.55.0
-Accept: */*
-xxx: yyy
-Content-Length: 5
-Content-Type: application/x-www-form-urlencoded
-</code></pre><p>响应内容为：</p>
-<pre><code>HTTP/1.1 302 Found
-Connection: Keep-Alive
-Content-Length: 17931
-Content-Type: text/html
-Date: Sat, 21 Apr 2018 08:36:38 GMT
-Etag: &quot;54d9748e-460b&quot;
-Server: bfe/1.0.8.18
-</code></pre><ul>
-<li>举例中-X -d -s -v -H等均为curl参数，可根据需要改变。</li>
-<li>-X—-指定什么命令</li>
-<li>-d—-使用POST方式提交数据</li>
-<li>-s—-silent静音模式，不输出任何东西</li>
-<li>-v—-verbose详细，显示请求及响应</li>
-<li>-H—-header，自定义头信息传给浏览器</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/21/http请求与响应/" data-id="cjgkwcu0600056wy4lcd9rsy5" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-Git入门命令" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/17/Git入门命令/" class="article-date">
-  <time datetime="2018-04-17T09:19:28.000Z" itemprop="datePublished">2018-04-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/17/Git入门命令/">Git入门命令</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1、<br>git init<br>这是仓库初始化命令，进入一个安全目录，在目录下运行git init后会创建一个.git目录，使用ls -a命令可以看到它，它就是一个仓库。<br><img src="/2018/04/17/Git入门命令/git init.png" alt="git init截图"></p>
-<p>2、<br>git add<br>将文件添加到暂存区，例如：新建一个a.txt文件，用git status -sb查看文件状态，可以看到文件前有??，这表示git不知到如何处理文件变动，这时运行git add a.txt，再用git status -sb查看就会发现文件前符号变成了A，意思就是添加。<br><img src="/2018/04/17/Git入门命令/git add.png" alt="git add截图"></p>
-<p>3、<br>git commit -m “提交信息”<br>将add过的变动提交至仓库，提交信息就是你想要的注释等，方便以后查阅。<br>可以选择一次提交一个文件：git commit filename -m “xxx”<br>或者一次全部提交：git commit . -m “xxxx”<br><img src="/2018/04/17/Git入门命令/git commit.png" alt="git commit截图"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/17/Git入门命令/" data-id="cjgkwcu0400046wy4kyj5embq" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git入门/">git入门</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-命令行相关命令" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/16/命令行相关命令/" class="article-date">
-  <time datetime="2018-04-16T14:19:23.000Z" itemprop="datePublished">2018-04-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/16/命令行相关命令/">命令行相关命令</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1、<br>ls      //查看当前目录下所有文件目录<br>ls -a   //查看所有文件目录，包括隐藏文件<br>ls -l   //查看文件详细信息（所属用户、文件大小、修改时间等）<br>ls -al  //结合-a -l功能，查看所有文件目录详细信息<br>ls -lt  //按修改时间排序</p>
-<p>2、<br>cat     //显示文件内容、连接文件、追加文件内容<br>cat filename    //显示文件内容<br>cat -n file     //加上行号<br>cat -b file     //只给有文本的行加上行号<br>cat -s file     //将多个空白行压缩到单个空白行<br>cat &gt;filename   //新建一个文件<br>tac file        //反向显示<br>cat file1 file2 &gt; file3     //将file1、file2合并为新文件file3</p>
-<p>3、<br>mv file1 file2     //修改文件名称<br>mv file1 xxx       //移动文件至xxx目录<br>mv -b              //若需覆盖文件会备份原文件<br>mv -i              //若需覆盖文件会询问<br>mv -f              //若需覆盖文件不会询问，直接覆盖</p>
-<p>4、<br>touch file      //为改变文件修改时间，文件不存在时创建一个新文件<br>touch file -c   //不创建任何文件<br>touch -t        //使用指定的日期时间<br>touch -a        //只更改存取时间<br>touch -m        //只更改变动时间</p>
-<p>5、explainshell.com网站的使用<br>这是一个解释命令的网站，我们可以使用这个网站工具来查看命令是如何工作的,这样可以避免不必要的错误出现，也是一个很好的学习命令的方式。<br>使用方法：<br>进入该网站，在网页上的搜索框输入命令回车即可搜索该命令的解释说明。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/16/命令行相关命令/" data-id="cjgkwcu0900086wy44sboekzl" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ls-cat-mv-touch/">ls cat mv touch</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-first" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/15/first/" class="article-date">
-  <time datetime="2018-04-15T02:41:10.000Z" itemprop="datePublished">2018-04-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/first/">first</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="越努力越幸运！"><a href="#越努力越幸运！" class="headerlink" title="越努力越幸运！"></a>越努力越幸运！</h1>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/first/" data-id="cjgkwctz900006wy480gpd333" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/first/">first</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/15/hello-world/" class="article-date">
-  <time datetime="2018-04-15T02:37:45.775Z" itemprop="datePublished">2018-04-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/hello-world/" data-id="cjgkwcu0100036wy4ieu23swl" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
