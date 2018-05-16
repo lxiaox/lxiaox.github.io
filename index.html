@@ -85,7 +85,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>本文介绍内容主要分为HTML结构、标题标签、段落标签、图形标签、一些常用标签、制表、表单、框架标签、超链接标签、字符控制、列表控制以及多媒体等。</p>
-<h2 id="HTML结构"><a href="#HTML结构" class="headerlink" title="HTML结构"></a>HTML结构</h2><table><br><tr><td><th>标签</th><th>描述<br></th></td></tr><tr><td></td><td>DOCTYPE</td><td>指定文件类型，如html5中:<br>&lt;!DOCTYPE html&gt;<br></td></tr><tr><td></td><td>html</td><td>文档的根元素<br></td></tr><tr><td></td><td>head</td><td>网页中顶级元素，一般包含浏览器环境设置部分<br></td></tr><tr><th rowspan="5" width="4">head嵌套</th><td>title</td><td><br></td></tr><tr><td>style</td><td>设置html元素的样式<br></td></tr><tr><td>script</td><td>定义网页使用哪种脚本语言<br></td></tr><tr><td>meta</td><td>定义网页元数据，如文档关键字、描述和作者信息<br></td></tr><tr><td>object</td><td>定义对象<br></td></tr><tr><td></td><td>body</td><td>包含显示在浏览器可视区的信息主体，及正文部分<br></td></tr></table>
+<h2 id="HTML结构"><a href="#HTML结构" class="headerlink" title="HTML结构"></a>HTML结构</h2><table><br><tr><td><th>标签</th><th>描述<br></th></td></tr><tr><td></td><td>DOCTYPE</td><td>指定文件类型，如html5中:<br>&lt;!DOCTYPE html&gt;<br></td></tr><tr><td></td><td>html</td><td>文档的根元素<br></td></tr><tr><td></td><td>head</td><td>网页中顶级元素，一般包含浏览器环境设置部分<br></td></tr><tr><th rowspan="5" width="4">head嵌套</th><td>title</td><td>定义网页的标题<br></td></tr><tr><td>style</td><td>设置html元素的样式<br></td></tr><tr><td>script</td><td>定义网页使用哪种脚本语言<br></td></tr><tr><td>meta</td><td>定义网页元数据，如文档关键字、描述和作者信息<br></td></tr><tr><td>object</td><td>定义对象<br></td></tr><tr><td></td><td>body</td><td>包含显示在浏览器可视区的信息主体，及正文部分<br></td></tr></table>
 
 <h2 id="标题标签-lt-h1-gt-lt-h6-gt"><a href="#标题标签-lt-h1-gt-lt-h6-gt" class="headerlink" title="标题标签&lt;h1&gt;~&lt;h6&gt;"></a>标题标签&lt;h1&gt;~&lt;h6&gt;</h2><table><br><tr><th>标签</th><th>示例<br></th></tr><tr><td>h1</td><td><h1>一级标题</h1><br></td></tr><tr><td>h1</td><td><h2>二级标题</h2><br></td></tr><tr><td>h3</td><td><h3>三级标题</h3><br></td></tr><tr><td>h4</td><td><h4>四级标题</h4><br></td></tr><tr><td>h5</td><td><h5>五级标题</h5><br></td></tr><tr><td>h6</td><td><h6>六级标题</h6><br></td></tr><tr><th>标题align属性</th><th>中间对齐方式<br></th></tr><tr><td>left</td><td>左对齐<br></td></tr><tr><td>right</td><td>右对齐<br></td></tr><tr><td>center</td><td>中间对齐<br></td></tr><tr><td>justify</td><td>两边对齐<br></td></tr></table>
 
@@ -113,12 +113,12 @@
 
 <h2 id="列表控制"><a href="#列表控制" class="headerlink" title="列表控制"></a>列表控制</h2><table><br><tr><th>标签</th><th>描述<br></th></tr><tr><td>dl</td><td>定义列表<br></td></tr><tr><td>dt</td><td>由dd元素定义的对象<br></td></tr><tr><td>dd</td><td>对dt元素的定义<br></td></tr><tr><td>menu</td><td>设定菜单或列表的开头<br></td></tr><tr><td>ul</td><td>无序列表<br></td></tr><tr><td>ol</td><td>有序列表<br></td></tr><tr><td>li</td><td>列表项目<br></td></tr><tr><th colspan="2">ul、ol元素的type属性<br></th></tr><tr><td>1</td><td>以整数作为项目标记符<br></td></tr><tr><td>a</td><td>以小写字母作为项目标记符<br></td></tr><tr><td>A</td><td>以大写字母作为项目标记符<br></td></tr><tr><td>i</td><td>以小写罗马数字作为项目标记符<br></td></tr><tr><td>I</td><td>以大写罗马数字作为项目标记符<br></td></tr><tr><td>circle</td><td>以空心圆作为项目标记符<br></td></tr><tr><td>disc</td><td>以实心圆作为项目标记符<br></td></tr><tr><td>square</td><td>以方块作为项目标记符<br></td></tr></table>
 
-<h2 id="多媒体"><a href="#多媒体" class="headerlink" title="多媒体"></a>多媒体</h2><table><br><tr><th>技术</th><th>实现方法<br></th></tr><tr><td>声音与视频</td><td>使用a标签<br></td></tr><tr><td>背景音乐</td><td>在head标签中写入：<br>&lt;bgsound src=”” loop=””&gt;<br>（loop为循环次数）<br></td></tr><tr><td>动态文件</td><td>使用img元素的dynsrc（引入各种格式的多媒体）、loop、start（值为mouseover等）等IE属性。<br></td></tr><tr><td>动画和视频的插入</td><td>使用embed元素，用法：<br>&lt;embed src=”” width=”” height=””&gt;<br></td></tr></table>
+<h2 id="多媒体"><a href="#多媒体" class="headerlink" title="多媒体"></a>多媒体</h2><table><br><tr><th>技术</th><th>实现方法<br></th></tr><tr><td>声音与视频</td><td>使用a标签<br></td></tr><tr><td>背景音乐</td><td>在head标签中写入：<br>&lt;bgsound src=”” loop=””&gt;<br>（loop为循环次数）<br></td></tr><tr><td>动态文件</td><td>使用img元素的dynsrc（引入各种格式的多媒体）、loop、start（值为mouseover等）等IE属性。<br></td></tr><tr><td>动画和视频的插入</td><td>使用embed元素，用法：<br>&lt;embed src=”” width=”” height=””&gt;<br></td></tr><tr><td>文本滚动</td><td>使用&lt;marquee&gt;元素，内含width、height、bgcolor、border、behavior（=slide、sroll、alternate等）、direction、loop等属性。<br></td></tr></table>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/09/HTML常用标签/" data-id="cjgz433ei0003igy4i23etwm8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/09/HTML常用标签/" data-id="cjh8ngak30004u07ly8ezikma" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html常用标签/">html常用标签</a></li></ul>
@@ -178,7 +178,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/29/HTML/" data-id="cjgz433ed0001igy4spdus0jt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/29/HTML/" data-id="cjh8ngajq0000u07lyj1a8gjy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5标签/">html5标签</a></li></ul>
@@ -313,7 +313,7 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/21/http请求与响应/" data-id="cjgz433ep0008igy48wrus2q8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/21/http请求与响应/" data-id="cjh8ngak40005u07lfe62jdwn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li></ul>
@@ -354,7 +354,7 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/17/Git入门命令/" data-id="cjgz433e60000igy4z30wqslt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/17/Git入门命令/" data-id="cjh8ngak10003u07leqkqt7db" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git入门/">git入门</a></li></ul>
@@ -397,7 +397,7 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/16/命令行相关命令/" data-id="cjgz433er0009igy4bsxbij8r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/16/命令行相关命令/" data-id="cjh8ngak70008u07l94rehrh8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ls-cat-mv-touch/">ls cat mv touch</a></li></ul>
@@ -435,7 +435,7 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/first/" data-id="cjgz433el0004igy45fiebz1t" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/15/first/" data-id="cjh8ngajw0001u07l6ki4omny" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/first/">first</a></li></ul>
@@ -482,7 +482,7 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/hello-world/" data-id="cjgz433em0005igy4xba3oh9x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/15/hello-world/" data-id="cjh8ngake0009u07ld60vwzqw" class="article-share-link">Share</a>
       
       
     </footer>
