@@ -62,6 +62,121 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-css布局" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/27/css布局/" class="article-date">
+  <time datetime="2018-05-27T05:04:48.000Z" itemprop="datePublished">2018-05-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/27/css布局/">css布局</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文主要介绍以下几点</p>
+<ul>
+<li>左右布局</li>
+<li>水平居中</li>
+<li>垂直居中</li>
+</ul>
+<hr>
+<h2 id="左右布局（两个子元素或以上）"><a href="#左右布局（两个子元素或以上）" class="headerlink" title="左右布局（两个子元素或以上）"></a>左右布局（两个子元素或以上）</h2><ol>
+<li><strong>利用浮动</strong><br><br>给所有子元素添加属性<code>float:left/right</code>，父元素添加clearfix类，可使子元素从左至右排列，同时添加<br><code>margin</code>可增加元素间距。但是当宽度大于父元素宽度时，子元素会换行显示。</li>
+<li><strong>利用绝对定位</strong><br><br>父元素添加<code>position:relative</code>，所有子元素添加<code>position:absolute</code>，使子元素脱离文档流，再利用<code>top: px</code>使子元<br>素顶部对齐，同时使用left属性调整左右位置。</li>
+</ol>
+<h2 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h2><ul>
+<li><strong>行内元素&amp;类行内元素（文本、链接等）</strong><br><ol>
+<li>在块级父容器中让行内元素居中，只需在<strong>父元素</strong>中使用<code>text-align: center;</code><br><br>这个方法可使<code>inline</code>、<code>inline-block</code>、<code>inline-table</code>、<code>inline</code>、<code>flex</code>等类型的元素水平居中。</li>
+</ol>
+</li>
+<li><strong>块级元素（确定宽度）</strong><br><ol>
+<li><strong>法一</strong>：将子元素<code>margin-left</code>、<code>margin-right</code>均设置为<code>auto</code>。(不确定宽度时会拉至与父元素等宽。)<br></li>
+<li><strong>法二</strong>：利用绝对定位，将子元素<code>left</code>设置为父元素宽度的一半，同时<code>margin-left</code>设置为子元素宽度一半的<strong>负值</strong>。</li>
+</ol>
+</li>
+<li><strong>块级元素（不确定宽度）</strong><br><ol>
+<li><strong>法三：</strong>利用绝对定位，并将子元素<code>top</code>、<code>left</code>、<code>right</code>、<code>bottom</code>均设置为0，这个方法会将子元素的宽高都拉至与父元素等宽高。<br></li>
+<li><strong>法四：</strong>利用绝对定位，将子元素<code>top</code>、<code>left</code>设置为<code>50%</code>，并添加<code>transform: translate(-50%, -50%);</code> 可使子元素水平且垂直居中。<br>其中<code>left</code>、<code>translateX(-50%)</code>实现水平居中。<br></li>
+<li><strong>法五：</strong> flex布局：在<strong>父元素</strong>中添加<code>display:flex;</code>、<code>justify-content:center;//水平居中</code>、<code>align-items: center;//垂直居中</code> 即可使子元素水平且垂直居中。</li>
+</ol>
+</li>
+<li><strong>多个块级元素</strong><br><ol>
+<li>对所有子元素使用<code>display:inline-block;</code>，在父元素上使用<code>text-align:center;</code>即可。</li>
+<li>见<strong>法五</strong>。</li>
+</ol>
+</li>
+</ul>
+<h2 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h2><ul>
+<li><strong>行内元素</strong><br><ol>
+<li>在<strong>父元素</strong>中使用<code>display:table-cell;</code>、<code>vertical-align:middle;</code> 即可使子元素垂直居中。</li>
+</ol>
+</li>
+<li><strong>块级元素（确定高度）</strong><br><ol>
+<li>同理<strong>法二</strong>，利用绝对定位，将子元素<code>top</code>设置为父元素宽度的一半，同时<code>margin-top</code>设置为子元素宽度一半的 <strong>负值</strong>。</li>
+</ol>
+</li>
+<li><strong>块级元素（不确定高度）</strong><br><ol>
+<li>见<strong>法三</strong>。</li>
+<li>见<strong>法四</strong>。其中<code>top</code>、<code>translateY(-50%)</code>实现垂直居中。</li>
+<li>见<strong>法五</strong>。</li>
+</ol>
+</li>
+<li><strong>多个块级元素</strong><br><ol>
+<li>见<strong>法五</strong>。</li>
+</ol>
+</li>
+</ul>
+<h2 id="总结居中"><a href="#总结居中" class="headerlink" title="总结居中"></a>总结居中</h2><ul>
+<li><strong>行内元素</strong><ol>
+<li>水平居中：在父元素中使用<code>text-align: center;</code></li>
+<li>垂直居中：在父元素中使用<code>display:table-cell;</code>、<code>vertical-align:middle;</code></li>
+</ol>
+</li>
+<li><strong>块级元素(确定宽高)</strong><ol>
+<li>利用<code>margin:auto</code>：<br><br> a.水平居中：<code>margin-left</code>、<code>margin-right</code>均设置为<code>auto</code>。<br><br> b.垂直居中不适用。 </li>
+<li>绝对定位 + margin负值。</li>
+<li>绝对定位 + transform</li>
+<li>flex布局</li>
+</ol>
+</li>
+<li><strong>块级元素(不确定宽高)</strong><ol>
+<li>绝对定位 + transform</li>
+<li>flex布局</li>
+</ol>
+</li>
+<li><strong>多个块级元素</strong><ol>
+<li>对所有子元素使用<code>display:inline-block;</code>，在父元素上使用<code>text-align:center;</code> (只适用于水平居中)。</li>
+<li>flex布局</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/05/27/css布局/" data-id="cjhp11fur00018w7l8whagxuz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css布局/">css布局</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-HTML常用标签" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/05/09/HTML常用标签/" class="article-date">
@@ -118,7 +233,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/09/HTML常用标签/" data-id="cjh8ngak30004u07ly8ezikma" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/09/HTML常用标签/" data-id="cjhp11fvc00058w7l8xam1mxl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html常用标签/">html常用标签</a></li></ul>
@@ -178,7 +293,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/29/HTML/" data-id="cjh8ngajq0000u07lyj1a8gjy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/29/HTML/" data-id="cjhp11fva00048w7lnszhyo4u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5标签/">html5标签</a></li></ul>
@@ -313,7 +428,7 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/21/http请求与响应/" data-id="cjh8ngak40005u07lfe62jdwn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/21/http请求与响应/" data-id="cjhp11fz2000f8w7lts51ydh5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li></ul>
@@ -354,7 +469,7 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/17/Git入门命令/" data-id="cjh8ngak10003u07leqkqt7db" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/17/Git入门命令/" data-id="cjhp11fv700038w7ljo0wbyfl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git入门/">git入门</a></li></ul>
@@ -397,7 +512,7 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/16/命令行相关命令/" data-id="cjh8ngak70008u07l94rehrh8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/16/命令行相关命令/" data-id="cjhp11g05000i8w7limls3wax" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ls-cat-mv-touch/">ls cat mv touch</a></li></ul>
@@ -435,7 +550,7 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/first/" data-id="cjh8ngajw0001u07l6ki4omny" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/15/first/" data-id="cjhp11fuj00008w7lusefttf6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/first/">first</a></li></ul>
@@ -482,7 +597,7 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/hello-world/" data-id="cjh8ngake0009u07ld60vwzqw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/15/hello-world/" data-id="cjhp11g06000j8w7lhslamhsh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -505,7 +620,7 @@ Server: bfe/1.0.8.18
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/first/">first</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ls-cat-mv-touch/">ls cat mv touch</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/first/">first</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ls-cat-mv-touch/">ls cat mv touch</a></li></ul>
     </div>
   </div>
 
@@ -515,7 +630,7 @@ Server: bfe/1.0.8.18
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/first/" style="font-size: 10px;">first</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/ls-cat-mv-touch/" style="font-size: 10px;">ls cat mv touch</a>
+      <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/first/" style="font-size: 10px;">first</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/ls-cat-mv-touch/" style="font-size: 10px;">ls cat mv touch</a>
     </div>
   </div>
 
@@ -537,6 +652,10 @@ Server: bfe/1.0.8.18
       <ul>
         
           <li>
+            <a href="/2018/05/27/css布局/">css布局</a>
+          </li>
+        
+          <li>
             <a href="/2018/05/09/HTML常用标签/">HTML常用标签及简单介绍</a>
           </li>
         
@@ -550,10 +669,6 @@ Server: bfe/1.0.8.18
         
           <li>
             <a href="/2018/04/17/Git入门命令/">Git入门命令</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/16/命令行相关命令/">命令行相关命令</a>
           </li>
         
       </ul>
