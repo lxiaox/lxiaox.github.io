@@ -62,9 +62,70 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-JS数据类型转换" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-原型与原型链" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/06/12/JS数据类型转换/" class="article-date">
+    <a href="/2018/06/13/原型与原型链/" class="article-date">
+  <time datetime="2018-06-13T13:37:24.000Z" itemprop="datePublished">2018-06-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/13/原型与原型链/">原型与原型链</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="构造函数与对象"><a href="#构造函数与对象" class="headerlink" title="构造函数与对象"></a>构造函数与对象</h3><p>在JS中规定全局对象window（浏览器中是window，ECMAScript中是global）具有很多属性，例如可以用来创建各种类型对象的<code>Number()</code>、<code>String()</code>、<code>Boolean()</code>、<code>Object()</code>等构造函数。</p>
+<pre><code>//用构造函数创建一个实例对象
+var a = new Number(123)
+a  //Number {123}
+</code></pre><p>复杂对象具有各种属性，基本类型数据可以引用复杂对象的各种属性是临时创建了一个复杂对象。</p>
+<h3 id="prototype"><a href="#prototype" class="headerlink" title="prototype"></a>prototype</h3><p>每个函数都有一个prototype属性，它指向该函数的<strong>原型</strong>，原型里具有该函数的公用属性，为节省内存空间，将这些公用属性存为一个对象，可供多个函数引用。对象的<code>__proto__</code>属性与它的构造函数的prototype指向同一个对象。</p>
+<ul>
+<li><code>函数Number的prototype属性指向Number.prototype对象</code>。</li>
+<li><code>Number.prototype.__proto__===Object.prototype</code>.</li>
+</ul>
+<h3 id="proto"><a href="#proto" class="headerlink" title="proto"></a><strong>proto</strong></h3><p>每个JS对象（除null）都具有的属性，它指向该对象的原型。<br><br>在例子中 <code>a 的__proto__属性也指向 Number.prototype</code>。</p>
+<h3 id="实例与原型"><a href="#实例与原型" class="headerlink" title="实例与原型"></a>实例与原型</h3><blockquote>
+<p>当读取实例的属性时，如果找不到，就会查找与对象关联的原型中的属性，如果还查不到，就去找原型的原型，一直找到最顶层为止。</p>
+</blockquote>
+<h3 id="原型的原型"><a href="#原型的原型" class="headerlink" title="原型的原型"></a>原型的原型</h3><p>原型也是对象，原型也可以引用原型，同时，我们也可以创建它。</p>
+<ul>
+<li>JS中原型最顶层为对象创建函数的原型<code>Object.prototype</code></li>
+<li><code>Object.prototype.__proto__===null</code>。</li>
+</ul>
+<h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><ul>
+<li>由相互关联的原型组成的链状结构就是原型链。</li>
+</ul>
+<p><br>例如关系图中红色的这条线：<br><img src="http://p8rplhkt6.bkt.clouddn.com/18-6-13/73261713.jpg" alt="关系图"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/06/13/原型与原型链/" data-id="cjid9cjc50008p07l72qoqgdx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JS数据里的数据类型转换" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/12/JS数据里的数据类型转换/" class="article-date">
   <time datetime="2018-06-12T10:27:22.000Z" itemprop="datePublished">2018-06-12</time>
 </a>
     
@@ -76,7 +137,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/12/JS数据类型转换/">JS数据里的数据类型转换</a>
+      <a class="article-title" href="/2018/06/12/JS数据里的数据类型转换/">JS数据里的数据类型转换</a>
     </h1>
   
 
@@ -149,7 +210,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/12/JS数据类型转换/" data-id="cjibs8ij100044s7leq997jow" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/12/JS数据里的数据类型转换/" data-id="cjid9cjbv0003p07ltxsxl1y2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS数据类型转换/">JS数据类型转换</a></li></ul>
@@ -213,7 +274,7 @@
 <h2 id="null："><a href="#null：" class="headerlink" title="null："></a>null：</h2><p>表示空值，即此处的值为空。一般用于不赋值的<strong>对象</strong>。null转为数值时自动转为0，这样不便发现错误，于是JS之父Brendan Eich又设计了undefined，它会转为<code>NaN</code>(非数，特殊的数值)。<br><br>一个null的特例：<code>typeof null</code>值为<code>Object</code>,其它数据类型均为自身。</p>
 <h2 id="对象（object）："><a href="#对象（object）：" class="headerlink" title="对象（object）："></a>对象（object）：</h2><p>对象是JS核心概念，也是最重要的数据类型。对象就是各种键值对组成的集合<code>(key-value)</code>，是以上几种基本类型的<strong>无序</strong>的组合。</p>
 </li>
-<li><p>object中所有<code>key</code>均为<code>string</code>，<strong>字符串</strong>。符合标识符规范的可不加引号。</p>
+<li><p>object中所有<code>key</code>均为<code>string</code>，<strong>字符串</strong>。全为数字或符合标识符规范的可不加引号。</p>
 </li>
 <li>object中所有<code>value</code>可以为各种类型和function。类型为string时必须加引号。</li>
 <li><code>Object[&#39;key&#39;]</code>，<code>key</code>必须加引号，<code>Object[key]</code>不加引号时<code>key</code>是变量，key全为数字除外，会自动转为字符串。</li>
@@ -228,7 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/09/JS数据类型/" data-id="cjibs8iix00034s7lhizvxgdm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/09/JS数据类型/" data-id="cjid9cjc80009p07l7f66k6qe" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js数据/">js数据</a></li></ul>
@@ -343,7 +404,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/27/css布局/" data-id="cjibs8ij300054s7lqj4g2xqd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/27/css布局/" data-id="cjid9cjc10005p07lqvuvaggj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css布局/">css布局</a></li></ul>
@@ -411,7 +472,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/09/HTML常用标签/" data-id="cjibs8ika000p4s7lvithc9tw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/09/HTML常用标签/" data-id="cjid9cjbl0001p07lvtf97arr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html常用标签/">html常用标签</a></li></ul>
@@ -471,7 +532,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/29/HTML/" data-id="cjibs8ibh00004s7l7r88grgi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/29/HTML/" data-id="cjid9cjby0004p07lbrfxxi2y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5标签/">html5标签</a></li></ul>
@@ -606,7 +667,7 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/21/http请求与响应/" data-id="cjibs8ijd000b4s7lvilg2pg9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/21/http请求与响应/" data-id="cjid9cjdb000rp07l3ttvaln5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li></ul>
@@ -647,7 +708,7 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/17/Git入门命令/" data-id="cjibs8ii900014s7lofdaifje" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/17/Git入门命令/" data-id="cjid9cj330000p07lhpqwias0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git入门/">git入门</a></li></ul>
@@ -690,7 +751,7 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/16/命令行相关命令/" data-id="cjibs8ijh000d4s7loqrqrsin" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/16/命令行相关命令/" data-id="cjid9cjd8000op07lqfp3bi73" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ls-cat-mv-touch/">ls cat mv touch</a></li></ul>
@@ -728,7 +789,7 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/first/" data-id="cjibs8ij700084s7lgjiy8r5k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/15/first/" data-id="cjid9cjcb000bp07lssth0tw6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/first/">first</a></li></ul>
@@ -740,52 +801,12 @@ Server: bfe/1.0.8.18
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/15/hello-world/" class="article-date">
-  <time datetime="2018-04-15T02:37:45.775Z" itemprop="datePublished">2018-04-15</time>
-</a>
+
+
+  <nav id="page-nav">
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/hello-world/" data-id="cjibs8ij900094s7l13y9pn0l" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
@@ -798,7 +819,7 @@ Server: bfe/1.0.8.18
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据类型转换/">JS数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/first/">first</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js数据/">js数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ls-cat-mv-touch/">ls cat mv touch</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据类型转换/">JS数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/first/">first</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js数据/">js数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ls-cat-mv-touch/">ls cat mv touch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li></ul>
     </div>
   </div>
 
@@ -808,7 +829,7 @@ Server: bfe/1.0.8.18
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS数据类型转换/" style="font-size: 10px;">JS数据类型转换</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/first/" style="font-size: 10px;">first</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/js数据/" style="font-size: 10px;">js数据</a> <a href="/tags/ls-cat-mv-touch/" style="font-size: 10px;">ls cat mv touch</a>
+      <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS数据类型转换/" style="font-size: 10px;">JS数据类型转换</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/first/" style="font-size: 10px;">first</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/js数据/" style="font-size: 10px;">js数据</a> <a href="/tags/ls-cat-mv-touch/" style="font-size: 10px;">ls cat mv touch</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a>
     </div>
   </div>
 
@@ -830,7 +851,11 @@ Server: bfe/1.0.8.18
       <ul>
         
           <li>
-            <a href="/2018/06/12/JS数据类型转换/">JS数据里的数据类型转换</a>
+            <a href="/2018/06/13/原型与原型链/">原型与原型链</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/12/JS数据里的数据类型转换/">JS数据里的数据类型转换</a>
           </li>
         
           <li>
@@ -843,10 +868,6 @@ Server: bfe/1.0.8.18
         
           <li>
             <a href="/2018/05/09/HTML常用标签/">HTML常用标签及简单介绍</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/29/HTML/">HTML5标签列表</a>
           </li>
         
       </ul>
