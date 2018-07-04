@@ -5,15 +5,24 @@
   
 
   
-  <title>lxiaox</title>
+  <title>实现一个jQuery的API | lxiaox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="lxiaox">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="通过自己动手写 API 来学习 jQuery！ 第1个API：addClass功能：通过节点或选择器给元素添加一个类 第2个API：setText功能：设置元素的文本内容 代码：  html： &amp;lt;body&amp;gt;   &amp;lt;div&amp;gt;hello&amp;lt;/div&amp;gt;   &amp;lt;div&amp;gt;hello&amp;lt;/div&amp;gt;   &amp;lt;div&amp;gt;hello&amp;lt;/div&amp;g">
+<meta name="keywords" content="jQuery-API">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实现一个jQuery的API">
+<meta property="og:url" content="http://yoursite.com/2018/07/04/实现一个jQuery的API/index.html">
 <meta property="og:site_name" content="lxiaox">
+<meta property="og:description" content="通过自己动手写 API 来学习 jQuery！ 第1个API：addClass功能：通过节点或选择器给元素添加一个类 第2个API：setText功能：设置元素的文本内容 代码：  html： &amp;lt;body&amp;gt;   &amp;lt;div&amp;gt;hello&amp;lt;/div&amp;gt;   &amp;lt;div&amp;gt;hello&amp;lt;/div&amp;gt;   &amp;lt;div&amp;gt;hello&amp;lt;/div&amp;g">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-7-4/94812649.jpg">
+<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-7-4/73660343.jpg">
+<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-7-4/88773623.jpg">
+<meta property="og:updated_time" content="2018-07-04T15:24:34.151Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="lxiaox">
+<meta name="twitter:title" content="实现一个jQuery的API">
+<meta name="twitter:description" content="通过自己动手写 API 来学习 jQuery！ 第1个API：addClass功能：通过节点或选择器给元素添加一个类 第2个API：setText功能：设置元素的文本内容 代码：  html： &amp;lt;body&amp;gt;   &amp;lt;div&amp;gt;hello&amp;lt;/div&amp;gt;   &amp;lt;div&amp;gt;hello&amp;lt;/div&amp;gt;   &amp;lt;div&amp;gt;hello&amp;lt;/div&amp;g">
+<meta name="twitter:image" content="http://p8rplhkt6.bkt.clouddn.com/18-7-4/94812649.jpg">
   
     <link rel="alternate" href="/atom.xml" title="lxiaox" type="application/atom+xml">
   
@@ -60,12 +69,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-first" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-实现一个jQuery的API" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/04/15/first/" class="article-date">
-  <time datetime="2018-04-15T02:41:10.000Z" itemprop="datePublished">2018-04-15</time>
+    <a href="/2018/07/04/实现一个jQuery的API/" class="article-date">
+  <time datetime="2018-07-04T14:20:26.000Z" itemprop="datePublished">2018-07-04</time>
 </a>
     
   </div>
@@ -75,8 +82,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/first/">first</a>
+    <h1 class="article-title" itemprop="name">
+      实现一个jQuery的API
     </h1>
   
 
@@ -84,73 +91,112 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="越努力越幸运！"><a href="#越努力越幸运！" class="headerlink" title="越努力越幸运！"></a>越努力越幸运！</h1>
+        <p>通过自己动手写 API 来学习 jQuery！</p>
+<h3 id="第1个API：addClass"><a href="#第1个API：addClass" class="headerlink" title="第1个API：addClass"></a>第1个API：addClass</h3><p>功能：通过节点或选择器给元素添加一个类</p>
+<h3 id="第2个API：setText"><a href="#第2个API：setText" class="headerlink" title="第2个API：setText"></a>第2个API：setText</h3><p>功能：设置元素的文本内容</p>
+<p>代码：</p>
+<p> html：</p>
+<pre><code>&lt;body&gt;
+  &lt;div&gt;hello&lt;/div&gt;
+  &lt;div&gt;hello&lt;/div&gt;
+  &lt;div&gt;hello&lt;/div&gt;
+  &lt;div&gt;hello&lt;/div&gt;
+  &lt;div&gt;hello&lt;/div&gt;
+&lt;/body&gt;
+</code></pre><p> css： </p>
+<pre><code>div{
+  border:1px solid red;
+  width: 150px;
+  height: 25px;
+  margin-top: 10px;
+}
+.blue{  color:blue; }
+.high{  height:50px; }
+.narrow{  width:60px; }
+</code></pre><p>此时效果为：</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-7-4/94812649.jpg" alt="原始结果"></p>
+<p> js：</p>
+<pre><code>//jQuery就是一个函数，传进一个节点或选择器nodeOrSelector，返回一个对象nodes。
+window.jQuery = function(nodeOrSelector){
+  let nodes = {}
+  if(typeof nodeOrSelector === &apos;string&apos;){
+    //如果参数为字符串类型，也就是代表一个选择器，就获取到选择的所有元素存入nodes。
+    let temp = document.querySelectorAll(nodeOrSelector)
+    for(let i = 0; i&lt;temp.length; i++){
+       nodes[i] = temp[i]
+    }
+    nodes.length = temp.length
+  }else if( nodeOrSelector instanceof Node){
+        //如果参数是一个节点，那就只存一个节点；为了返回结果的一致性，仍将其存为伪数组。
+        nodes = {
+          0: nodeOrSelector,
+          length: 1
+        }
+  }
+
+  //API1 添加一个类
+  nodes.addClass = function(class1){
+      for(let i = 0; i&lt;nodes.length; i++){
+        nodes[i].classList.add(class1)
+      }
+
+  }
+
+    //添加多个类
+    //     nodes.addClass = function(classes){
+    //       classes.forEach( (value)=&gt;{
+    //         for(let i = 0; i&lt;nodes.length; i++){
+    //           nodes[i].classList.add(value)
+    //         }
+    //       })
+
+    //     }
+
+  //API2 设置文本内容
+  nodes.setText = function(text){
+    for(let i = 0; i&lt;nodes.length; i++){
+     nodes[i].textContent = text 
+    }
+
+  }
+  //nodes的key为0，1，2，...，length，addClass，setText等
+  return nodes  
+}
+
+window.$ = jQuery    //$为代替jQuery的缩写符,同时，在变量前加上$，可以区分jQuery与Dom的变量
+var $div = $(&apos;div&apos;)    //传入了选择器&apos;div&apos;,$div即返回的对象nodes
+$div.addClass(&apos;blue&apos;)
+//$div.addClass([&apos;blue&apos;,&apos;high&apos;,&apos;narrow&apos;])//添加多个类
+$div.setText(&apos;hi&apos;) 
+</code></pre><p>添加’blue’类的效果：</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-7-4/73660343.jpg" alt="结果1"></p>
+<p>添加多个类的效果：</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-7-4/88773623.jpg" alt="结果2"></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/first/" data-id="cjj79x0yi0008zs7l52lxv45g" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/04/实现一个jQuery的API/" data-id="cjj79x0yz000hzs7l0tl0vxmu" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/first/">first</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery-API/">jQuery-API</a></li></ul>
 
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/15/hello-world/" class="article-date">
-  <time datetime="2018-04-15T02:37:45.775Z" itemprop="datePublished">2018-04-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/hello-world/">Hello World</a>
-    </h1>
+    <a href="/2018/06/13/原型与原型链/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">原型与原型链</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/hello-world/" data-id="cjj79x0yf0005zs7ld8nadlwo" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
 
 </section>
         

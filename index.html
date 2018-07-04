@@ -62,6 +62,125 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-实现一个jQuery的API" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/04/实现一个jQuery的API/" class="article-date">
+  <time datetime="2018-07-04T14:20:26.000Z" itemprop="datePublished">2018-07-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/04/实现一个jQuery的API/">实现一个jQuery的API</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>通过自己动手写 API 来学习 jQuery！</p>
+<h3 id="第1个API：addClass"><a href="#第1个API：addClass" class="headerlink" title="第1个API：addClass"></a>第1个API：addClass</h3><p>功能：通过节点或选择器给元素添加一个类</p>
+<h3 id="第2个API：setText"><a href="#第2个API：setText" class="headerlink" title="第2个API：setText"></a>第2个API：setText</h3><p>功能：设置元素的文本内容</p>
+<p>代码：</p>
+<p> html：</p>
+<pre><code>&lt;body&gt;
+  &lt;div&gt;hello&lt;/div&gt;
+  &lt;div&gt;hello&lt;/div&gt;
+  &lt;div&gt;hello&lt;/div&gt;
+  &lt;div&gt;hello&lt;/div&gt;
+  &lt;div&gt;hello&lt;/div&gt;
+&lt;/body&gt;
+</code></pre><p> css： </p>
+<pre><code>div{
+  border:1px solid red;
+  width: 150px;
+  height: 25px;
+  margin-top: 10px;
+}
+.blue{  color:blue; }
+.high{  height:50px; }
+.narrow{  width:60px; }
+</code></pre><p>此时效果为：</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-7-4/94812649.jpg" alt="原始结果"></p>
+<p> js：</p>
+<pre><code>//jQuery就是一个函数，传进一个节点或选择器nodeOrSelector，返回一个对象nodes。
+window.jQuery = function(nodeOrSelector){
+  let nodes = {}
+  if(typeof nodeOrSelector === &apos;string&apos;){
+    //如果参数为字符串类型，也就是代表一个选择器，就获取到选择的所有元素存入nodes。
+    let temp = document.querySelectorAll(nodeOrSelector)
+    for(let i = 0; i&lt;temp.length; i++){
+       nodes[i] = temp[i]
+    }
+    nodes.length = temp.length
+  }else if( nodeOrSelector instanceof Node){
+        //如果参数是一个节点，那就只存一个节点；为了返回结果的一致性，仍将其存为伪数组。
+        nodes = {
+          0: nodeOrSelector,
+          length: 1
+        }
+  }
+
+  //API1 添加一个类
+  nodes.addClass = function(class1){
+      for(let i = 0; i&lt;nodes.length; i++){
+        nodes[i].classList.add(class1)
+      }
+
+  }
+
+    //添加多个类
+    //     nodes.addClass = function(classes){
+    //       classes.forEach( (value)=&gt;{
+    //         for(let i = 0; i&lt;nodes.length; i++){
+    //           nodes[i].classList.add(value)
+    //         }
+    //       })
+
+    //     }
+
+  //API2 设置文本内容
+  nodes.setText = function(text){
+    for(let i = 0; i&lt;nodes.length; i++){
+     nodes[i].textContent = text 
+    }
+
+  }
+  //nodes的key为0，1，2，...，length，addClass，setText等
+  return nodes  
+}
+
+window.$ = jQuery    //$为代替jQuery的缩写符,同时，在变量前加上$，可以区分jQuery与Dom的变量
+var $div = $(&apos;div&apos;)    //传入了选择器&apos;div&apos;,$div即返回的对象nodes
+$div.addClass(&apos;blue&apos;)
+//$div.addClass([&apos;blue&apos;,&apos;high&apos;,&apos;narrow&apos;])//添加多个类
+$div.setText(&apos;hi&apos;) 
+</code></pre><p>添加’blue’类的效果：</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-7-4/73660343.jpg" alt="结果1"></p>
+<p>添加多个类的效果：</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-7-4/88773623.jpg" alt="结果2"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/04/实现一个jQuery的API/" data-id="cjj79x0yz000hzs7l0tl0vxmu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery-API/">jQuery-API</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-原型与原型链" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/06/13/原型与原型链/" class="article-date">
@@ -111,7 +230,7 @@ a  //Number {123}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/13/原型与原型链/" data-id="cjid9cjc50008p07l72qoqgdx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/13/原型与原型链/" data-id="cjj79x0yq000dzs7l1l0eba9t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li></ul>
@@ -210,7 +329,7 @@ a  //Number {123}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/12/JS数据里的数据类型转换/" data-id="cjid9cjbv0003p07ltxsxl1y2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/12/JS数据里的数据类型转换/" data-id="cjj79x0yb0003zs7lnzfr6hu5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS数据类型转换/">JS数据类型转换</a></li></ul>
@@ -289,7 +408,7 @@ a  //Number {123}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/09/JS数据类型/" data-id="cjid9cjc80009p07l7f66k6qe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/09/JS数据类型/" data-id="cjj79x0zq000vzs7ln2smktjz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js数据/">js数据</a></li></ul>
@@ -342,10 +461,11 @@ a  //Number {123}
 <li><strong>块级元素（确定宽度）</strong><br><ol>
 <li><strong>法一</strong>：将子元素<code>margin-left</code>、<code>margin-right</code>均设置为<code>auto</code>。(不确定宽度时会拉至与父元素等宽。)<br></li>
 <li><strong>法二</strong>：利用绝对定位，将子元素<code>left</code>设置为父元素宽度的一半，同时<code>margin-left</code>设置为子元素宽度一半的<strong>负值</strong>。</li>
+<li><strong>法3.1：</strong>利用绝对定位，并将子元素<code>top</code>、<code>left</code>、<code>right</code>、<code>bottom</code>均设置为0，并加<code>margin:auto</code>。</li>
 </ol>
 </li>
 <li><strong>块级元素（不确定宽度）</strong><br><ol>
-<li><strong>法三：</strong>利用绝对定位，并将子元素<code>top</code>、<code>left</code>、<code>right</code>、<code>bottom</code>均设置为0，这个方法会将子元素的宽高都拉至与父元素等宽高。<br></li>
+<li><strong>法3.2：</strong>利用绝对定位，并将子元素<code>top</code>、<code>left</code>、<code>right</code>、<code>bottom</code>均设置为0，这个方法会将子元素的宽高都拉至与父元素等宽高。<br></li>
 <li><strong>法四：</strong>利用绝对定位，将子元素<code>top</code>、<code>left</code>设置为<code>50%</code>，并添加<code>transform: translate(-50%, -50%);</code> 可使子元素水平且垂直居中。<br>其中<code>left</code>、<code>translateX(-50%)</code>实现水平居中。<br></li>
 <li><strong>法五：</strong> flex布局：在<strong>父元素</strong>中添加<code>display:flex;</code>、<code>justify-content:center;//水平居中</code>、<code>align-items: center;//垂直居中</code> 即可使子元素水平且垂直居中。</li>
 </ol>
@@ -363,10 +483,11 @@ a  //Number {123}
 </li>
 <li><strong>块级元素（确定高度）</strong><br><ol>
 <li>同理<strong>法二</strong>，利用绝对定位，将子元素<code>top</code>设置为父元素宽度的一半，同时<code>margin-top</code>设置为子元素宽度一半的 <strong>负值</strong>。</li>
+<li>见<strong>法3.1</strong>。</li>
 </ol>
 </li>
 <li><strong>块级元素（不确定高度）</strong><br><ol>
-<li>见<strong>法三</strong>。</li>
+<li>见<strong>法3.2</strong>。</li>
 <li>见<strong>法四</strong>。其中<code>top</code>、<code>translateY(-50%)</code>实现垂直居中。</li>
 <li>见<strong>法五</strong>。</li>
 </ol>
@@ -404,7 +525,7 @@ a  //Number {123}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/27/css布局/" data-id="cjid9cjc10005p07lqvuvaggj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/27/css布局/" data-id="cjj79x0yd0004zs7lrbl9zydj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css布局/">css布局</a></li></ul>
@@ -472,7 +593,7 @@ a  //Number {123}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/09/HTML常用标签/" data-id="cjid9cjbl0001p07lvtf97arr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/09/HTML常用标签/" data-id="cjj79x0y40001zs7ld9gise82" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html常用标签/">html常用标签</a></li></ul>
@@ -532,7 +653,7 @@ a  //Number {123}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/29/HTML/" data-id="cjid9cjby0004p07lbrfxxi2y" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/29/HTML/" data-id="cjj79x0yo000bzs7lc3a8w60j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5标签/">html5标签</a></li></ul>
@@ -667,7 +788,7 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/21/http请求与响应/" data-id="cjid9cjdb000rp07l3ttvaln5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/21/http请求与响应/" data-id="cjj79x0yl0009zs7ll0mqn660" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li></ul>
@@ -708,7 +829,7 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/17/Git入门命令/" data-id="cjid9cj330000p07lhpqwias0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/17/Git入门命令/" data-id="cjj79x0ws0000zs7lcbsjwqk5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git入门/">git入门</a></li></ul>
@@ -751,48 +872,10 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/16/命令行相关命令/" data-id="cjid9cjd8000op07lqfp3bi73" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/16/命令行相关命令/" data-id="cjj79x0ys000fzs7l5btzn1eh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ls-cat-mv-touch/">ls cat mv touch</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-first" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/15/first/" class="article-date">
-  <time datetime="2018-04-15T02:41:10.000Z" itemprop="datePublished">2018-04-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/first/">first</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="越努力越幸运！"><a href="#越努力越幸运！" class="headerlink" title="越努力越幸运！"></a>越努力越幸运！</h1>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/first/" data-id="cjid9cjcb000bp07lssth0tw6" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/first/">first</a></li></ul>
 
     </footer>
   </div>
@@ -819,7 +902,7 @@ Server: bfe/1.0.8.18
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据类型转换/">JS数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/first/">first</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js数据/">js数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ls-cat-mv-touch/">ls cat mv touch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据类型转换/">JS数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/first/">first</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery-API/">jQuery-API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js数据/">js数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ls-cat-mv-touch/">ls cat mv touch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li></ul>
     </div>
   </div>
 
@@ -829,7 +912,7 @@ Server: bfe/1.0.8.18
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS数据类型转换/" style="font-size: 10px;">JS数据类型转换</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/first/" style="font-size: 10px;">first</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/js数据/" style="font-size: 10px;">js数据</a> <a href="/tags/ls-cat-mv-touch/" style="font-size: 10px;">ls cat mv touch</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a>
+      <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS数据类型转换/" style="font-size: 10px;">JS数据类型转换</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/first/" style="font-size: 10px;">first</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/jQuery-API/" style="font-size: 10px;">jQuery-API</a> <a href="/tags/js数据/" style="font-size: 10px;">js数据</a> <a href="/tags/ls-cat-mv-touch/" style="font-size: 10px;">ls cat mv touch</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a>
     </div>
   </div>
 
@@ -838,7 +921,7 @@ Server: bfe/1.0.8.18
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
     </div>
   </div>
 
@@ -849,6 +932,10 @@ Server: bfe/1.0.8.18
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/07/04/实现一个jQuery的API/">实现一个jQuery的API</a>
+          </li>
         
           <li>
             <a href="/2018/06/13/原型与原型链/">原型与原型链</a>
@@ -864,10 +951,6 @@ Server: bfe/1.0.8.18
         
           <li>
             <a href="/2018/05/27/css布局/">css布局</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/09/HTML常用标签/">HTML常用标签及简单介绍</a>
           </li>
         
       </ul>

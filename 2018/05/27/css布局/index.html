@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="lxiaox">
 <meta property="og:description" content="本文主要介绍以下几点  左右布局 水平居中 垂直居中   左右布局（两个子元素或以上） 利用浮动给所有子元素添加属性float:left/right，父元素添加clearfix类，可使子元素从左至右排列，同时添加margin可增加元素间距。但是当宽度大于父元素宽度时，子元素会换行显示。 利用绝对定位父元素添加position:relative，所有子元素添加position:absolute，使子">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-27T16:16:28.769Z">
+<meta property="og:updated_time" content="2018-06-16T12:41:54.869Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css布局">
 <meta name="twitter:description" content="本文主要介绍以下几点  左右布局 水平居中 垂直居中   左右布局（两个子元素或以上） 利用浮动给所有子元素添加属性float:left/right，父元素添加clearfix类，可使子元素从左至右排列，同时添加margin可增加元素间距。但是当宽度大于父元素宽度时，子元素会换行显示。 利用绝对定位父元素添加position:relative，所有子元素添加position:absolute，使子">
@@ -106,10 +106,11 @@
 <li><strong>块级元素（确定宽度）</strong><br><ol>
 <li><strong>法一</strong>：将子元素<code>margin-left</code>、<code>margin-right</code>均设置为<code>auto</code>。(不确定宽度时会拉至与父元素等宽。)<br></li>
 <li><strong>法二</strong>：利用绝对定位，将子元素<code>left</code>设置为父元素宽度的一半，同时<code>margin-left</code>设置为子元素宽度一半的<strong>负值</strong>。</li>
+<li><strong>法3.1：</strong>利用绝对定位，并将子元素<code>top</code>、<code>left</code>、<code>right</code>、<code>bottom</code>均设置为0，并加<code>margin:auto</code>。</li>
 </ol>
 </li>
 <li><strong>块级元素（不确定宽度）</strong><br><ol>
-<li><strong>法三：</strong>利用绝对定位，并将子元素<code>top</code>、<code>left</code>、<code>right</code>、<code>bottom</code>均设置为0，这个方法会将子元素的宽高都拉至与父元素等宽高。<br></li>
+<li><strong>法3.2：</strong>利用绝对定位，并将子元素<code>top</code>、<code>left</code>、<code>right</code>、<code>bottom</code>均设置为0，这个方法会将子元素的宽高都拉至与父元素等宽高。<br></li>
 <li><strong>法四：</strong>利用绝对定位，将子元素<code>top</code>、<code>left</code>设置为<code>50%</code>，并添加<code>transform: translate(-50%, -50%);</code> 可使子元素水平且垂直居中。<br>其中<code>left</code>、<code>translateX(-50%)</code>实现水平居中。<br></li>
 <li><strong>法五：</strong> flex布局：在<strong>父元素</strong>中添加<code>display:flex;</code>、<code>justify-content:center;//水平居中</code>、<code>align-items: center;//垂直居中</code> 即可使子元素水平且垂直居中。</li>
 </ol>
@@ -127,10 +128,11 @@
 </li>
 <li><strong>块级元素（确定高度）</strong><br><ol>
 <li>同理<strong>法二</strong>，利用绝对定位，将子元素<code>top</code>设置为父元素宽度的一半，同时<code>margin-top</code>设置为子元素宽度一半的 <strong>负值</strong>。</li>
+<li>见<strong>法3.1</strong>。</li>
 </ol>
 </li>
 <li><strong>块级元素（不确定高度）</strong><br><ol>
-<li>见<strong>法三</strong>。</li>
+<li>见<strong>法3.2</strong>。</li>
 <li>见<strong>法四</strong>。其中<code>top</code>、<code>translateY(-50%)</code>实现垂直居中。</li>
 <li>见<strong>法五</strong>。</li>
 </ol>
@@ -168,7 +170,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/27/css布局/" data-id="cjid9cjc10005p07lqvuvaggj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/27/css布局/" data-id="cjj79x0yd0004zs7lrbl9zydj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css布局/">css布局</a></li></ul>
@@ -210,7 +212,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据类型转换/">JS数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/first/">first</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js数据/">js数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ls-cat-mv-touch/">ls cat mv touch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据类型转换/">JS数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/first/">first</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery-API/">jQuery-API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js数据/">js数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ls-cat-mv-touch/">ls cat mv touch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li></ul>
     </div>
   </div>
 
@@ -220,7 +222,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS数据类型转换/" style="font-size: 10px;">JS数据类型转换</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/first/" style="font-size: 10px;">first</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/js数据/" style="font-size: 10px;">js数据</a> <a href="/tags/ls-cat-mv-touch/" style="font-size: 10px;">ls cat mv touch</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a>
+      <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS数据类型转换/" style="font-size: 10px;">JS数据类型转换</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/first/" style="font-size: 10px;">first</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/jQuery-API/" style="font-size: 10px;">jQuery-API</a> <a href="/tags/js数据/" style="font-size: 10px;">js数据</a> <a href="/tags/ls-cat-mv-touch/" style="font-size: 10px;">ls cat mv touch</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a>
     </div>
   </div>
 
@@ -229,7 +231,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
     </div>
   </div>
 
@@ -240,6 +242,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/07/04/实现一个jQuery的API/">实现一个jQuery的API</a>
+          </li>
         
           <li>
             <a href="/2018/06/13/原型与原型链/">原型与原型链</a>
@@ -255,10 +261,6 @@
         
           <li>
             <a href="/2018/05/27/css布局/">css布局</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/09/HTML常用标签/">HTML常用标签及简单介绍</a>
           </li>
         
       </ul>
