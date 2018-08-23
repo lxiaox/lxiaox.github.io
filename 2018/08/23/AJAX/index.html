@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>AJAX | lxiaox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="上节我们介绍了JSONP与跨域，JSONP是一种通过 script 发送请求的跨域技术，但是我们也提到了 jsonp 的缺点，那就是 jsonp 是通过 script 只能发送 GET 请求，并只能以脚本运行。那么有没有方式能实现各种请求方式（get、post、put、delete...），并且我们想以什么方式展示都可以呢？针对这个需求，微软率先做出了突破。IE 5 在JS中引入了一个 Activ">
+<meta name="keywords" content="跨域之ajax">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AJAX">
+<meta property="og:url" content="http://yoursite.com/2018/08/23/AJAX/index.html">
+<meta property="og:site_name" content="lxiaox">
+<meta property="og:description" content="上节我们介绍了JSONP与跨域，JSONP是一种通过 script 发送请求的跨域技术，但是我们也提到了 jsonp 的缺点，那就是 jsonp 是通过 script 只能发送 GET 请求，并只能以脚本运行。那么有没有方式能实现各种请求方式（get、post、put、delete...），并且我们想以什么方式展示都可以呢？针对这个需求，微软率先做出了突破。IE 5 在JS中引入了一个 Activ">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-23T03:47:24.333Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AJAX">
+<meta name="twitter:description" content="上节我们介绍了JSONP与跨域，JSONP是一种通过 script 发送请求的跨域技术，但是我们也提到了 jsonp 的缺点，那就是 jsonp 是通过 script 只能发送 GET 请求，并只能以脚本运行。那么有没有方式能实现各种请求方式（get、post、put、delete...），并且我们想以什么方式展示都可以呢？针对这个需求，微软率先做出了突破。IE 5 在JS中引入了一个 Activ">
+  
+    <link rel="alternate" href="/atom.xml" title="lxiaox" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">lxiaox</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-AJAX" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/23/AJAX/" class="article-date">
+  <time datetime="2018-08-23T01:59:51.000Z" itemprop="datePublished">2018-08-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AJAX
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上节我们介绍了JSONP与跨域，JSONP是一种通过 script 发送请求的跨域技术，但是我们也提到了 jsonp 的缺点，那就是 jsonp 是通过 script 只能发送 GET 请求，并只能以脚本运行。那么有没有方式能实现各种请求方式<code>（get、post、put、delete...）</code>，并且我们想以什么方式展示都可以呢？针对这个需求，微软率先做出了突破。IE 5 在JS中引入了一个 ActiveX 对象，使得 JS 可以直接发起 HTTP 请求，随后 Mozilla、Safari、Opera 等浏览器也引进该对象，并取名 <code>XMLHttpRequest</code> ，被纳入 <a href="https://www.w3.org/Consortium/" target="_blank" rel="noopener">W3C</a> 规范。</p>
+<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><p>使用上述对象  XMLHttpRequest 发送请求的步骤：</p>
+<ol>
+<li>使用 XMLHttpRequest 发请求，</li>
+<li>服务器返回XML格式的字符串（现在大多使用<a href="https://www.json.org/" target="_blank" rel="noopener">JSON</a>格式），</li>
+<li>JS 解析 XML ，并更新局部页面。<br><a href="https://zh.wikipedia.org/wiki/%E5%82%91%E8%A5%BF%C2%B7%E8%A9%B9%E5%A7%86%E5%A3%AB%C2%B7%E8%B3%88%E7%91%9E%E7%89%B9" target="_blank" rel="noopener">Jesse James Garrett</a> 将以上技术取名为 <code>AJAX</code> ，全称是 <code>Asynchronous JavaScript And XML</code>，意为异步的 JavaScript 和 <a href="https://zh.wikipedia.org/zh-hans/XML" target="_blank" rel="noopener">XML</a>。</li>
+</ol>
+<h2 id="用原生JS发-AJAX-请求实例"><a href="#用原生JS发-AJAX-请求实例" class="headerlink" title="用原生JS发 AJAX 请求实例"></a>用原生JS发 AJAX 请求实例</h2><p>上文提到使用 AJAX 的基本步骤，现在写一个请求实例。<br>客户端JS代码：</p>
+<pre><code>//页面中有一个 myButton 按钮，点击它发送请求。
+myButton.addEventListener(&apos;click&apos;,(e)=&gt;{
+    //创建XMLHttpRequest对象
+    let request = new XMLHttpRequest()
+    //配置请求：动作，协议，域名，路径...
+    request.open(&apos;get&apos;,&apos;http://baidu.com/xyz&apos;)
+    //1、发送XML请求
+    request.send()
+    //2、服务器发送XML(JSON)字符串
+    //3、JS解析XML
+    request.onreadystatechange = ()=&gt;{
+        if(request.readystate === 4){
+            if(request.status &gt;= 200 &amp;&amp; request.status &lt;300){
+                let string = request.responseText
+                //把JSON格式的字符串转换为JS对应值
+                let object = wndow.JSON.parse(string)
+            }else if(request.status &gt;= 400){
+                console.log(&apos;说明请求失败&apos;) 
+             }
+        }
+    }
+})
+</code></pre><p>服务端部分代码：</p>
+<pre><code>if(path===&apos;/xxx&apos;){
+    response.statusCode = 200
+    //设置响应第四部分数据格式为json格式
+    response.setHeader(&apos;Content-Type&apos;, &apos;text/json;charset=utf-8&apos;)
+    //下行代码在后文说明
+    response.setHeader(&apos;Access-Control-Allow-Origin&apos;, &apos;http://abcdef.com:8001&apos;)
+    response.write(`
+    {
+      &quot;note&quot;:{
+        &quot;to&quot;: &quot;B同学&quot;,
+        &quot;from&quot;: &quot;A同学&quot;,
+        &quot;heading&quot;: &quot;打招呼&quot;,
+        &quot;content&quot;: &quot;hi&quot;
+      }
+    }
+    `)
+    response.end()
+</code></pre><p>上述代码即使用AJAX发送请求，及服务器返回数据的过程。其中值得注意的是 <code>response.setHeader(&#39;Access-Control-Allow-Origin&#39;, &#39;http://abcdef.com:8001&#39;)</code> ，这一行代码就是为了应对浏览器的同源策略（只有协议+域名+端口完全一致才能获取到请求的数据）的机制，叫做 <code>CORS ( Cross-Origin Resource Sharing)</code>，即跨站资源共享，代码中 <code>Access-Control-Allow-Origin</code> 告诉浏览器，允许后面的网页跨域访问。</p>
+<h2 id="封装一个-ajax"><a href="#封装一个-ajax" class="headerlink" title="封装一个 ajax()"></a>封装一个 ajax()</h2><p>为了方便使用AJAX发送请求，我们可以将上面的客户端代码封装成一个函数 ajax()：</p>
+<pre><code>window.jQuery.ajax = function(url,method,body,headers,success, fail){
+    let request = new XMLHttpRequest()
+    request.open(method,url)
+    for(let key in headers) {
+         let value = headers[key]
+          request.setRequestHeader(key, value)
+    }
+    request.readystatechange = ()=&gt;{
+        if(request.readystate === 4){
+            if(request.status &gt;= 200 &amp;&amp; request.status &lt;300){
+                success.call(&apos;undefined&apos;,request.responseText)
+            }else if(request.status &gt;= 400){
+                fail.call(&apos;undefined&apos;,request)
+            }
+        }
+    }
+    request.send(body)
+}
+</code></pre><p>这样我们使用的时候只需将请求方式，路径，请求体（请求第四部分），成功函数，失败函数传 给 ajax() 即可。</p>
+<p>事实上使用 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener">promise</a> 升级这个 ajax() 使其更加方便使用。</p>
+<pre><code>//这里我们可以将参数封装成一个对象（ES6语法,解构赋值）
+window.jQuery.ajax = function({url,method,body,headers}){
+    return new Promise(function(resolve, reject) {
+        let request = new XMLHttpRequest()
+        request.open(method, url)
+        for(let key in headers) {
+             let value = headers[key]
+              request.setRequestHeader(key, value)
+        }
+        request.readystatechange = () =&gt; {
+            if (request.readystate === 4) {
+                if (request.status &gt;= 200 &amp;&amp; request.status &lt; 300) {
+                    resolve.call(&apos;undefined&apos;, request.responseText)
+                } else if (request.status &gt;= 400) {
+                    reject.call(&apos;undefined&apos;, request)
+                }
+            }
+        }
+        request.send(body)
+    })
+}
+
+//按以下方式调用
+jQuery.ajax({
+    url: &apos;/xxx&apos;,
+    method: &apos;get&apos;
+}).then(success, fail)
+</code></pre><h2 id="AJAX-的功能"><a href="#AJAX-的功能" class="headerlink" title="AJAX 的功能"></a>AJAX 的功能</h2><ul>
+<li>客户端的 JS 发送请求</li>
+<li>服务端的 JS 发送响应</li>
+</ul>
+<p>一、客户端 JS 设置请求各部分：</p>
+<ol>
+<li>第一部分 <code>request.open(&#39;get&#39;, &#39;/xxx&#39;)</code></li>
+<li>第二部分 <code>request.setHeader(&#39;content-type&#39;,&#39;x-www-form-urlencoded&#39;)</code></li>
+<li>第四部分 <code>request.send(&#39;a=1&amp;b=2&#39;)</code></li>
+</ol>
+<p>二、客户端 JS 获取响应各部分</p>
+<ol>
+<li>第一部分 <code>request.status（响应码） / request.statusText（响应码解释）</code></li>
+<li>第二部分 <code>request.getResponseHeader() / request.getAllResponseHeaders()（一个或所有响应头）</code></li>
+<li>第四部分 <code>request.responseText</code></li>
+</ol>
+<p>三、服务端 JS 获取请求各部分</p>
+<ol>
+<li>第一部分 <code>request.method，request.url</code></li>
+<li>第二部分 <code>request.header</code></li>
+<li>第四部分 <code>request.body</code></li>
+</ol>
+<p>四、服务端 JS 设置响应各部分：</p>
+<ol>
+<li>第一部分 <code>response.statusCode = 200</code></li>
+<li>第二部分 <code>response.setHeader(&#39;Content-Type&#39;, &#39;text/html;charset=utf-8&#39;)</code></li>
+<li>第四部分 <code>response.write(&#39;hi...&#39;)</code></li>
+<li>响应结束 <code>response.end()</code></li>
+</ol>
+<p>另：本文中使用了</p>
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" target="_blank" rel="noopener">解构赋值</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener">promise语法</a></li>
+<li><a href="https://www.cnblogs.com/moltboy/archive/2013/04/24/3040213.html" target="_blank" rel="noopener">回调函数</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/23/AJAX/" data-id="cjl610vtu0000a87lhpr4kcqr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/17/JSONP/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JSONP</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据类型转换/">JS数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/first/">first</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery-API/">jQuery-API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js数据/">js数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ls-cat-mv-touch/">ls cat mv touch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS数据类型转换/" style="font-size: 10px;">JS数据类型转换</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/first/" style="font-size: 10px;">first</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/jQuery-API/" style="font-size: 10px;">jQuery-API</a> <a href="/tags/js数据/" style="font-size: 10px;">js数据</a> <a href="/tags/ls-cat-mv-touch/" style="font-size: 10px;">ls cat mv touch</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a> <a href="/tags/跨域之ajax/" style="font-size: 10px;">跨域之ajax</a> <a href="/tags/跨域之jsonp/" style="font-size: 10px;">跨域之jsonp</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/23/AJAX/">AJAX</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/17/JSONP/">JSONP</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/04/实现一个jQuery的API/">实现一个jQuery的API</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/13/原型与原型链/">原型与原型链</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/12/JS数据里的数据类型转换/">JS数据里的数据类型转换</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 lxiaox<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
