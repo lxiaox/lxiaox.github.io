@@ -62,6 +62,171 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS数据结构" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/25/JS数据结构/" class="article-date">
+  <time datetime="2018-08-25T03:11:17.000Z" itemprop="datePublished">2018-08-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/25/JS数据结构/">JS中的数据结构</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天简要总结一下 JS 中的几种数据结构。</p>
+<h2 id="1、哈希"><a href="#1、哈希" class="headerlink" title="1、哈希"></a>1、哈希</h2><blockquote>
+<p>哈希表(Hash table，也叫散列表)，是根据关键码值(Key value)而直接进行访问的数据结构。也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做散列表。</p>
+</blockquote>
+<p>简单地说，形如键值一一对应的数据结构就是哈希。用哈希可以表示JS中的对象，根据是key-value对应，key表示对象属性，value表示属性值。如：</p>
+<pre><code>var student = {
+    &apos;name&apos;: &apos;Mary&apos;,
+    &apos;sex&apos;: &apos;female&apos;,
+    &apos;age&apos;: &apos;18&apos;,
+  //&apos;key&apos;: &apos;value&apos;
+}
+</code></pre><p>其实<strong>数组</strong>就是一个特殊的哈希，它的 key 为排列好的数字,并且有一个key 是 length，表示数组长度。</p>
+<pre><code>var array = [0,1,2,3]
+//可以看作
+var array = {
+    &apos;0&apos;: 0,
+    &apos;1&apos;: 1,
+    &apos;2&apos;: 2,
+    &apos;3&apos;: 3,
+    &apos;length&apos;: 4
+}
+</code></pre><p>数组的优点是容易查找修改，缺点是难以在元素中间增加删除，因为每在中间增加或删除几个元素都意味着它之后的所有元素就要进行大挪移，都前进或都后退几位。</p>
+<h2 id="2、栈"><a href="#2、栈" class="headerlink" title="2、栈"></a>2、栈</h2><p>栈是一种遵从<strong>后进先出</strong>（Last In First Out）的有序列表。栈顶元素永远是最新元素，每次只能从栈顶开始取出。可以想象成放在一只小箱子里的书本，每次往里放都放在最上面，也只能从最上面开始拿。栈的特点就是 先进后出，后进先出。</p>
+<p>栈需要有如下的方法:</p>
+<ul>
+<li>push(element(s)): 添加几个元素到栈顶</li>
+<li>pop(): 移除并返回栈顶元素</li>
+<li>peek(): 返回栈顶元素</li>
+<li>isAmpty: 检查栈是否为空，为空则返回true</li>
+<li>clear: 移除栈中所有元素</li>
+<li>size: 返回栈中元素个数。</li>
+<li>print: 以字符串显示栈中所有内容</li>
+</ul>
+<h2 id="3、队列"><a href="#3、队列" class="headerlink" title="3、队列"></a>3、队列</h2><p>对列与栈很像，不过特点是 <strong>先进先出</strong>，这就跟我们人的排队是一样的。每次添加只能加在最后面，移除只能移除最前面的数据。</p>
+<p>队列需要的方法：</p>
+<ul>
+<li>enqueue(element(s)): 向队列尾部添加几个项</li>
+<li>dequeue(): 移除队列的第一项</li>
+<li>front(): 返回队列的第一个元素</li>
+<li>其他方法同栈一样。</li>
+</ul>
+<h2 id="4、链表"><a href="#4、链表" class="headerlink" title="4、链表"></a>4、链表</h2><blockquote>
+<p>链表是一组节点组成的集合，每个节点都使用一个对象的引用来指向它的后一个节点。指向另一节点的引用讲做链。</p>
+</blockquote>
+<ol>
+<li>单向链表中每个节点都具有两个部分，一个储存自身信息，一个指向下一个节点。</li>
+<li>双向链表中每个节点则具有三个部分，一个储存自身信息，一个指向上一个节点，一个指向下一个节点。</li>
+</ol>
+<p>因此链表区别于数组的是容易增加删除，只需要改变指针指向即可，但是它想要找到一个节点却很困难，只能从第一个节点开始不停地找下一个节点直到找到。</p>
+<p><em>队列、栈可以用数组实现，而链表可以用哈希（即JS 对象）实现。</em></p>
+<p>这里说一下，哈希正是一种结合了数组和链表的优点的数据结构，既容易寻址查找，又容易插入删除。</p>
+<h2 id="5、树"><a href="#5、树" class="headerlink" title="5、树"></a>5、树</h2><p>之前的栈、队列、链表等都是顺序数据结构，而树就是一种<strong>非顺序结构</strong>。树形状像一颗根在上的倒挂的树，以此命名，如下图：</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/tree1.png" alt="树"></p>
+<h4 id="树的基本概念："><a href="#树的基本概念：" class="headerlink" title="树的基本概念："></a>树的基本概念：</h4><ul>
+<li>节点：树中的每个元素都叫节点；</li>
+<li>根节点：没有父节点的节点，树只有唯一的根节点，图中为 A；</li>
+<li>子节点：从节点延申而下的都叫子节点；</li>
+<li>内部节点：有子节点的节点（B C D）或称中间节点；</li>
+<li>叶子节点：没有子节点的节点(E F G H I J)，又称终端节点；</li>
+<li>节点层次：从根开始定义起，根为第1层，根的子节点为第2层，以此类推；</li>
+<li>节点深度：从根 到 该节点的路径长，根的深度为0；</li>
+<li>节点高度：从该节点 到 一个叶子节点的最长路径长，叶子节点的高度为0；</li>
+<li>树的深度：所有节点深度的最大值；</li>
+<li>树的高度：所有节点高度的最大值；</li>
+<li>节点的度：一个节点含有的子树的个数称为该节点的度；</li>
+<li>树 的 度：一棵树中，最大的节点的度称为树的度；</li>
+<li>注：关于根节点的深度高度的基数为0 或1 说法不一。</li>
+</ul>
+<h4 id="树的种类："><a href="#树的种类：" class="headerlink" title="树的种类："></a>树的种类：</h4><ol>
+<li>无序树：树中任意节点的子节点之间没有顺序关系，也称为自由树；</li>
+<li>有序树：树中任意节点的子节点之间有顺序关系；<ul>
+<li>二叉树：每个节点最多含有两个子树的树称为二叉树；</li>
+<li>霍夫曼树：带权路径最短的二叉树称为哈夫曼树或最优二叉树；</li>
+<li>B树：一种对读写操作进行优化的自平衡的二叉查找树，能够保持数据有序，拥有多于两个子树。</li>
+</ul>
+</li>
+</ol>
+<p>其中二叉树又分为：</p>
+<ul>
+<li>完全二叉树：除了最底层，所有层的节点数均达到最大值，最底层的左右节点连续紧密地排列，这样的二叉树叫做完全二叉树。</li>
+<li>满二叉树：所有叶子节点均在最底层的二叉树。<em>满二叉树和完全二叉树用数组就可以表示</em>。</li>
+</ul>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/%E6%BB%A1-%E5%AE%8C%E5%85%A8-%E4%BA%8C%E5%8F%89%E6%A0%91.jpg" alt="满/完全二叉树"></p>
+<ul>
+<li>平衡二叉树（AVL树）：当且仅当任何节点的两棵子树的高度差不大于1的二叉树；</li>
+<li>排序二叉树(二叉查找树)：只允许你在左侧节点储存比父节点小的值，右侧只允许储存比父节点大的值。也称二叉搜索树、有序二叉树；</li>
+</ul>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91.png" alt="二叉查找树"></p>
+<h5 id="还有一种特殊的数据结构—-堆"><a href="#还有一种特殊的数据结构—-堆" class="headerlink" title="还有一种特殊的数据结构—-堆"></a>还有一种特殊的数据结构—-堆</h5><p>堆(heap)，形状上像完全二叉树，堆的特点是所有子节点都比它的父节点要大 或者要小。正如我们堆东西将大的放下面，小的放上面，树不能表现出这种特性，所以叫做堆。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/25/JS数据结构/" data-id="cjl90htsr000bq47lasbbb3cn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JS排序算法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/23/JS排序算法/" class="article-date">
+  <time datetime="2018-08-23T03:54:32.000Z" itemprop="datePublished">2018-08-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/23/JS排序算法/">JS中的排序算法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/23/JS排序算法/" data-id="cjl90htso0009q47l27eoestf" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-AJAX" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/08/23/AJAX/" class="article-date">
@@ -220,7 +385,7 @@ jQuery.ajax({
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/23/AJAX/" data-id="cjl610vtu0000a87lhpr4kcqr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/23/AJAX/" data-id="cjl90htry0000q47lxeesv6l5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li></ul>
@@ -365,7 +530,7 @@ response.write(`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/17/JSONP/" data-id="cjl610vzn0003a87ldtyemta5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/17/JSONP/" data-id="cjl90htsj0005q47lhj432yma" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
@@ -484,7 +649,7 @@ $div.setText(&apos;hi&apos;)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/04/实现一个jQuery的API/" data-id="cjl610w1g000za87l3odobhnu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/04/实现一个jQuery的API/" data-id="cjl90htt9000lq47ltqypvmex" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery-API/">jQuery-API</a></li></ul>
@@ -545,7 +710,7 @@ a  //Number {123}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/13/原型与原型链/" data-id="cjl610w0p000ka87lehktbqr1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/13/原型与原型链/" data-id="cjl90htt5000hq47ldupff38z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li></ul>
@@ -557,9 +722,9 @@ a  //Number {123}
 
 
   
-    <article id="post-JS数据里的数据类型转换" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-JS中的数据类型转换" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/06/12/JS数据里的数据类型转换/" class="article-date">
+    <a href="/2018/06/12/JS中的数据类型转换/" class="article-date">
   <time datetime="2018-06-12T10:27:22.000Z" itemprop="datePublished">2018-06-12</time>
 </a>
     
@@ -571,7 +736,7 @@ a  //Number {123}
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/12/JS数据里的数据类型转换/">JS数据里的数据类型转换</a>
+      <a class="article-title" href="/2018/06/12/JS中的数据类型转换/">JS中的数据类型转换</a>
     </h1>
   
 
@@ -598,7 +763,7 @@ a  //Number {123}
 <li>格式：<code>String(1)===&quot;1&quot;</code></li>
 <li>使用范围同方法二。</li>
 </ul>
-<h2 id="转为number"><a href="#转为number" class="headerlink" title="转为number"></a>转为number</h2><p><strong>方法一：Number()函数</strong></p>
+<h2 id="2、转为number"><a href="#2、转为number" class="headerlink" title="2、转为number"></a>2、转为number</h2><p><strong>方法一：Number()函数</strong></p>
 <ul>
 <li>格式：<code>Number(&#39;123&#39;)===123</code>。</li>
 <li>注意：数据中含非数值，结果为NaN。如：<code>Number(&#39;123s&#39;)--&gt;NaN</code>。（不是===，NaN不等于任何数，包括NaN）。</li>
@@ -628,7 +793,7 @@ a  //Number {123}
 <li>注意：+’xxx’只是对其取<strong>原值</strong>，并非绝对值。如：<code>+&#39;-1&#39;===-1</code>。</li>
 <li>注意：数据中含非数值，结果为NaN。如：<code>+&#39;1s&#39;---&gt;NaN</code>。</li>
 </ul>
-<h2 id="转为boolean"><a href="#转为boolean" class="headerlink" title="转为boolean"></a>转为boolean</h2><p><strong>方法一：Boolean()函数</strong></p>
+<h2 id="3、转为boolean"><a href="#3、转为boolean" class="headerlink" title="3、转为boolean"></a>3、转为boolean</h2><p><strong>方法一：Boolean()函数</strong></p>
 <ul>
 <li>格式：<code>Boolean(1)===true</code>。</li>
 <li>falsy值定义：在Boolean 上下文中认定可转换为false的值。</li>
@@ -644,10 +809,10 @@ a  //Number {123}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/12/JS数据里的数据类型转换/" data-id="cjl610w0g000ca87lrl63539v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/12/JS中的数据类型转换/" data-id="cjl90htu70013q47ltc8jr4ob" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS数据类型转换/">JS数据类型转换</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS中的数据类型转换/">JS中的数据类型转换</a></li></ul>
 
     </footer>
   </div>
@@ -656,9 +821,9 @@ a  //Number {123}
 
 
   
-    <article id="post-JS数据类型" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-JS中的数据类型" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/06/09/JS数据类型/" class="article-date">
+    <a href="/2018/06/09/JS中的数据类型/" class="article-date">
   <time datetime="2018-06-09T15:07:26.000Z" itemprop="datePublished">2018-06-09</time>
 </a>
     
@@ -670,7 +835,7 @@ a  //Number {123}
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/09/JS数据类型/">JS数据类型</a>
+      <a class="article-title" href="/2018/06/09/JS中的数据类型/">JS中的数据类型</a>
     </h1>
   
 
@@ -723,10 +888,10 @@ a  //Number {123}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/09/JS数据类型/" data-id="cjl610w030007a87ln6e6gub0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/09/JS中的数据类型/" data-id="cjl90htsm0008q47lzdhck1ag" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js数据/">js数据</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS中的数据类型/">JS中的数据类型</a></li></ul>
 
     </footer>
   </div>
@@ -840,7 +1005,7 @@ a  //Number {123}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/27/css布局/" data-id="cjl610w0j000ea87lqfog6ouh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/27/css布局/" data-id="cjl90htsw000dq47l5wr3vwfn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css布局/">css布局</a></li></ul>
@@ -908,205 +1073,10 @@ a  //Number {123}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/09/HTML常用标签/" data-id="cjl610w0f000ba87l9pme8xsw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/09/HTML常用标签/" data-id="cjl90htsg0004q47ljajvdeju" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html常用标签/">html常用标签</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-HTML" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/29/HTML/" class="article-date">
-  <time datetime="2018-04-29T11:35:35.000Z" itemprop="datePublished">2018-04-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/29/HTML/">HTML5标签列表</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="以下为所有标准化的、有效的HTML5元素。"><a href="#以下为所有标准化的、有效的HTML5元素。" class="headerlink" title="以下为所有标准化的、有效的HTML5元素。"></a>以下为所有标准化的、有效的HTML5元素。</h5><h2 id="根元素"><a href="#根元素" class="headerlink" title="根元素"></a>根元素</h2><table><br><tr><br><th>Element<br></th><th>Description<br></th></tr><tr><br><td>&lt;html&gt;<br></td><td>代表 HTML 或 XHTML 文档的根。其他所有元素必须是这个元素的子节点。<br></td></tr></table>
-
-<h2 id="文档元数据"><a href="#文档元数据" class="headerlink" title="文档元数据"></a>文档元数据</h2><table><br><tr><br><th>Element<br></th><th>Description<br></th></tr><tr><br><td>&lt;head&gt;<br></td><td>代表关于文档元数据的一个集合，包括脚本或样式表的链接或内容。<br></td></tr><tr><br><td>&lt;title&gt;<br></td><td>代表关于文档元数据的一个集合，包括脚本或样式表的链接或内容。<br></td></tr><tr><br><td>&lt;base&gt;<br></td><td>定义页面上相对 URL 的基准 URL。<br></td></tr><tr><br><td>&lt;link&gt;<br></td><td>用于链接外部的 CSS 到该文档。<br></td></tr><tr><br><td>&lt;meta&gt;<br></td><td>定义其他HTML元素无法描述的元数据。<br></td></tr><tr><br><td>&lt;style&gt;<br></td><td>用于内联CSS。<br></td></tr></table>
-
-<h2 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h2><table><br><tr><br><th>Element<br></th><th>Description<br></th></tr><tr><br><td>&lt;script&gt;<br></td><td>定义一个内联脚本或链接到外部脚本。脚本语言是 JavaScript。<br></td></tr><tr><br><td>&lt;noscript&gt;<br></td><td>定义当浏览器不支持脚本时显示的替代文字。<br></td></tr><tr><br><td>&lt;template&gt;<br></td><td>通过JS在运行时实例化内容的容器。<br></td></tr></table>
-
-<h2 id="章节"><a href="#章节" class="headerlink" title="章节"></a>章节</h2><table><br><tr><br><th>Element<br></th><th>Description<br></th></tr><tr><br><td>&lt;body&gt;<br></td><td>代表 HTML 文档的内容。在文档中只能有一个 &lt;body&gt; 元素。<br></td></tr><tr><br><td>&lt;section&gt;<br></td><td>定义文档中的一个章节。<br></td></tr><tr><br><td>&lt;nav&gt;<br></td><td>定义只包含导航链接的章节。<br></td></tr><tr><br><td>&lt;article&gt;<br></td><td>定义可以独立于其余内容的完整独立内容块。<br></td></tr><tr><br><td>&lt;aside&gt;<br></td><td>定义和页面内容关联度较低的内——如果被删除，剩下的内容依然很合理。<br></td></tr><tr><br><td>&lt;h1&gt;&lt;h2&gt;&lt;h3&gt;<br>&lt;h4&gt;&lt;h5&gt;&lt;h6&gt;<br></td><td>标题元素实现了六层文档标题，&lt;h1&gt; 是最大的标题，&lt;h6&gt; 是最小的标题。标题元素简要地描述章节的主题。<br></td></tr><tr><br><td>&lt;header&gt;<br></td><td>定义页面或章节的头部。它经常包含 logo、页面标题和导航性的目录。<br></td></tr><tr><br><td>&lt;footer&gt;<br></td><td>定义页面或章节的尾部。它经常包含版权信息、法律信息链接和反馈建议用的地址。<br></td></tr><tr><br><td>&lt;address&gt;<br></td><td>定义包含联系信息的一个章节。<br></td></tr><tr><br><td>&lt;main&gt;<br></td><td>定义文档中主要或重要内容。<br></td></tr></table>
-
-<h2 id="组织内容"><a href="#组织内容" class="headerlink" title="组织内容"></a>组织内容</h2><table><br><tr><br><th>Element<br></th><th>Description<br></th></tr><tr><br><td>&lt;p&gt;<br></td><td>定义一个段落。<br></td></tr><tr><br><td>&lt;hr&gt;<br></td><td>代表章节、文章或其他长内容中段落之间的分隔符。<br></td></tr><tr><br><td>&lt;pre&gt;<br></td><td>代表其内容已经预先排版过，格式应当保留 。<br></td></tr><tr><br><td>&lt;blockquote&gt;<br></td><td>代表引用自其他来源的内容。<br></td></tr><tr><br><td>&lt;ol&gt;<br></td><td>定义一个有序列表。<br></td></tr><tr><br><td>&lt;ul&gt;<br></td><td>定义一个无序列表。<br></td></tr><tr><br><td>&lt;li&gt;<br></td><td>定义列表中的一个列表项。<br></td></tr><tr><br><td>&lt;dl&gt;<br></td><td>代表一个定义列表（一系列术语及其定义）。<br></td></tr><tr><br><td>&lt;dt&gt;<br></td><td>代表由下一个&lt;dd&gt;定义的术语。<br></td></tr><tr><br><td>&lt;dd&gt;<br></td><td>对上个术语的定义。<br></td></tr><tr><br><td>&lt;figure&gt;<br></td><td>代表一个和文档有关的图例。<br></td></tr><tr><br><td>&lt;figcaption&gt;<br></td><td>代表一个图例的说明。<br></td></tr><tr><br><td>&lt;div&gt;<br></td><td>代表一个通用容器，没有任何实际含义。<br></td></tr></table>
-
-<h2 id="文字形式"><a href="#文字形式" class="headerlink" title="文字形式"></a>文字形式</h2><table><br><tr><br><th>Element<br></th><th>Description<br></th></tr><tr><br><td>&lt;a&gt;<br></td><td>代表一个链接到其他资源的超链接。<br></td></tr><tr><br><td>&lt;em&gt;<br></td><td>代表强调文字。<br></td></tr><tr><br><td>&lt;strong&gt;<br></td><td>代表特别重要 文字。<br></td></tr><tr><br><td>&lt;amsll&gt;<br></td><td>代表注释 ，如免责声明、版权声明等，对理解文档不重要。<br></td></tr><tr><br><td>&lt;s&gt;<br></td><td>代表不准确或不相关 的内容。<br></td></tr><tr><br><td>&lt;cite&gt;<br></td><td>代表作品标题 。<br></td></tr><tr><br><td>&lt;q&gt;<br></td><td>代表内联的引用 。<br></td></tr><tr><br><td>&lt;dfn&gt;<br></td><td>代表一个术语包含在其最近祖先内容中的定义 。<br></td></tr><tr><br><td>&lt;abbr&gt;<br></td><td>代表省略或缩写 ，其完整内容在 title 属性中。<br></td></tr><tr><br><td>&lt;data&gt;<br></td><td>关联一个内容的机器可读的等价形式 （该元素只在 WHATWG 版本的 HTML 标准中，不在 W3C 版本的 HTML5 标准中）。<br></td></tr><tr><br><td>&lt;time&gt;<br></td><td>代表日期和时间值；机器可读的等价形式通过 datetime 属性指定。<br></td></tr><tr><br><td>&lt;code&gt;<br></td><td>代表计算机代码。<br></td></tr><tr><br><td>&lt;var&gt;<br></td><td>代表代码中的变量。<br></td></tr><tr><br><td>&lt;samp&gt;<br></td><td>代表程序或电脑的输出。<br></td></tr><tr><br><td>&lt;kbd&gt;<br></td><td>代表用户输入，一般从键盘输出，但也可以代表其他输入，如语音输入。<br></td></tr><tr><br><td>&lt;sup&gt;<br></td><td>代表上标。<br></td></tr><tr><br><td>&lt;sub&gt;<br></td><td>代表下标。<br></td></tr><tr><br><td>&lt;i&gt;<br></td><td>代表一段不同性质的文字，如技术术语、外文短语等。<br></td></tr><tr><br><td>&lt;b&gt;<br></td><td>代表一段需要被关注 的文字。<br></td></tr><tr><br><td>&lt;u&gt;<br></td><td>代表一段需要下划线呈现的文本注释，如标记出拼写错误的文字等。<br></td></tr><tr><br><td>&lt;mark&gt;<br></td><td>代表一段需要被高亮的引用文字。<br></td></tr><tr><br><td>&lt;ruby&gt;<br></td><td>代表被ruby 注释标记的文本，如中文汉字和它的拼音。<br></td></tr><tr><br><td>&lt;rt&gt;<br></td><td>代表ruby注释，如中文拼音。<br></td></tr><tr><br><td>&lt;rp&gt;<br></td><td>代表 ruby 注释两边的额外插入文本 ，用于在不支持 ruby 注释显示的浏览器中提供友好的注释显示。<br></td></tr><tr><br><td>&lt;bdi&gt;<br></td><td>代表需要脱离 父元素文本方向的一段文本。它允许嵌入一段不同或未知文本方向格式的文本。<br></td></tr><tr><br><td>&lt;bdo&gt;<br></td><td>指定子元素的文本方向，显示地覆盖默认的文本方向。<br></td></tr><tr><br><td>&lt;span&gt;<br></td><td>代表一段没有特殊含义的文本。当其他语义元素都不适合文本时候可以使用该元素。<br></td></tr><tr><br><td>&lt;br&gt;<br></td><td>换行。<br></td></tr><tr><br><td>&lt;wbr<br></td><td>建议换行 (Word Break Opportunity) ，当文本太长需要换行时将会在此处添加换行符。<br></td></tr></table>
-
-<h2 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h2><table><br><tr><br><th>Element<br></th><th>Description<br></th></tr><tr><br><td>&lt;ins&gt;<br></td><td>定义增加到文档的内容。<br></td></tr><tr><br><td>&lt;del&gt;<br></td><td>定义从文档中删除的内容。<br></td></tr></table>
-
-<h2 id="嵌入内容"><a href="#嵌入内容" class="headerlink" title="嵌入内容"></a>嵌入内容</h2><table><br><tr><br><th>Element<br></th><th>Description<br></th></tr><tr><br><td>&lt;img&gt;<br></td><td>代表一张图片 。<br></td></tr><tr><br><td>&lt;iframe&gt;<br></td><td>代表一个内联的框架 。<br></td></tr><tr><br><td>&lt;embed&gt;<br></td><td>代表一个嵌入 的外部资源，如应用程序或交互内容。<br></td></tr><tr><br><td>&lt;object&gt;<br></td><td>代表一个外部资源 ，如图片、HTML 子文档、插件等。<br></td></tr><tr><br><td>&lt;param&gt;<br></td><td>代表 <object> 元素所指定的插件的参数 。<br><tr><br><td>&lt;video&gt;<br></td><td>代表一段视频 及其视频文件和字幕，并提供了播放视频的用户界面。<br></td></tr><tr><br><td>&lt;audio&gt;<br></td><td>代表一段声音 ，或音频流 。<br></td></tr><tr><br><td>&lt;source&gt;<br></td><td>为 &lt;video&gt; 或 &lt;audio&gt; 这类媒体元素指定媒体源 。<br></td></tr><tr><br><td>&lt;track&gt;<br></td><td>为 &lt;video&gt; 或 &lt;audio&gt; 这类媒体元素指定文本轨道（字幕） 。<br></td></tr><tr><br><td>&lt;canvas&gt;<br></td><td>代表位图区域 ，可以通过脚本在它上面实时呈现图形，如图表、游戏绘图等。<br></td></tr><tr><br><td>&lt;map&gt;<br></td><td>与&lt;area&gt; 元素共同定义图像映射 区域。<br></td></tr><tr><br><td>&lt;area&gt;<br></td><td>与&lt;map&gt; 元素共同定义图像映射 区域。<br></td></tr><tr><br><td>&lt;svg&gt;<br></td><td>定义一个嵌入式矢量图 。<br></td></tr><tr><br><td>&lt;math&gt;<br></td><td>定义一段数学公式 。<br></td></tr></object></td></tr></table>
-
-<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><table><br><tr><br><th>Element<br></th><th>Description<br></th></tr><tr><br><td>&lt;table&gt;<br></td><td>定义多维数据 。<br></td></tr><tr><br><td>&lt;caption&gt;<br></td><td>代表表格的标题 。<br></td></tr><tr><br><td>&lt;colgroup&gt;<br></td><td>代表表格中一组单列或多列 。<br></td></tr><tr><br><td>&lt;col&gt;<br></td><td>代表表格中的列 。<br></td></tr><tr><br><td>&lt;tbody&gt;<br></td><td>代表表格中一块具体数据 （表格主体）。<br></td></tr><tr><br><td>&lt;thead&gt;<br></td><td>代表表格中一块列标签 （表头）。<br></td></tr><tr><br><td>&lt;tfoot&gt;<br></td><td>代表表格中一块列摘要 （表尾）。<br></td></tr><tr><br><td>&lt;tr&gt;<br></td><td>代表表格中的行 。<br></td></tr><tr><br><td>&lt;td&gt;<br></td><td>代表表格中的单元格 。<br></td></tr><tr><br><td>&lt;th&gt;<br></td><td>代表表格中的头部单元格 。<br></td></tr></table>
-
-<h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2><table><br><tr><br><th>Element<br></th><th>Description<br></th></tr><tr><br><td>&lt;form&gt;<br></td><td>代表一个表单，由控件组成。<br></td></tr><tr><br><td>&lt;fieldset&gt;<br></td><td>代表控件组。<br></td></tr><tr><br><td>&lt;legend&gt;<br></td><td>代表&lt;fieldset&gt;控件组的标题。<br></td></tr><tr><br><td>&lt;label&gt;<br></td><td>代表表单控件的标题。<br></td></tr><tr><br><td>&lt;input&gt;<br></td><td>代表允许用户编辑数据的数据区（文本框、单选框、复选框等）。<br></td></tr><tr><br><td>&lt;button&gt;<br></td><td>代表按钮。<br></td></tr><tr><br><td>&lt;select&gt;<br></td><td>代表下拉框。<br></td></tr><tr><br><td>&lt;datalist&gt;<br></td><td>提供给其他控件的一组预定义选项。<br></td></tr><tr><br><td>&lt;optgroup&gt;<br></td><td>代表一个选项分组。<br></td></tr><tr><br><td>&lt;option&gt;<br></td><td>代表一个&lt;select&gt;元素或&lt;datalist&gt;元素中的一个选项。<br></td></tr><tr><br><td>&lt;textarea&gt;<br></td><td>多欧行文本框。<br></td></tr><tr><br><td>&lt;keygen&gt;<br></td><td>密钥对生成器控件。<br></td></tr><tr><br><td>&lt;output&gt;<br></td><td>计算值。<br></td></tr><tr><br><td>&lt;progress&gt;<br></td><td>代表进度条。<br></td></tr><tr><br><td>&lt;meter&gt;<br></td><td>代表滑动条。<br></td></tr></table>
-
-<h2 id="交互元素"><a href="#交互元素" class="headerlink" title="交互元素"></a>交互元素</h2><table><br><tr><br><th>Element<br></th><th>Description<br></th></tr><tr><br><td>&lt;details&gt;<br></td><td>用户可以获取额外信息或空间的小部件。<br></td></tr><tr><br><td>&lt;summary&gt;<br></td><td>代表&lt;details&gt;元素的综述或标题。<br></td></tr><tr><br><td>&lt;menuitem&gt;<br></td><td>用户可以点击的菜单项。<br></td></tr><tr><br><td>&lt;menu<br></td><td>代表菜单。<br></td></tr></table>
-
-<h4 id="MDN原文"><a href="#MDN原文" class="headerlink" title="MDN原文"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5/HTML5_element_list" target="_blank" rel="noopener">MDN原文</a></h4>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/29/HTML/" data-id="cjl610vzu0006a87l9jbuhv80" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5标签/">html5标签</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-http请求与响应" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/21/http请求与响应/" class="article-date">
-  <time datetime="2018-04-21T10:33:33.000Z" itemprop="datePublished">2018-04-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/21/http请求与响应/">http基础</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-协议概述"><a href="#1-协议概述" class="headerlink" title="1.协议概述"></a>1.协议概述</h2><p>HTTP（英文全称：HyperText Transfer Protocol，中文：超文本传输协议）是一个客户端和服务器端之间请求和应答的标准。通常，由客户端发起一个HTTP<strong>请求</strong>到服务器上的指定端口（默认80端口），服务器则在端口接收客户端请求并作出<strong>响应</strong>。</p>
-<h2 id="2-请求部分"><a href="#2-请求部分" class="headerlink" title="2.请求部分"></a>2.请求部分</h2><p>HTTP请求信息包括以下几点：</p>
-<ol>
-<li>请求行（动作 路径 协议/版本）</li>
-<li>请求头</li>
-<li>空行</li>
-<li>其他信息体（要上传的数据，可以为空）</li>
-</ol>
-<ul>
-<li>1中的动词为HTTP/1.1协议中定义的用来操作指定资源的方法，有GET、HEAD、POST、PUT、DELETE、TRACE、OPTIONS、CONNECT等。</li>
-<li>请求行格式为：key+英文:+空格+value（key: value)，可以有多行。</li>
-<li>路径不写时默认为/。</li>
-<li>请求的1、2、3部分必须包括，4部分可以为空。</li>
-</ul>
-<h3 id="请求举例"><a href="#请求举例" class="headerlink" title="请求举例"></a>请求举例</h3><pre><code>GET / HTTP/1.1
-HOST: www.baidu.com
-</code></pre><ul>
-<li>第二行header作用为指定主机</li>
-<li>末尾加空行</li>
-</ul>
-<h2 id="3-响应部分"><a href="#3-响应部分" class="headerlink" title="3.响应部分"></a>3.响应部分</h2><p>HTTP响应信息包括以下几点:</p>
-<ol>
-<li>状态行（协议/版本 状态码 状态路径）</li>
-<li>响应头（key: value)</li>
-<li>空行</li>
-<li>其他信息体（要下载的内容）</li>
-</ol>
-<ul>
-<li>状态码由3位数字组成，第一个数字代表当前应的类型</li>
-<li>1xx—-请求已被服务器接受，继续处理</li>
-<li>2xx—-请求成功</li>
-<li>3xx—-重定向，文件暂时或永久地搬走了</li>
-<li>4xx—-请求错误，无法被执行</li>
-<li>5xx—-服务器发生错误<br>具体参见 <a href="https://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81" target="_blank" rel="noopener">HTTP状态码</a></li>
-</ul>
-<h3 id="响应举例"><a href="#响应举例" class="headerlink" title="响应举例"></a>响应举例</h3><pre><code>HTTP/1.1 200 OK
-Content-Length: 0
-Content-Type: image/gif
-</code></pre><ul>
-<li>Content-Type表示的是响应信息第4部分的格式</li>
-<li>末尾加空行</li>
-</ul>
-<h2 id="4-使用Chrome开发者工具查看-HTTP-内容"><a href="#4-使用Chrome开发者工具查看-HTTP-内容" class="headerlink" title="4.使用Chrome开发者工具查看 HTTP 内容"></a>4.使用Chrome开发者工具查看 HTTP 内容</h2><ol>
-<li>打开 Network（在Chrome中点击鼠标右键→选择检查→点击Network）；</li>
-<li>在地址栏输入网址（eg：<a href="http://www.baidu.com）；" target="_blank" rel="noopener">www.baidu.com）；</a></li>
-<li>点击第一个request；</li>
-<li>查看 Request Headers，点击 view source 即可看到上述<strong>请求</strong>信息；</li>
-<li>查看 Response Headers，点击 view source 即可看到上述<strong>响应</strong>信息；</li>
-<li>如果有第4部分，那么在 FormData 或 Payload 里面可以看到。</li>
-</ol>
-<img src="/2018/04/21/http请求与响应/eg.png" title="eg">
-<h2 id="5-使用curl命令发起请求"><a href="#5-使用curl命令发起请求" class="headerlink" title="5.使用curl命令发起请求"></a>5.使用curl命令发起请求</h2><p>cURL是一个利用URL规则在<strong>命令行</strong>下工作的文件传输工具。</p>
-<h3 id="请求示例1"><a href="#请求示例1" class="headerlink" title="请求示例1"></a>请求示例1</h3><pre><code>curl -s -v -H &quot;xxx: yyy&quot; -- &quot;https://www.baidu.com&quot;
-</code></pre><p>请求内容为：</p>
-<pre><code>GET / HTTP/1.1
-Host: www.baidu.com
-User-Agent: curl/7.55.0
-Accept: */*
-xxx:yyy
-</code></pre><p>响应内容为：</p>
-<pre><code>HTTP/1.1 200 OK
-Accept-Ranges: bytes
-Cache-Control: private, no-cache, no-store, proxy-revalidate, no-transform
-Connection: Keep-Alive
-Content-Length: 2443
-Content-Type: text/html
-Date: Sat, 21 Apr 2018 08:31:17 GMT
-Etag: &quot;58860411-98b&quot;
-Last-Modified: Mon, 23 Jan 2017 13:24:33 GMT
-Pragma: no-cache
-Server: bfe/1.0.8.18
-Set-Cookie: BDORZ=27315; max-age=86400; domain=.baidu.com; path=/
-</code></pre><h3 id="请求示例2"><a href="#请求示例2" class="headerlink" title="请求示例2"></a>请求示例2</h3><pre><code>curl -X POST -d &quot;hello&quot; -s -v -H &quot;xxx: yyy&quot; -- &quot;https://www.baidu.com&quot;
-</code></pre><p>请求内容为：</p>
-<pre><code>POST / HTTP/1.1
-Host: www.baidu.com
-User-Agent: curl/7.55.0
-Accept: */*
-xxx: yyy
-Content-Length: 5
-Content-Type: application/x-www-form-urlencoded
-</code></pre><p>响应内容为：</p>
-<pre><code>HTTP/1.1 302 Found
-Connection: Keep-Alive
-Content-Length: 17931
-Content-Type: text/html
-Date: Sat, 21 Apr 2018 08:36:38 GMT
-Etag: &quot;54d9748e-460b&quot;
-Server: bfe/1.0.8.18
-</code></pre><ul>
-<li>举例中-X -d -s -v -H等均为curl参数，可根据需要改变。</li>
-<li>-X—-指定什么命令</li>
-<li>-d—-使用POST方式提交数据</li>
-<li>-s—-silent静音模式，不输出任何东西</li>
-<li>-v—-verbose详细，显示请求及响应</li>
-<li>-H—-header，自定义头信息传给浏览器</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/21/http请求与响应/" data-id="cjl610w1e000ya87lmmt60ldp" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li></ul>
 
     </footer>
   </div>
@@ -1133,7 +1103,7 @@ Server: bfe/1.0.8.18
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据类型转换/">JS数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/first/">first</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery-API/">jQuery-API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js数据/">js数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ls-cat-mv-touch/">ls cat mv touch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型/">JS中的数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型转换/">JS中的数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery-API/">jQuery-API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行基本命令/">命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
     </div>
   </div>
 
@@ -1143,7 +1113,7 @@ Server: bfe/1.0.8.18
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS数据类型转换/" style="font-size: 10px;">JS数据类型转换</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/first/" style="font-size: 10px;">first</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/jQuery-API/" style="font-size: 10px;">jQuery-API</a> <a href="/tags/js数据/" style="font-size: 10px;">js数据</a> <a href="/tags/ls-cat-mv-touch/" style="font-size: 10px;">ls cat mv touch</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a> <a href="/tags/跨域之ajax/" style="font-size: 10px;">跨域之ajax</a> <a href="/tags/跨域之jsonp/" style="font-size: 10px;">跨域之jsonp</a>
+      <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS中的排序算法/" style="font-size: 10px;">JS中的排序算法</a> <a href="/tags/JS中的数据类型/" style="font-size: 10px;">JS中的数据类型</a> <a href="/tags/JS中的数据类型转换/" style="font-size: 10px;">JS中的数据类型转换</a> <a href="/tags/JS数据结构/" style="font-size: 10px;">JS数据结构</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/jQuery-API/" style="font-size: 10px;">jQuery-API</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a> <a href="/tags/命令行基本命令/" style="font-size: 10px;">命令行基本命令</a> <a href="/tags/跨域之ajax/" style="font-size: 10px;">跨域之ajax</a> <a href="/tags/跨域之jsonp/" style="font-size: 10px;">跨域之jsonp</a>
     </div>
   </div>
 
@@ -1165,6 +1135,14 @@ Server: bfe/1.0.8.18
       <ul>
         
           <li>
+            <a href="/2018/08/25/JS数据结构/">JS中的数据结构</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/23/JS排序算法/">JS中的排序算法</a>
+          </li>
+        
+          <li>
             <a href="/2018/08/23/AJAX/">AJAX</a>
           </li>
         
@@ -1174,14 +1152,6 @@ Server: bfe/1.0.8.18
         
           <li>
             <a href="/2018/07/04/实现一个jQuery的API/">实现一个jQuery的API</a>
-          </li>
-        
-          <li>
-            <a href="/2018/06/13/原型与原型链/">原型与原型链</a>
-          </li>
-        
-          <li>
-            <a href="/2018/06/12/JS数据里的数据类型转换/">JS数据里的数据类型转换</a>
           </li>
         
       </ul>
