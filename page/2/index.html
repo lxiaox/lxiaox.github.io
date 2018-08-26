@@ -62,6 +62,74 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-HTML常用标签" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/09/HTML常用标签/" class="article-date">
+  <time datetime="2018-05-09T02:57:35.000Z" itemprop="datePublished">2018-05-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/09/HTML常用标签/">HTML常用标签及简单介绍</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文介绍内容主要分为HTML结构、标题标签、段落标签、图形标签、一些常用标签、制表、表单、框架标签、超链接标签、字符控制、列表控制以及多媒体等。</p>
+<h2 id="HTML结构"><a href="#HTML结构" class="headerlink" title="HTML结构"></a>HTML结构</h2><table><br><tr><td><th>标签</th><th>描述<br></th></td></tr><tr><td></td><td>DOCTYPE</td><td>指定文件类型，如html5中:<br>&lt;!DOCTYPE html&gt;<br></td></tr><tr><td></td><td>html</td><td>文档的根元素<br></td></tr><tr><td></td><td>head</td><td>网页中顶级元素，一般包含浏览器环境设置部分<br></td></tr><tr><th rowspan="5" width="4">head嵌套</th><td>title</td><td>定义网页的标题<br></td></tr><tr><td>style</td><td>设置html元素的样式<br></td></tr><tr><td>script</td><td>定义网页使用哪种脚本语言<br></td></tr><tr><td>meta</td><td>定义网页元数据，如文档关键字、描述和作者信息<br></td></tr><tr><td>object</td><td>定义对象<br></td></tr><tr><td></td><td>body</td><td>包含显示在浏览器可视区的信息主体，及正文部分<br></td></tr></table>
+
+<h2 id="标题标签-lt-h1-gt-lt-h6-gt"><a href="#标题标签-lt-h1-gt-lt-h6-gt" class="headerlink" title="标题标签&lt;h1&gt;~&lt;h6&gt;"></a>标题标签&lt;h1&gt;~&lt;h6&gt;</h2><table><br><tr><th>标签</th><th>示例<br></th></tr><tr><td>h1</td><td><h1>一级标题</h1><br></td></tr><tr><td>h1</td><td><h2>二级标题</h2><br></td></tr><tr><td>h3</td><td><h3>三级标题</h3><br></td></tr><tr><td>h4</td><td><h4>四级标题</h4><br></td></tr><tr><td>h5</td><td><h5>五级标题</h5><br></td></tr><tr><td>h6</td><td><h6>六级标题</h6><br></td></tr><tr><th>标题align属性</th><th>中间对齐方式<br></th></tr><tr><td>left</td><td>左对齐<br></td></tr><tr><td>right</td><td>右对齐<br></td></tr><tr><td>center</td><td>中间对齐<br></td></tr><tr><td>justify</td><td>两边对齐<br></td></tr></table>
+
+<h2 id="段落标签-lt-p-gt"><a href="#段落标签-lt-p-gt" class="headerlink" title="段落标签&lt;p&gt;"></a>段落标签&lt;p&gt;</h2><table><br><tr><th>标签</th><th>描述<br></th></tr><tr><td>p</td><td>用于在网页中显示一个段落<br></td></tr><tr><td colspan="2">align属性对齐方式与&lt;h1&gt;方式一致<br></td></tr></table>
+
+<h2 id="图形标签-lt-img-gt"><a href="#图形标签-lt-img-gt" class="headerlink" title="图形标签&lt;img&gt;"></a>图形标签&lt;img&gt;</h2><p>img是一个空元素，不需要结束元素,一般格式如下：</p>
+<pre><code>&lt;img src=&quot;&quot; width=&quot;&quot; height=&quot;&quot; alt=&quot;&quot;&gt;
+</code></pre><ol>
+<li>src属性为img元素的必选属性，用于指定图形文件的路径，由URL确定，可以是本地资源，也可以是远程资源。</li>
+<li>width和height属性分别表示图形显示在浏览器中的宽度和高度，为可选属性。</li>
+<li>alt表示图片不能正常显示时的替换文字。</li>
+<li>align属性<table><br><tr><th>align属性值</th><th>对齐方式<br></th></tr><tr><td>left</td><td>把图像和左边界对齐<br></td></tr><tr><td>right</td><td>把图像和右边界对齐<br></td></tr><tr><td>center</td><td>把图像居中<br></td></tr><tr><td>middle</td><td>把图像中部和行的中部对齐<br></td></tr><tr><td>top</td><td>把图像和同行中的最高部分对齐<br></td></tr><tr><td>bottom</td><td>把图像的底部和和同行文本的底部对齐<br></td></tr><tr><td>texttop</td><td>把图像和同行中的最高文本的顶部对齐<br></td></tr><tr><td>absmiddle</td><td>把图像中部和同行中最大顶的中部对齐<br></td></tr><tr><td>absbottom</td><td>把图像的底部和同行中的最大顶对齐<br></td></tr><tr><td>baseline</td><td>把图像的底部和文本的基线对齐<br></td></tr><tr><td colspan="2"><strong>通过设置align属性可以达到图文环绕的效果</strong><br></td></tr></table></li>
+</ol>
+<h2 id="一些常用标签"><a href="#一些常用标签" class="headerlink" title="一些常用标签"></a>一些常用标签</h2><table><br><tr><th>标签</th><th>描述<br></th></tr><tr><td>&lt;!–注释–&gt;</td><td>注释多行内容。<br>快捷方式：选中想注释掉的文本内容，按键盘Ctrl+/。<br></td></tr><tr><td>hr</td><td>在网页中画一条横线<br></td></tr><tr><td>br</td><td>另起一行<br></td></tr><tr><td>center</td><td>使内容居中显示<br></td></tr><tr><td>div</td><td>定义一个块级容器，用来规划网页<br></td></tr><tr><td>span</td><td>定义一个行内容器<br></td></tr></table>
+
+<h2 id="制表标签"><a href="#制表标签" class="headerlink" title="制表标签"></a>制表标签</h2><table><br><tr><th>标签</th><th>描述<br></th></tr><tr><td>table</td><td>建立表格的主要元素。含border，bgcolor，bordercolor等属性。<br></td></tr><tr><td rowspan="2">caption</td><td>用于把一行文本置于表格上方或下方<br></td></tr><tr><td>&lt;caption align=”top/bottom”&gt;表格标题&lt;/caption&gt;<br></td></tr><tr><td>thead</td><td rowspan="3">分别定义表格的表头，表体和底部，书写顺序不影响其先后顺序。<br></td></tr><tr><td>tbody<br></td></tr><tr><td>tfoot<br></td></tr><tr><td>tr</td><td>定义表格中的一行。属性有align、bgcolor、border、bordercolor、nowrap（禁止浏览器对单元格中的内容产生换行）、valign（设置单元格内容在垂直方向的对齐方式：top、middle、bottom）<br></td></tr><tr><td>th</td><td>与td用法一致，但内容以粗体显示，可用来设计表格的表头。<br></td></tr><tr><td>td</td><td>定义一行中的一列，又叫单元格。具有colspan和rowspan属性，即一个单元格所占的列数和行数，可设置单元格合并;可设置宽高width、height，align等。<br></td></tr><tr><td rowspan="2">colgrop</td><td>设置某一列的width和bgcolor<br></td></tr><tr><td>&lt;colgrop&gt;&lt;col width=”” bgcolor=””&gt;&lt;colgrop&gt;<br></td></tr></table>
+
+<h2 id="表单元素"><a href="#表单元素" class="headerlink" title="表单元素"></a>表单元素</h2><table><br><tr><td><th>标签</th><th>描述<br></th></td></tr><tr><td></td><td>form</td><td>建立表单的主要元素。含method属性（与服务器交换信息时使用的方式），一般选择post或<s>get</s><br></td></tr><tr><td></td><td>input</td><td>定义一个用于用户输入的表单控件。由type属性规定其类型；由name属性定义控件名称，按照name/value发送给服务器，没有写那么属性的控件不会发送。<br></td></tr><tr><td rowspan="10">input元素的type属性值</td><td>text</td><td>文本框<br></td></tr><tr><td>password</td><td>密码或口令<br></td></tr><tr><td>radio</td><td>单选按钮<br></td></tr><tr><td>checkbox</td><td>复选框，可选，可多选，可不选<br></td></tr><tr><td>file</td><td>文件按钮<br></td></tr><tr><td>hiddle</td><td>隐藏按钮<br></td></tr><tr><td>image</td><td>图像控件<br></td></tr><tr><td>button</td><td>命令按钮<br></td></tr><tr><td>submit</td><td>提交按钮，发送表单<br></td></tr><tr><td>reset</td><td>重置按钮，将表单填写清零<br></td></tr><tr><td rowspan="2"></td><td rowspan="2">select</td><td>下拉列表选择控件。通常包含若干个option元素。<br></td></tr><tr><td>默认multiple一次只能选择一项；设置multiple size=#，一次可选择#项（按住Ctrl或Shift键单击）<br></td></tr><tr><td></td><td>option</td><td>定义select元素的列表选项。属性：selected默认选中该项，disabled不能选择该项。<br></td></tr><tr><td></td><td>textarea</td><td>支持多行输入。属性：cols文本框宽度；rows文本框高度；或者使用width、height（准确）<br></td></tr></table>
+
+<h2 id="框架标签"><a href="#框架标签" class="headerlink" title="框架标签"></a>框架标签</h2><table><br><tr><th>标签</th><th>描述<br></th></tr><tr><td rowspan="3">frameset</td><td>定义框架结构，放在body元素外。HTML5不支持。<br></td></tr><tr><td>用法：<br>&lt;frameset rows=”#,…,#”&gt;<br>&lt;frameset&gt;<br><br>&lt;frameset cols=”#,…,#”&gt;<br>&lt;frameset&gt;<br><br>＃的个数是将窗口所分区域数，#可以是整数，也可以是百分数。<br></td></tr><tr><td>frameborder属性值为‘0’隐藏边框，‘1’显示边框<br></td></tr><tr><td>frame</td><td>定义一个区域中的内容，HTML5不支持。<br></td></tr><tr><td>noframes</td><td>包含框架不能显示时的替换内容，HTML5不支持。<br></td></tr><tr><td>iframe</td><td>用法：&lt;iframe src=”” name=”name”&gt;<br></td></tr></table>
+
+<h2 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h2><table><br><tr><th>标签</th><th>描述<br></th></tr><tr><td>a</td><td>用法：&lt;a href=”” target=””&gt;链接对象&lt;a&gt;<br></td></tr><tr><td rowspan="5">href属性值</td><td>href属性用于指定超链接的链接对象，可以为相对地址或绝对地址。<br></td></tr><tr><td>http://或ftp://或gopher://等<br></td></tr><tr><td>mailto:…<br>提供一个E-mail地址，启动E-mail默认程序发送信件。<br></td></tr><tr><td>伪协议：javascript:;点击a时不做任何动作<br></td></tr><tr><td>锚点”#”；查询参数”？name=”。<br></td></tr><tr><td rowspan="5">target属性值</td><td>_blank<br>新打开一个浏览器窗口显示链接对象<br></td></tr><tr><td>_self<br>在原网页所在窗口打开<br></td></tr><tr><td>_top<br>在浏览器整个窗口（祖宗窗口）中显示<br></td></tr><tr><td>_parent<br>在父窗口中显示<br></td></tr><tr><td>框架name<br>在相应框架中显示<br></td></tr><tr><td>图片链接</td><td>&lt;a href=””&gt;&lt;img src=”” border=0&gt;&lt;a&gt;<br><br></td></tr></table>
+
+<h2 id="字符控制"><a href="#字符控制" class="headerlink" title="字符控制"></a>字符控制</h2><table><br><tr><th>标签</th><th>描述<br></th></tr><tr><td rowspan="2">font</td><td>控制文字的字体、字号、颜色<br></td></tr><tr><td>用法：&lt;font face=”” size=”” color=””&gt;&lt;font&gt;<br></td></tr><tr><th colspan="2">字体样式标签<br></th></tr><tr><td>small</td><td>用小一号字体显示文字<br></td></tr><tr><td>strong</td><td>加粗显示<br></td></tr><tr><td>b</td><td>加粗显示<br></td></tr><tr><td>big</td><td>加大一号字体加粗显示<br></td></tr><tr><td>i</td><td>斜体强调显示<br></td></tr><tr><td>em</td><td>斜体强调显示<br></td></tr><tr><td>s</td><td>加上删除线<br></td></tr><tr><td>u</td><td>加上下划线<br></td></tr></table>
+
+<h2 id="列表控制"><a href="#列表控制" class="headerlink" title="列表控制"></a>列表控制</h2><table><br><tr><th>标签</th><th>描述<br></th></tr><tr><td>dl</td><td>定义列表<br></td></tr><tr><td>dt</td><td>由dd元素定义的对象<br></td></tr><tr><td>dd</td><td>对dt元素的定义<br></td></tr><tr><td>menu</td><td>设定菜单或列表的开头<br></td></tr><tr><td>ul</td><td>无序列表<br></td></tr><tr><td>ol</td><td>有序列表<br></td></tr><tr><td>li</td><td>列表项目<br></td></tr><tr><th colspan="2">ul、ol元素的type属性<br></th></tr><tr><td>1</td><td>以整数作为项目标记符<br></td></tr><tr><td>a</td><td>以小写字母作为项目标记符<br></td></tr><tr><td>A</td><td>以大写字母作为项目标记符<br></td></tr><tr><td>i</td><td>以小写罗马数字作为项目标记符<br></td></tr><tr><td>I</td><td>以大写罗马数字作为项目标记符<br></td></tr><tr><td>circle</td><td>以空心圆作为项目标记符<br></td></tr><tr><td>disc</td><td>以实心圆作为项目标记符<br></td></tr><tr><td>square</td><td>以方块作为项目标记符<br></td></tr></table>
+
+<h2 id="多媒体"><a href="#多媒体" class="headerlink" title="多媒体"></a>多媒体</h2><table><br><tr><th>技术</th><th>实现方法<br></th></tr><tr><td>声音与视频</td><td>使用a标签<br></td></tr><tr><td>背景音乐</td><td>在head标签中写入：<br>&lt;bgsound src=”” loop=””&gt;<br>（loop为循环次数）<br></td></tr><tr><td>动态文件</td><td>使用img元素的dynsrc（引入各种格式的多媒体）、loop、start（值为mouseover等）等IE属性。<br></td></tr><tr><td>动画和视频的插入</td><td>使用embed元素，用法：<br>&lt;embed src=”” width=”” height=””&gt;<br></td></tr><tr><td>文本滚动</td><td>使用&lt;marquee&gt;元素，内含width、height、bgcolor、border、behavior（=slide、sroll、alternate等）、direction、loop等属性。<br></td></tr></table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/05/09/HTML常用标签/" data-id="cjlam577g0003n47lvf90psfd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html常用标签/">html常用标签</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-HTML5标签" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/29/HTML5标签/" class="article-date">
@@ -110,7 +178,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/29/HTML5标签/" data-id="cjl90htsd0003q47lelffjl3p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/29/HTML5标签/" data-id="cjlam577o0008n47lb7nyrsoy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5标签/">html5标签</a></li></ul>
@@ -245,7 +313,7 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/21/http请求与响应/" data-id="cjl90htt2000fq47lgrh06hc8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/21/http请求与响应/" data-id="cjlam577x000bn47lpmzvu24m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li></ul>
@@ -286,7 +354,7 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/17/Git入门命令/" data-id="cjl90hts60001q47l8ywttsel" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/17/Git入门命令/" data-id="cjlam57790001n47lih9ey14d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git入门/">git入门</a></li></ul>
@@ -312,7 +380,7 @@ Server: bfe/1.0.8.18
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/16/命令行相关命令/">命令行相关命令</a>
+      <a class="article-title" href="/2018/04/16/命令行相关命令/">命令行基本命令</a>
     </h1>
   
 
@@ -321,15 +389,16 @@ Server: bfe/1.0.8.18
     <div class="article-entry" itemprop="articleBody">
       
         <p>1、<br>ls      //查看当前目录下所有文件目录<br>ls -a   //查看所有文件目录，包括隐藏文件<br>ls -l   //查看文件详细信息（所属用户、文件大小、修改时间等）<br>ls -al  //结合-a -l功能，查看所有文件目录详细信息<br>ls -lt  //按修改时间排序</p>
-<p>2、<br>cat     //显示文件内容、连接文件、追加文件内容<br>cat filename    //显示文件内容<br>cat -n file     //加上行号<br>cat -b file     //只给有文本的行加上行号<br>cat -s file     //将多个空白行压缩到单个空白行<br>cat &gt;filename   //新建一个文件<br>tac file        //反向显示<br>cat file1 file2 &gt; file3     //将file1、file2合并为新文件file3</p>
-<p>3、<br>mv file1 file2     //修改文件名称<br>mv file1 xxx       //移动文件至xxx目录<br>mv -b              //若需覆盖文件会备份原文件<br>mv -i              //若需覆盖文件会询问<br>mv -f              //若需覆盖文件不会询问，直接覆盖</p>
-<p>4、<br>touch file      //为改变文件修改时间，文件不存在时创建一个新文件<br>touch file -c   //不创建任何文件<br>touch -t        //使用指定的日期时间<br>touch -a        //只更改存取时间<br>touch -m        //只更改变动时间</p>
-<p>5、explainshell.com网站的使用<br>这是一个解释命令的网站，我们可以使用这个网站工具来查看命令是如何工作的,这样可以避免不必要的错误出现，也是一个很好的学习命令的方式。<br>使用方法：<br>进入该网站，在网页上的搜索框输入命令回车即可搜索该命令的解释说明。</p>
+<p>2、<br>cat     //显示文件内容、连接文件、追加文件内容<br>tac file        //反向显示<br>cat filename    //显示文件内容<br>cat -n file     //加上行号<br>cat -b file     //只给有文本的行加上行号<br>cat -s file     //将多个空白行压缩到单个空白行<br>cat &gt;filename   //新建一个文件，若文件名存在会清空<br>cat file1 &gt;file2 //file2内容会被覆盖为file1内容<br>cat file1 file2 &gt; file3     //将file1、file2合并为新文件file3</p>
+<p>3、<br>echo //意为回声<br>echo abc //显示abc<br>echo &gt;1.txt //若1.txt不存在会创建1.txt；若存在，会清空1.txt内容<br>echo 1 &gt;1.txt //若1.txt不存在会创建1.txt；若存在，会将1.txt内容覆盖为1<br>//总的来说 cat/echo A &gt;B 都是将A覆盖B，A可为空，cat时 A还可为多个</p>
+<p>4、<br>mv file1 file2     //修改文件名称<br>mv file1 xxx       //移动文件至xxx目录<br>mv -b              //若需覆盖文件会备份原文件<br>mv -i              //若需覆盖文件会询问<br>mv -f              //若需覆盖文件不会询问，直接覆盖</p>
+<p>5、<br>touch file      //改变文件修改时间，文件不存在时创建一个新文件<br>touch file -c   //不创建任何文件<br>touch -t        //使用指定的日期时间<br>touch -a        //只更改存取时间<br>touch -m        //只更改变动时间</p>
+<p>6、explainshell.com网站的使用<br>这是一个解释命令的网站，我们可以使用这个网站工具来查看命令是如何工作的,这样可以避免不必要的错误出现，也是一个很好的学习命令的方式。<br>使用方法：<br>进入该网站，在网页上的搜索框输入命令回车即可搜索该命令的解释说明。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/16/命令行相关命令/" data-id="cjl90htt8000jq47lnit01d5k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/16/命令行相关命令/" data-id="cjlam5783000fn47leksgg83w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/命令行基本命令/">命令行基本命令</a></li></ul>
@@ -359,7 +428,7 @@ Server: bfe/1.0.8.18
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型/">JS中的数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型转换/">JS中的数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery-API/">jQuery-API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行基本命令/">命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型/">JS中的数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型转换/">JS中的数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery-API/">jQuery-API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行基本命令/">命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/登录注册与cookie/">登录注册与cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
     </div>
   </div>
 
@@ -369,7 +438,7 @@ Server: bfe/1.0.8.18
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS中的排序算法/" style="font-size: 10px;">JS中的排序算法</a> <a href="/tags/JS中的数据类型/" style="font-size: 10px;">JS中的数据类型</a> <a href="/tags/JS中的数据类型转换/" style="font-size: 10px;">JS中的数据类型转换</a> <a href="/tags/JS数据结构/" style="font-size: 10px;">JS数据结构</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/jQuery-API/" style="font-size: 10px;">jQuery-API</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a> <a href="/tags/命令行基本命令/" style="font-size: 10px;">命令行基本命令</a> <a href="/tags/跨域之ajax/" style="font-size: 10px;">跨域之ajax</a> <a href="/tags/跨域之jsonp/" style="font-size: 10px;">跨域之jsonp</a>
+      <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JS中的排序算法/" style="font-size: 10px;">JS中的排序算法</a> <a href="/tags/JS中的数据类型/" style="font-size: 10px;">JS中的数据类型</a> <a href="/tags/JS中的数据类型转换/" style="font-size: 10px;">JS中的数据类型转换</a> <a href="/tags/JS数据结构/" style="font-size: 10px;">JS数据结构</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/jQuery-API/" style="font-size: 10px;">jQuery-API</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a> <a href="/tags/命令行基本命令/" style="font-size: 10px;">命令行基本命令</a> <a href="/tags/登录注册与cookie/" style="font-size: 10px;">登录注册与cookie</a> <a href="/tags/跨域之ajax/" style="font-size: 10px;">跨域之ajax</a> <a href="/tags/跨域之jsonp/" style="font-size: 10px;">跨域之jsonp</a>
     </div>
   </div>
 
@@ -391,6 +460,10 @@ Server: bfe/1.0.8.18
       <ul>
         
           <li>
+            <a href="/2018/08/26/登录注册与cookie/">登录注册与Cookie</a>
+          </li>
+        
+          <li>
             <a href="/2018/08/25/JS数据结构/">JS中的数据结构</a>
           </li>
         
@@ -404,10 +477,6 @@ Server: bfe/1.0.8.18
         
           <li>
             <a href="/2018/08/17/JSONP/">JSONP</a>
-          </li>
-        
-          <li>
-            <a href="/2018/07/04/实现一个jQuery的API/">实现一个jQuery的API</a>
           </li>
         
       </ul>
