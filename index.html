@@ -62,6 +62,170 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Promise学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/07/Promise学习/" class="article-date">
+  <time datetime="2018-09-07T11:40:44.000Z" itemprop="datePublished">2018-09-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/07/Promise学习/">Promise学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="什么是-Promise？"><a href="#什么是-Promise？" class="headerlink" title="什么是 Promise？"></a>什么是 Promise？</h1><p>Promise作为ES6最重要的特性之一，它本身是一个构造函数，并拥有<code>resolve</code>、 <code>reject</code>、 <code>all</code>、 <code>race</code> 等方法。</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-8/100325.jpg" alt="打印Promise"></p>
+<h5 id="Promise-对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值。"><a href="#Promise-对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值。" class="headerlink" title="Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值。"></a>Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值。</h5><h3 id="语法"><a href="#语法" class="headerlink" title="语法:"></a>语法:</h3><p><code>new Promimse( function(resolve, reject) {} )</code></p>
+<p>Promise构造函数接受一个函数，这个函数的参数为<code>resolve</code>和<code>reject</code>，<code>resolve</code>将<code>Promise</code>状态改为<code>fulfilled</code>,<code>reject</code>将其状态改为<code>rejected</code>，promise会根据不同状态执行不同操作。</p>
+<h3 id="一个Promise有以下几种状态："><a href="#一个Promise有以下几种状态：" class="headerlink" title="一个Promise有以下几种状态："></a>一个Promise有以下几种状态：</h3><ul>
+<li><code>pending</code>：初始状态，不成功也没失败</li>
+<li><code>fulfilled</code>：表示操作成功完成</li>
+<li><code>rejected</code>：表示操作失败</li>
+<li><code>settled</code>：完成状态，fulfilled和rejected的统称</li>
+</ul>
+<p><code>pending</code>状态的Promise可能触发<code>fulfilled</code>状态，并传递一个值给成功之后的操作；也可能触发<code>rejected</code>状态，并传递失败信息或失败原因给失败之后的操作。</p>
+<h1 id="改变状态之后的操作："><a href="#改变状态之后的操作：" class="headerlink" title="改变状态之后的操作："></a>改变状态之后的操作：</h1><p>打印Promise对象可以看到，它的原型方法<code>then()</code>、<code>catch()</code>、<code>finally()</code>，这些方法会表明Promise操作完成之后要做的事情。</p>
+<h3 id="1、Promise-prototype-then-onFulfilled-onRejected"><a href="#1、Promise-prototype-then-onFulfilled-onRejected" class="headerlink" title="1、Promise.prototype.then(onFulfilled, onRejected)"></a>1、Promise.prototype.then(onFulfilled, onRejected)</h3><p> then()方法最多接受两个参数，即成功之后调用的回调函数，和失败之后调用的回调函数，同时它返回一个Promise对象，使得Promise().then().then()这样的链式操作得以实现。</p>
+<pre><code>promise.then(
+    function(value){
+        //如果成功...
+    },
+    function(reason){
+        //失败...
+    }
+)
+</code></pre><p><code>then()</code>方法也可只接受成功的回调函数，那么失败情况就会由<code>catch()</code>方法处理。</p>
+<h3 id="2、Promise-prototype-catch-onRejected"><a href="#2、Promise-prototype-catch-onRejected" class="headerlink" title="2、Promise.prototype.catch(onRejected)"></a>2、Promise.prototype.catch(onRejected)</h3><p> <code>catch()</code>方法处理拒绝也就是失败的情况，同时返回一个Promise对象。</p>
+<pre><code>promise.catch(
+    function(reason){
+        //失败...
+    }
+)
+</code></pre><h3 id="3、Promise-prototype-finally"><a href="#3、Promise-prototype-finally" class="headerlink" title="3、Promise.prototype.finally()"></a>3、Promise.prototype.finally()</h3><p> <code>finall()</code>也返回一个Promise对象，then()和catch()执行之后都会执行finally()，可以避免重复书写同样的代码。</p>
+<pre><code>promise.finally(
+    function(){
+        //成功和失败都会执行...
+    }
+)
+</code></pre><p>要注意，就算是失败的Promise经过<code>then()</code>、<code>catch()</code>处理，返回的新的Promise状态是<strong>成功</strong>的，除非再次处理（<code>then</code>、<code>catch</code>）失败。</p>
+<p>同时形如<code>promise.then().then().then().catch()</code>，所有的失败情况都由最后的<code>catch()</code>处理，一旦某个地方失败，就会顺着操作链寻找到失败的回调函数。</p>
+<h2 id="那么现在就可以写一个Promise了"><a href="#那么现在就可以写一个Promise了" class="headerlink" title="那么现在就可以写一个Promise了"></a>那么现在就可以写一个Promise了</h2><p>先封装一个函数：</p>
+<pre><code>function test(num){
+    var p = new Promise(function(resolve, reject){
+        //设置延时，进行异步操作
+        setTimeout(function(){
+           if(num === 66){
+               console.log(&apos;顺利完成&apos;)
+               resolve(&apos;66大顺，成功&apos;) //resolve将状态改为fulfilled，完成
+           }else{
+               console.log(&apos;失败&apos;)
+               reject(&apos;不顺利，失败了&apos;)  //reject将状态改为rejected，拒绝
+           }
+        }, 3000)
+    })
+    return p
+}
+</code></pre><p>在上述代码中，我们封装了一个函数，这个函数返回一个promise对象。我们定义了一个异步操作，就是判断数值是否为66，等于成功，不等于就失败。</p>
+<p>为什么要封装函数？因为在new一个Promise对象时，传进去的函数会执行，封装函数之后我们就可以在调用函数时再执行它。</p>
+<p>接下来就可以调用函数，进行下一步操作：</p>
+<pre><code>//成功的情况：
+test(66).then(function(value){
+    console.log(&apos;成功信息：&apos;)
+    console.log(value)
+}).catch(function(reason){
+    console.log(&apos;失败信息：&apos;)
+    console.log(reason)
+})
+</code></pre><p>成功结果截图，3s之后输出：</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-8/35816019.jpg" alt="成功结果"></p>
+<pre><code>//失败的情况：
+test(55).then(function(value){
+    console.log(&apos;成功信息：&apos;)
+    console.log(value)
+}).catch(function(reason){
+    console.log(&apos;失败信息：&apos;)
+    console.log(reason)
+})
+</code></pre><p>失败结果截图，3s之后输出：</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-8/48159739.jpg" alt="失败结果"></p>
+<h1 id="更多用法"><a href="#更多用法" class="headerlink" title="更多用法"></a>更多用法</h1><h3 id="1、Promise-resolve-value"><a href="#1、Promise-resolve-value" class="headerlink" title="1、Promise.resolve(value)"></a>1、Promise.resolve(value)</h3><p><code>resolve()</code>方法返回一个给定值解析之后的Promise对象。其中又分为几种情况：</p>
+<p>1、如果传入的值本身是一个Promise对象，那么就返回这个Promise对象</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-8/58265184.jpg" alt="传入Promise对象"></p>
+<p>如图传入Promise对象为：test(55)，它的状态是失败，resolve()的返回值就是这个失败状态的promise，因此会调用失败的回调输出failed。</p>
+<p>2、如果传入的值是个thenable对象，即带有then方法，那么返回的是then之后最终状态的promise。</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-8/84989719.jpg" alt="传入thenable"></p>
+<p>如图传入<code>test(55).then().catch()</code>，虽然<code>test(55)</code>是失败的，但是它经过<code>catch()</code>处理，最后返回的状态是成功，所以<code>resolve()</code>最后的<code>then()</code>会输出<code>success</code>。</p>
+<p>3、如果传入的是其他值，那么就以成功状态返回Promise。</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-8/24130485.jpg" alt="传入其他值"></p>
+<p>如图传入<code>‘abcde’</code>，最终状态是成功，输出<code>success</code>。</p>
+<h3 id="2、Promise-reject-reason"><a href="#2、Promise-reject-reason" class="headerlink" title="2、Promise.reject(reason)"></a>2、Promise.reject(reason)</h3><p><code>reject()</code>方法返回一个带有拒绝原因参数的Promise对象。</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-8/43684756.jpg" alt="reject1"></p>
+<p>从上图可以看出这里的拒绝原因就是字符串‘abcde’本身。</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-8/47409228.jpg" alt="reject2"></p>
+<p>这里的原因是Error: failed。</p>
+<h3 id="3、Promise-all-iterable"><a href="#3、Promise-all-iterable" class="headerlink" title="3、Promise.all(iterable)"></a>3、Promise.all(iterable)</h3><p><code>all()</code>方法返回一个Pomise对象，它传入的参数（iterable译为可迭代的）是promise的数组，即多个promise，只有所有的Promise对象都为成功状态，<code>all()</code>才会返回成功状态的Promise对象。如果有一个失败，那么<code>all()</code>返回失败promise，且失败原因就是第一个失败promise的失败原因。</p>
+<pre><code>var promise1 = Promise.resolve(66)
+var promise2 = Promise.reject(55)
+var promise3 = &apos;abcde&apos;
+var promise4 = new Promise(function(resolve, reject) {
+    setTimeout(resolve(&apos;success&apos;), 300);
+})
+var promise5 = new Promise(function(resolve, reject) {
+    setTimeout(reject(&apos;failed&apos;), 300);
+})
+function onFulfilled(value) {
+    console.log(&apos;成功：&apos;)
+    console.log(value)
+}
+function onRejected(reason){
+    console.log(&apos;失败：&apos; + reason)
+}
+
+//开始测试：
+Promise.all([promise1, promise2, promise3]).then(onFulfilled,onRejected)
+    //输出“失败：55”，因为promise2失败
+
+Promise.all([promise5, promise2, promise3]).then(onFulfilled,onRejected)
+    //输出“失败：failed”，所以应该不是看处理时间，只是看谁在第一个元素
+
+Promise.all([promise1, promise3, promise4]).then(onFulfilled,onRejected)
+    //Array [66, &quot;abcde&quot;, &quot;success&quot;]，全部promise为成功状态时就会将值组成数组一起输出
+</code></pre><h3 id="3、Promise-race-iterable"><a href="#3、Promise-race-iterable" class="headerlink" title="3、Promise.race(iterable)"></a>3、Promise.race(iterable)</h3><p><code>race()</code>方法返回一个Promise对象，它与<code>all()</code>不同之处在于一旦迭代器中某个proise完成或拒绝，那么就返回完成或拒绝的Promise对象。</p>
+<pre><code>//沿用上面的代码
+Promise.race([promise1, promise2, promise3])
+    .then(onFulfilled,onRejected)
+//输出“成功：66”，第一个成功就返回成功值66。
+
+Promise.race([promise5, promise2, promise3])
+    .then(onFulfilled,onRejected)
+//输出“失败：failed”，所以race()方法应该也是看元素位置，而不是处理时间。
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/07/Promise学习/" data-id="cjltajr2e0008zc7l558zwl1s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Promise及相关方法/">Promise及相关方法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-登录注册与cookie" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/08/26/登录注册与cookie/" class="article-date">
@@ -109,7 +273,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/26/登录注册与cookie/" data-id="cjlrxaee60010vw7lw811x8wv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/26/登录注册与cookie/" data-id="cjltajr38000pzc7lqzde1cgw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/登录注册与cookie/">登录注册与cookie</a></li></ul>
@@ -236,7 +400,7 @@ var array = {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/25/JS数据结构/" data-id="cjlrxaedl000hvw7l03jt907q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/25/JS数据结构/" data-id="cjltajr2q000ezc7l31zm4kp8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li></ul>
@@ -344,27 +508,12 @@ num.insertionSort()
 console.log(num)    // [1, 2, 5, 8, 9, 10, 32]
 </code></pre></li>
 </ul>
-<h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><ul>
-<li>基本思想</li>
-<li>时间复杂度</li>
-<li>JS代码：</li>
-</ul>
-<h3 id="排序-1"><a href="#排序-1" class="headerlink" title="排序"></a>排序</h3><ul>
-<li>基本思想</li>
-<li>时间复杂度</li>
-<li>JS代码：</li>
-</ul>
-<h3 id="排序-2"><a href="#排序-2" class="headerlink" title="排序"></a>排序</h3><ul>
-<li>基本思想</li>
-<li>时间复杂度</li>
-<li>JS代码：</li>
-</ul>
 <p>点击<a href="https://visualgo.net/en" target="_blank" rel="noopener">查看排序动画的网站</a>，可以更直观地了解排序的具体过程。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/23/JS排序算法/" data-id="cjlrxaed20009vw7laczexer4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/23/JS排序算法/" data-id="cjltajr2j000czc7lj93zwkfb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li></ul>
@@ -534,7 +683,7 @@ jQuery.ajax({
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/23/AJAX/" data-id="cjlrxaecx0006vw7luexxpbl0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/23/AJAX/" data-id="cjltajqz20000zc7liedrd8e5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li></ul>
@@ -679,7 +828,7 @@ response.write(`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/17/JSONP/" data-id="cjlrxaecz0007vw7lvkwcmto9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/17/JSONP/" data-id="cjltajr2s000gzc7lc7fqn2rk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
@@ -798,7 +947,7 @@ $div.setText(&apos;hi&apos;)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/04/实现一个jQuery的API/" data-id="cjlrxaedp000lvw7lfco2gmxa" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/04/实现一个jQuery的API/" data-id="cjltajr32000mzc7luj3sywku" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery-API/">jQuery-API</a></li></ul>
@@ -859,7 +1008,7 @@ a  //Number {123}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/13/原型与原型链/" data-id="cjlrxaee80011vw7l2n0hu7ee" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/13/原型与原型链/" data-id="cjltajr2z000kzc7l4qg7e0gu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li></ul>
@@ -958,7 +1107,7 @@ a  //Number {123}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/12/JS中的数据类型转换/" data-id="cjlrxaedg000evw7l4fmsl7uz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/12/JS中的数据类型转换/" data-id="cjltajr2h000bzc7lcbqytmba" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS中的数据类型转换/">JS中的数据类型转换</a></li></ul>
@@ -1037,127 +1186,10 @@ a  //Number {123}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/09/JS中的数据类型/" data-id="cjlrxaedb000bvw7l3qxtsfp5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/09/JS中的数据类型/" data-id="cjltajr2a0007zc7l0d283wva" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS中的数据类型/">JS中的数据类型</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-css布局" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/27/css布局/" class="article-date">
-  <time datetime="2018-05-27T05:04:48.000Z" itemprop="datePublished">2018-05-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/27/css布局/">css布局</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文主要介绍以下几点</p>
-<ul>
-<li>左右布局</li>
-<li>水平居中</li>
-<li>垂直居中</li>
-</ul>
-<hr>
-<h2 id="左右布局（两个子元素或以上）"><a href="#左右布局（两个子元素或以上）" class="headerlink" title="左右布局（两个子元素或以上）"></a>左右布局（两个子元素或以上）</h2><ol>
-<li><strong>利用浮动</strong><br><br>给所有子元素添加属性<code>float:left/right</code>，父元素添加clearfix类，可使子元素从左至右排列，同时添加<br><code>margin</code>可增加元素间距。但是当宽度大于父元素宽度时，子元素会换行显示。</li>
-<li><strong>利用绝对定位</strong><br><br>父元素添加<code>position:relative</code>，所有子元素添加<code>position:absolute</code>，使子元素脱离文档流，再利用<code>top: px</code>使子元<br>素顶部对齐，同时使用left属性调整左右位置。</li>
-</ol>
-<h2 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h2><ul>
-<li><strong>行内元素&amp;类行内元素（文本、链接等）</strong><br><ol>
-<li>在块级父容器中让行内元素居中，只需在<strong>父元素</strong>中使用<code>text-align: center;</code><br><br>这个方法可使<code>inline</code>、<code>inline-block</code>、<code>inline-table</code>、<code>inline</code>、<code>flex</code>等类型的元素水平居中。</li>
-</ol>
-</li>
-<li><strong>块级元素（确定宽度）</strong><br><ol>
-<li><strong>法一</strong>：将子元素<code>margin-left</code>、<code>margin-right</code>均设置为<code>auto</code>。(不确定宽度时会拉至与父元素等宽。)<br></li>
-<li><strong>法二</strong>：利用绝对定位，将子元素<code>left</code>设置为父元素宽度的一半，同时<code>margin-left</code>设置为子元素宽度一半的<strong>负值</strong>。</li>
-<li><strong>法3.1：</strong>利用绝对定位，并将子元素<code>top</code>、<code>left</code>、<code>right</code>、<code>bottom</code>均设置为0，并加<code>margin:auto</code>。</li>
-</ol>
-</li>
-<li><strong>块级元素（不确定宽度）</strong><br><ol>
-<li><strong>法3.2：</strong>利用绝对定位，并将子元素<code>top</code>、<code>left</code>、<code>right</code>、<code>bottom</code>均设置为0，这个方法会将子元素的宽高都拉至与父元素等宽高。<br></li>
-<li><strong>法四：</strong>利用绝对定位，将子元素<code>top</code>、<code>left</code>设置为<code>50%</code>，并添加<code>transform: translate(-50%, -50%);</code> 可使子元素水平且垂直居中。<br>其中<code>left</code>、<code>translateX(-50%)</code>实现水平居中。<br></li>
-<li><strong>法五：</strong> flex布局：在<strong>父元素</strong>中添加<code>display:flex;</code>、<code>justify-content:center;//水平居中</code>、<code>align-items: center;//垂直居中</code> 即可使子元素水平且垂直居中。</li>
-</ol>
-</li>
-<li><strong>多个块级元素</strong><br><ol>
-<li>对所有子元素使用<code>display:inline-block;</code>，在父元素上使用<code>text-align:center;</code>即可。</li>
-<li>见<strong>法五</strong>。</li>
-</ol>
-</li>
-</ul>
-<h2 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h2><ul>
-<li><strong>行内元素</strong><br><ol>
-<li>在<strong>父元素</strong>中使用<code>display:table-cell;</code>、<code>vertical-align:middle;</code> 即可使子元素垂直居中。</li>
-</ol>
-</li>
-<li><strong>块级元素（确定高度）</strong><br><ol>
-<li>同理<strong>法二</strong>，利用绝对定位，将子元素<code>top</code>设置为父元素宽度的一半，同时<code>margin-top</code>设置为子元素宽度一半的 <strong>负值</strong>。</li>
-<li>见<strong>法3.1</strong>。</li>
-</ol>
-</li>
-<li><strong>块级元素（不确定高度）</strong><br><ol>
-<li>见<strong>法3.2</strong>。</li>
-<li>见<strong>法四</strong>。其中<code>top</code>、<code>translateY(-50%)</code>实现垂直居中。</li>
-<li>见<strong>法五</strong>。</li>
-</ol>
-</li>
-<li><strong>多个块级元素</strong><br><ol>
-<li>见<strong>法五</strong>。</li>
-</ol>
-</li>
-</ul>
-<h2 id="总结居中"><a href="#总结居中" class="headerlink" title="总结居中"></a>总结居中</h2><ul>
-<li><strong>行内元素</strong><ol>
-<li>水平居中：在父元素中使用<code>text-align: center;</code></li>
-<li>垂直居中：在父元素中使用<code>display:table-cell;</code>、<code>vertical-align:middle;</code></li>
-</ol>
-</li>
-<li><strong>块级元素(确定宽高)</strong><ol>
-<li>利用<code>margin:auto</code>：<br><br> a.水平居中：<code>margin-left</code>、<code>margin-right</code>均设置为<code>auto</code>。<br><br> b.垂直居中不适用。 </li>
-<li>绝对定位 + margin负值。</li>
-<li>绝对定位 + transform</li>
-<li>flex布局</li>
-</ol>
-</li>
-<li><strong>块级元素(不确定宽高)</strong><ol>
-<li>绝对定位 + transform</li>
-<li>flex布局</li>
-</ol>
-</li>
-<li><strong>多个块级元素</strong><ol>
-<li>对所有子元素使用<code>display:inline-block;</code>，在父元素上使用<code>text-align:center;</code> (只适用于水平居中)。</li>
-<li>flex布局</li>
-</ol>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/27/css布局/" data-id="cjlrxaeea0013vw7liatoia3u" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css布局/">css布局</a></li></ul>
 
     </footer>
   </div>
@@ -1184,7 +1216,7 @@ a  //Number {123}
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP请求与响应基础/">HTTP请求与响应基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型/">JS中的数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型转换/">JS中的数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery-API/">jQuery-API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行基本命令/">命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/登录注册与cookie/">登录注册与cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP请求与响应基础/">HTTP请求与响应基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型/">JS中的数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型转换/">JS中的数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise及相关方法/">Promise及相关方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery-API/">jQuery-API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行基本命令/">命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/登录注册与cookie/">登录注册与cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
     </div>
   </div>
 
@@ -1194,7 +1226,7 @@ a  //Number {123}
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/HTTP请求与响应基础/" style="font-size: 10px;">HTTP请求与响应基础</a> <a href="/tags/JS中的排序算法/" style="font-size: 10px;">JS中的排序算法</a> <a href="/tags/JS中的数据类型/" style="font-size: 10px;">JS中的数据类型</a> <a href="/tags/JS中的数据类型转换/" style="font-size: 10px;">JS中的数据类型转换</a> <a href="/tags/JS数据结构/" style="font-size: 10px;">JS数据结构</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/jQuery-API/" style="font-size: 10px;">jQuery-API</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a> <a href="/tags/命令行基本命令/" style="font-size: 10px;">命令行基本命令</a> <a href="/tags/登录注册与cookie/" style="font-size: 10px;">登录注册与cookie</a> <a href="/tags/跨域之ajax/" style="font-size: 10px;">跨域之ajax</a> <a href="/tags/跨域之jsonp/" style="font-size: 10px;">跨域之jsonp</a>
+      <a href="/tags/HTTP请求与响应基础/" style="font-size: 10px;">HTTP请求与响应基础</a> <a href="/tags/JS中的排序算法/" style="font-size: 10px;">JS中的排序算法</a> <a href="/tags/JS中的数据类型/" style="font-size: 10px;">JS中的数据类型</a> <a href="/tags/JS中的数据类型转换/" style="font-size: 10px;">JS中的数据类型转换</a> <a href="/tags/JS数据结构/" style="font-size: 10px;">JS数据结构</a> <a href="/tags/Promise及相关方法/" style="font-size: 10px;">Promise及相关方法</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/jQuery-API/" style="font-size: 10px;">jQuery-API</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a> <a href="/tags/命令行基本命令/" style="font-size: 10px;">命令行基本命令</a> <a href="/tags/登录注册与cookie/" style="font-size: 10px;">登录注册与cookie</a> <a href="/tags/跨域之ajax/" style="font-size: 10px;">跨域之ajax</a> <a href="/tags/跨域之jsonp/" style="font-size: 10px;">跨域之jsonp</a>
     </div>
   </div>
 
@@ -1203,7 +1235,7 @@ a  //Number {123}
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
     </div>
   </div>
 
@@ -1214,6 +1246,10 @@ a  //Number {123}
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/09/07/Promise学习/">Promise学习</a>
+          </li>
         
           <li>
             <a href="/2018/08/26/登录注册与cookie/">登录注册与Cookie</a>
@@ -1229,10 +1265,6 @@ a  //Number {123}
         
           <li>
             <a href="/2018/08/23/AJAX/">AJAX</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/17/JSONP/">JSONP</a>
           </li>
         
       </ul>

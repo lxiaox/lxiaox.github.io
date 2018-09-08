@@ -62,6 +62,123 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-css布局" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/27/css布局/" class="article-date">
+  <time datetime="2018-05-27T05:04:48.000Z" itemprop="datePublished">2018-05-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/27/css布局/">css布局</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文主要介绍以下几点</p>
+<ul>
+<li>左右布局</li>
+<li>水平居中</li>
+<li>垂直居中</li>
+</ul>
+<hr>
+<h2 id="左右布局（两个子元素或以上）"><a href="#左右布局（两个子元素或以上）" class="headerlink" title="左右布局（两个子元素或以上）"></a>左右布局（两个子元素或以上）</h2><ol>
+<li><strong>利用浮动</strong><br><br>给所有子元素添加属性<code>float:left/right</code>，父元素添加clearfix类，可使子元素从左至右排列，同时添加<br><code>margin</code>可增加元素间距。但是当宽度大于父元素宽度时，子元素会换行显示。</li>
+<li><strong>利用绝对定位</strong><br><br>父元素添加<code>position:relative</code>，所有子元素添加<code>position:absolute</code>，使子元素脱离文档流，再利用<code>top: px</code>使子元<br>素顶部对齐，同时使用left属性调整左右位置。</li>
+</ol>
+<h2 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h2><ul>
+<li><strong>行内元素&amp;类行内元素（文本、链接等）</strong><br><ol>
+<li>在块级父容器中让行内元素居中，只需在<strong>父元素</strong>中使用<code>text-align: center;</code><br><br>这个方法可使<code>inline</code>、<code>inline-block</code>、<code>inline-table</code>、<code>inline</code>、<code>flex</code>等类型的元素水平居中。</li>
+</ol>
+</li>
+<li><strong>块级元素（确定宽度）</strong><br><ol>
+<li><strong>法一</strong>：将子元素<code>margin-left</code>、<code>margin-right</code>均设置为<code>auto</code>。(不确定宽度时会拉至与父元素等宽。)<br></li>
+<li><strong>法二</strong>：利用绝对定位，将子元素<code>left</code>设置为父元素宽度的一半，同时<code>margin-left</code>设置为子元素宽度一半的<strong>负值</strong>。</li>
+<li><strong>法3.1：</strong>利用绝对定位，并将子元素<code>top</code>、<code>left</code>、<code>right</code>、<code>bottom</code>均设置为0，并加<code>margin:auto</code>。</li>
+</ol>
+</li>
+<li><strong>块级元素（不确定宽度）</strong><br><ol>
+<li><strong>法3.2：</strong>利用绝对定位，并将子元素<code>top</code>、<code>left</code>、<code>right</code>、<code>bottom</code>均设置为0，这个方法会将子元素的宽高都拉至与父元素等宽高。<br></li>
+<li><strong>法四：</strong>利用绝对定位，将子元素<code>top</code>、<code>left</code>设置为<code>50%</code>，并添加<code>transform: translate(-50%, -50%);</code> 可使子元素水平且垂直居中。<br>其中<code>left</code>、<code>translateX(-50%)</code>实现水平居中。<br></li>
+<li><strong>法五：</strong> flex布局：在<strong>父元素</strong>中添加<code>display:flex;</code>、<code>justify-content:center;//水平居中</code>、<code>align-items: center;//垂直居中</code> 即可使子元素水平且垂直居中。</li>
+</ol>
+</li>
+<li><strong>多个块级元素</strong><br><ol>
+<li>对所有子元素使用<code>display:inline-block;</code>，在父元素上使用<code>text-align:center;</code>即可。</li>
+<li>见<strong>法五</strong>。</li>
+</ol>
+</li>
+</ul>
+<h2 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h2><ul>
+<li><strong>行内元素</strong><br><ol>
+<li>在<strong>父元素</strong>中使用<code>display:table-cell;</code>、<code>vertical-align:middle;</code> 即可使子元素垂直居中。</li>
+</ol>
+</li>
+<li><strong>块级元素（确定高度）</strong><br><ol>
+<li>同理<strong>法二</strong>，利用绝对定位，将子元素<code>top</code>设置为父元素宽度的一半，同时<code>margin-top</code>设置为子元素宽度一半的 <strong>负值</strong>。</li>
+<li>见<strong>法3.1</strong>。</li>
+</ol>
+</li>
+<li><strong>块级元素（不确定高度）</strong><br><ol>
+<li>见<strong>法3.2</strong>。</li>
+<li>见<strong>法四</strong>。其中<code>top</code>、<code>translateY(-50%)</code>实现垂直居中。</li>
+<li>见<strong>法五</strong>。</li>
+</ol>
+</li>
+<li><strong>多个块级元素</strong><br><ol>
+<li>见<strong>法五</strong>。</li>
+</ol>
+</li>
+</ul>
+<h2 id="总结居中"><a href="#总结居中" class="headerlink" title="总结居中"></a>总结居中</h2><ul>
+<li><strong>行内元素</strong><ol>
+<li>水平居中：在父元素中使用<code>text-align: center;</code></li>
+<li>垂直居中：在父元素中使用<code>display:table-cell;</code>、<code>vertical-align:middle;</code></li>
+</ol>
+</li>
+<li><strong>块级元素(确定宽高)</strong><ol>
+<li>利用<code>margin:auto</code>：<br><br> a.水平居中：<code>margin-left</code>、<code>margin-right</code>均设置为<code>auto</code>。<br><br> b.垂直居中不适用。 </li>
+<li>绝对定位 + margin负值。</li>
+<li>绝对定位 + transform</li>
+<li>flex布局</li>
+</ol>
+</li>
+<li><strong>块级元素(不确定宽高)</strong><ol>
+<li>绝对定位 + transform</li>
+<li>flex布局</li>
+</ol>
+</li>
+<li><strong>多个块级元素</strong><ol>
+<li>对所有子元素使用<code>display:inline-block;</code>，在父元素上使用<code>text-align:center;</code> (只适用于水平居中)。</li>
+<li>flex布局</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/05/27/css布局/" data-id="cjltajr3b000szc7lujnv1ags" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css布局/">css布局</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-HTML常用标签" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/05/09/HTML常用标签/" class="article-date">
@@ -118,7 +235,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/09/HTML常用标签/" data-id="cjlrxaed4000avw7l5kbxvnm8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/09/HTML常用标签/" data-id="cjltajr230006zc7ls77t765m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html常用标签/">html常用标签</a></li></ul>
@@ -178,7 +295,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/29/HTML5标签/" data-id="cjlrxaec80001vw7l8bgt73rv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/29/HTML5标签/" data-id="cjltajr1x0004zc7l3k1r9ifz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5标签/">html5标签</a></li></ul>
@@ -313,7 +430,7 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/21/http请求与响应/" data-id="cjlrxaedi000fvw7lvz3vkiha" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/21/http请求与响应/" data-id="cjltajr2v000izc7lvgi7bctq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP请求与响应基础/">HTTP请求与响应基础</a></li></ul>
@@ -354,7 +471,7 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/17/Git入门命令/" data-id="cjlrxaec30000vw7l6hykb6x0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/17/Git入门命令/" data-id="cjltajr1r0003zc7l7fmpt2m5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git入门/">git入门</a></li></ul>
@@ -398,7 +515,7 @@ Server: bfe/1.0.8.18
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/16/命令行相关命令/" data-id="cjlrxaedn000jvw7lq14yjhur" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/16/命令行相关命令/" data-id="cjltajr35000ozc7ln5omluzq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/命令行基本命令/">命令行基本命令</a></li></ul>
@@ -428,7 +545,7 @@ Server: bfe/1.0.8.18
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP请求与响应基础/">HTTP请求与响应基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型/">JS中的数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型转换/">JS中的数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery-API/">jQuery-API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行基本命令/">命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/登录注册与cookie/">登录注册与cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP请求与响应基础/">HTTP请求与响应基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型/">JS中的数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型转换/">JS中的数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise及相关方法/">Promise及相关方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery-API/">jQuery-API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行基本命令/">命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/登录注册与cookie/">登录注册与cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
     </div>
   </div>
 
@@ -438,7 +555,7 @@ Server: bfe/1.0.8.18
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/HTTP请求与响应基础/" style="font-size: 10px;">HTTP请求与响应基础</a> <a href="/tags/JS中的排序算法/" style="font-size: 10px;">JS中的排序算法</a> <a href="/tags/JS中的数据类型/" style="font-size: 10px;">JS中的数据类型</a> <a href="/tags/JS中的数据类型转换/" style="font-size: 10px;">JS中的数据类型转换</a> <a href="/tags/JS数据结构/" style="font-size: 10px;">JS数据结构</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/jQuery-API/" style="font-size: 10px;">jQuery-API</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a> <a href="/tags/命令行基本命令/" style="font-size: 10px;">命令行基本命令</a> <a href="/tags/登录注册与cookie/" style="font-size: 10px;">登录注册与cookie</a> <a href="/tags/跨域之ajax/" style="font-size: 10px;">跨域之ajax</a> <a href="/tags/跨域之jsonp/" style="font-size: 10px;">跨域之jsonp</a>
+      <a href="/tags/HTTP请求与响应基础/" style="font-size: 10px;">HTTP请求与响应基础</a> <a href="/tags/JS中的排序算法/" style="font-size: 10px;">JS中的排序算法</a> <a href="/tags/JS中的数据类型/" style="font-size: 10px;">JS中的数据类型</a> <a href="/tags/JS中的数据类型转换/" style="font-size: 10px;">JS中的数据类型转换</a> <a href="/tags/JS数据结构/" style="font-size: 10px;">JS数据结构</a> <a href="/tags/Promise及相关方法/" style="font-size: 10px;">Promise及相关方法</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/jQuery-API/" style="font-size: 10px;">jQuery-API</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a> <a href="/tags/命令行基本命令/" style="font-size: 10px;">命令行基本命令</a> <a href="/tags/登录注册与cookie/" style="font-size: 10px;">登录注册与cookie</a> <a href="/tags/跨域之ajax/" style="font-size: 10px;">跨域之ajax</a> <a href="/tags/跨域之jsonp/" style="font-size: 10px;">跨域之jsonp</a>
     </div>
   </div>
 
@@ -447,7 +564,7 @@ Server: bfe/1.0.8.18
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
     </div>
   </div>
 
@@ -458,6 +575,10 @@ Server: bfe/1.0.8.18
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/09/07/Promise学习/">Promise学习</a>
+          </li>
         
           <li>
             <a href="/2018/08/26/登录注册与cookie/">登录注册与Cookie</a>
@@ -473,10 +594,6 @@ Server: bfe/1.0.8.18
         
           <li>
             <a href="/2018/08/23/AJAX/">AJAX</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/17/JSONP/">JSONP</a>
           </li>
         
       </ul>

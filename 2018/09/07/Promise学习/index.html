@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Promise学习 | lxiaox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="什么是 Promise？Promise作为ES6最重要的特性之一，它本身是一个构造函数，并拥有resolve、 reject、 all、 race 等方法。  Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值。语法:new Promimse( function(resolve, reject) {} ) Promise构造函数接受一个函数，这个函数的参数为resol">
+<meta name="keywords" content="Promise及相关方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Promise学习">
+<meta property="og:url" content="http://yoursite.com/2018/09/07/Promise学习/index.html">
+<meta property="og:site_name" content="lxiaox">
+<meta property="og:description" content="什么是 Promise？Promise作为ES6最重要的特性之一，它本身是一个构造函数，并拥有resolve、 reject、 all、 race 等方法。  Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值。语法:new Promimse( function(resolve, reject) {} ) Promise构造函数接受一个函数，这个函数的参数为resol">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-8/100325.jpg">
+<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-8/35816019.jpg">
+<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-8/48159739.jpg">
+<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-8/58265184.jpg">
+<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-8/84989719.jpg">
+<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-8/24130485.jpg">
+<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-8/43684756.jpg">
+<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-8/47409228.jpg">
+<meta property="og:updated_time" content="2018-09-08T10:32:36.936Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Promise学习">
+<meta name="twitter:description" content="什么是 Promise？Promise作为ES6最重要的特性之一，它本身是一个构造函数，并拥有resolve、 reject、 all、 race 等方法。  Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值。语法:new Promimse( function(resolve, reject) {} ) Promise构造函数接受一个函数，这个函数的参数为resol">
+<meta name="twitter:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-8/100325.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="lxiaox" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">lxiaox</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Promise学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/07/Promise学习/" class="article-date">
+  <time datetime="2018-09-07T11:40:44.000Z" itemprop="datePublished">2018-09-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Promise学习
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="什么是-Promise？"><a href="#什么是-Promise？" class="headerlink" title="什么是 Promise？"></a>什么是 Promise？</h1><p>Promise作为ES6最重要的特性之一，它本身是一个构造函数，并拥有<code>resolve</code>、 <code>reject</code>、 <code>all</code>、 <code>race</code> 等方法。</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-8/100325.jpg" alt="打印Promise"></p>
+<h5 id="Promise-对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值。"><a href="#Promise-对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值。" class="headerlink" title="Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值。"></a>Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值。</h5><h3 id="语法"><a href="#语法" class="headerlink" title="语法:"></a>语法:</h3><p><code>new Promimse( function(resolve, reject) {} )</code></p>
+<p>Promise构造函数接受一个函数，这个函数的参数为<code>resolve</code>和<code>reject</code>，<code>resolve</code>将<code>Promise</code>状态改为<code>fulfilled</code>,<code>reject</code>将其状态改为<code>rejected</code>，promise会根据不同状态执行不同操作。</p>
+<h3 id="一个Promise有以下几种状态："><a href="#一个Promise有以下几种状态：" class="headerlink" title="一个Promise有以下几种状态："></a>一个Promise有以下几种状态：</h3><ul>
+<li><code>pending</code>：初始状态，不成功也没失败</li>
+<li><code>fulfilled</code>：表示操作成功完成</li>
+<li><code>rejected</code>：表示操作失败</li>
+<li><code>settled</code>：完成状态，fulfilled和rejected的统称</li>
+</ul>
+<p><code>pending</code>状态的Promise可能触发<code>fulfilled</code>状态，并传递一个值给成功之后的操作；也可能触发<code>rejected</code>状态，并传递失败信息或失败原因给失败之后的操作。</p>
+<h1 id="改变状态之后的操作："><a href="#改变状态之后的操作：" class="headerlink" title="改变状态之后的操作："></a>改变状态之后的操作：</h1><p>打印Promise对象可以看到，它的原型方法<code>then()</code>、<code>catch()</code>、<code>finally()</code>，这些方法会表明Promise操作完成之后要做的事情。</p>
+<h3 id="1、Promise-prototype-then-onFulfilled-onRejected"><a href="#1、Promise-prototype-then-onFulfilled-onRejected" class="headerlink" title="1、Promise.prototype.then(onFulfilled, onRejected)"></a>1、Promise.prototype.then(onFulfilled, onRejected)</h3><p> then()方法最多接受两个参数，即成功之后调用的回调函数，和失败之后调用的回调函数，同时它返回一个Promise对象，使得Promise().then().then()这样的链式操作得以实现。</p>
+<pre><code>promise.then(
+    function(value){
+        //如果成功...
+    },
+    function(reason){
+        //失败...
+    }
+)
+</code></pre><p><code>then()</code>方法也可只接受成功的回调函数，那么失败情况就会由<code>catch()</code>方法处理。</p>
+<h3 id="2、Promise-prototype-catch-onRejected"><a href="#2、Promise-prototype-catch-onRejected" class="headerlink" title="2、Promise.prototype.catch(onRejected)"></a>2、Promise.prototype.catch(onRejected)</h3><p> <code>catch()</code>方法处理拒绝也就是失败的情况，同时返回一个Promise对象。</p>
+<pre><code>promise.catch(
+    function(reason){
+        //失败...
+    }
+)
+</code></pre><h3 id="3、Promise-prototype-finally"><a href="#3、Promise-prototype-finally" class="headerlink" title="3、Promise.prototype.finally()"></a>3、Promise.prototype.finally()</h3><p> <code>finall()</code>也返回一个Promise对象，then()和catch()执行之后都会执行finally()，可以避免重复书写同样的代码。</p>
+<pre><code>promise.finally(
+    function(){
+        //成功和失败都会执行...
+    }
+)
+</code></pre><p>要注意，就算是失败的Promise经过<code>then()</code>、<code>catch()</code>处理，返回的新的Promise状态是<strong>成功</strong>的，除非再次处理（<code>then</code>、<code>catch</code>）失败。</p>
+<p>同时形如<code>promise.then().then().then().catch()</code>，所有的失败情况都由最后的<code>catch()</code>处理，一旦某个地方失败，就会顺着操作链寻找到失败的回调函数。</p>
+<h2 id="那么现在就可以写一个Promise了"><a href="#那么现在就可以写一个Promise了" class="headerlink" title="那么现在就可以写一个Promise了"></a>那么现在就可以写一个Promise了</h2><p>先封装一个函数：</p>
+<pre><code>function test(num){
+    var p = new Promise(function(resolve, reject){
+        //设置延时，进行异步操作
+        setTimeout(function(){
+           if(num === 66){
+               console.log(&apos;顺利完成&apos;)
+               resolve(&apos;66大顺，成功&apos;) //resolve将状态改为fulfilled，完成
+           }else{
+               console.log(&apos;失败&apos;)
+               reject(&apos;不顺利，失败了&apos;)  //reject将状态改为rejected，拒绝
+           }
+        }, 3000)
+    })
+    return p
+}
+</code></pre><p>在上述代码中，我们封装了一个函数，这个函数返回一个promise对象。我们定义了一个异步操作，就是判断数值是否为66，等于成功，不等于就失败。</p>
+<p>为什么要封装函数？因为在new一个Promise对象时，传进去的函数会执行，封装函数之后我们就可以在调用函数时再执行它。</p>
+<p>接下来就可以调用函数，进行下一步操作：</p>
+<pre><code>//成功的情况：
+test(66).then(function(value){
+    console.log(&apos;成功信息：&apos;)
+    console.log(value)
+}).catch(function(reason){
+    console.log(&apos;失败信息：&apos;)
+    console.log(reason)
+})
+</code></pre><p>成功结果截图，3s之后输出：</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-8/35816019.jpg" alt="成功结果"></p>
+<pre><code>//失败的情况：
+test(55).then(function(value){
+    console.log(&apos;成功信息：&apos;)
+    console.log(value)
+}).catch(function(reason){
+    console.log(&apos;失败信息：&apos;)
+    console.log(reason)
+})
+</code></pre><p>失败结果截图，3s之后输出：</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-8/48159739.jpg" alt="失败结果"></p>
+<h1 id="更多用法"><a href="#更多用法" class="headerlink" title="更多用法"></a>更多用法</h1><h3 id="1、Promise-resolve-value"><a href="#1、Promise-resolve-value" class="headerlink" title="1、Promise.resolve(value)"></a>1、Promise.resolve(value)</h3><p><code>resolve()</code>方法返回一个给定值解析之后的Promise对象。其中又分为几种情况：</p>
+<p>1、如果传入的值本身是一个Promise对象，那么就返回这个Promise对象</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-8/58265184.jpg" alt="传入Promise对象"></p>
+<p>如图传入Promise对象为：test(55)，它的状态是失败，resolve()的返回值就是这个失败状态的promise，因此会调用失败的回调输出failed。</p>
+<p>2、如果传入的值是个thenable对象，即带有then方法，那么返回的是then之后最终状态的promise。</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-8/84989719.jpg" alt="传入thenable"></p>
+<p>如图传入<code>test(55).then().catch()</code>，虽然<code>test(55)</code>是失败的，但是它经过<code>catch()</code>处理，最后返回的状态是成功，所以<code>resolve()</code>最后的<code>then()</code>会输出<code>success</code>。</p>
+<p>3、如果传入的是其他值，那么就以成功状态返回Promise。</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-8/24130485.jpg" alt="传入其他值"></p>
+<p>如图传入<code>‘abcde’</code>，最终状态是成功，输出<code>success</code>。</p>
+<h3 id="2、Promise-reject-reason"><a href="#2、Promise-reject-reason" class="headerlink" title="2、Promise.reject(reason)"></a>2、Promise.reject(reason)</h3><p><code>reject()</code>方法返回一个带有拒绝原因参数的Promise对象。</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-8/43684756.jpg" alt="reject1"></p>
+<p>从上图可以看出这里的拒绝原因就是字符串‘abcde’本身。</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-8/47409228.jpg" alt="reject2"></p>
+<p>这里的原因是Error: failed。</p>
+<h3 id="3、Promise-all-iterable"><a href="#3、Promise-all-iterable" class="headerlink" title="3、Promise.all(iterable)"></a>3、Promise.all(iterable)</h3><p><code>all()</code>方法返回一个Pomise对象，它传入的参数（iterable译为可迭代的）是promise的数组，即多个promise，只有所有的Promise对象都为成功状态，<code>all()</code>才会返回成功状态的Promise对象。如果有一个失败，那么<code>all()</code>返回失败promise，且失败原因就是第一个失败promise的失败原因。</p>
+<pre><code>var promise1 = Promise.resolve(66)
+var promise2 = Promise.reject(55)
+var promise3 = &apos;abcde&apos;
+var promise4 = new Promise(function(resolve, reject) {
+    setTimeout(resolve(&apos;success&apos;), 300);
+})
+var promise5 = new Promise(function(resolve, reject) {
+    setTimeout(reject(&apos;failed&apos;), 300);
+})
+function onFulfilled(value) {
+    console.log(&apos;成功：&apos;)
+    console.log(value)
+}
+function onRejected(reason){
+    console.log(&apos;失败：&apos; + reason)
+}
+
+//开始测试：
+Promise.all([promise1, promise2, promise3]).then(onFulfilled,onRejected)
+    //输出“失败：55”，因为promise2失败
+
+Promise.all([promise5, promise2, promise3]).then(onFulfilled,onRejected)
+    //输出“失败：failed”，所以应该不是看处理时间，只是看谁在第一个元素
+
+Promise.all([promise1, promise3, promise4]).then(onFulfilled,onRejected)
+    //Array [66, &quot;abcde&quot;, &quot;success&quot;]，全部promise为成功状态时就会将值组成数组一起输出
+</code></pre><h3 id="3、Promise-race-iterable"><a href="#3、Promise-race-iterable" class="headerlink" title="3、Promise.race(iterable)"></a>3、Promise.race(iterable)</h3><p><code>race()</code>方法返回一个Promise对象，它与<code>all()</code>不同之处在于一旦迭代器中某个proise完成或拒绝，那么就返回完成或拒绝的Promise对象。</p>
+<pre><code>//沿用上面的代码
+Promise.race([promise1, promise2, promise3])
+    .then(onFulfilled,onRejected)
+//输出“成功：66”，第一个成功就返回成功值66。
+
+Promise.race([promise5, promise2, promise3])
+    .then(onFulfilled,onRejected)
+//输出“失败：failed”，所以race()方法应该也是看元素位置，而不是处理时间。
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/07/Promise学习/" data-id="cjltajr2e0008zc7l558zwl1s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Promise及相关方法/">Promise及相关方法</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/26/登录注册与cookie/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">登录注册与Cookie</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP请求与响应基础/">HTTP请求与响应基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型/">JS中的数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型转换/">JS中的数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise及相关方法/">Promise及相关方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery-API/">jQuery-API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行基本命令/">命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/登录注册与cookie/">登录注册与cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/HTTP请求与响应基础/" style="font-size: 10px;">HTTP请求与响应基础</a> <a href="/tags/JS中的排序算法/" style="font-size: 10px;">JS中的排序算法</a> <a href="/tags/JS中的数据类型/" style="font-size: 10px;">JS中的数据类型</a> <a href="/tags/JS中的数据类型转换/" style="font-size: 10px;">JS中的数据类型转换</a> <a href="/tags/JS数据结构/" style="font-size: 10px;">JS数据结构</a> <a href="/tags/Promise及相关方法/" style="font-size: 10px;">Promise及相关方法</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/jQuery-API/" style="font-size: 10px;">jQuery-API</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a> <a href="/tags/命令行基本命令/" style="font-size: 10px;">命令行基本命令</a> <a href="/tags/登录注册与cookie/" style="font-size: 10px;">登录注册与cookie</a> <a href="/tags/跨域之ajax/" style="font-size: 10px;">跨域之ajax</a> <a href="/tags/跨域之jsonp/" style="font-size: 10px;">跨域之jsonp</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/09/07/Promise学习/">Promise学习</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/26/登录注册与cookie/">登录注册与Cookie</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/25/JS数据结构/">JS中的数据结构</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/23/JS排序算法/">日常学习JS排序算法</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/23/AJAX/">AJAX</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 lxiaox<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
