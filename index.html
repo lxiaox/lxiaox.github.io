@@ -232,7 +232,7 @@ Promise.race([promise5(), promise2, promise3])
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/07/Promise学习/" data-id="cjlx7e2gz000h4c7l5kdwkrlx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/07/Promise学习/" data-id="cjlxh1ga4000hec7l21sjlg5c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Promise及相关方法/">Promise及相关方法</a></li></ul>
@@ -244,9 +244,9 @@ Promise.race([promise5(), promise2, promise3])
 
 
   
-    <article id="post-LocalStorage与SessionStorege" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-LocalStorage与SessionStorage" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/08/30/LocalStorage与SessionStorege/" class="article-date">
+    <a href="/2018/08/30/LocalStorage与SessionStorage/" class="article-date">
   <time datetime="2018-08-30T03:18:00.000Z" itemprop="datePublished">2018-08-30</time>
 </a>
     
@@ -258,7 +258,7 @@ Promise.race([promise5(), promise2, promise3])
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/30/LocalStorage与SessionStorege/">LocalStorage与SessionStorege</a>
+      <a class="article-title" href="/2018/08/30/LocalStorage与SessionStorage/">LocalStorage与SessionStorage</a>
     </h1>
   
 
@@ -266,14 +266,79 @@ Promise.race([promise5(), promise2, promise3])
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h3 id="在学习LocalStorage前先来看一下，JS中变量有什么问题："><a href="#在学习LocalStorage前先来看一下，JS中变量有什么问题：" class="headerlink" title="在学习LocalStorage前先来看一下，JS中变量有什么问题："></a>在学习LocalStorage前先来看一下，JS中变量有什么问题：</h3><pre><code>&lt;script&gt;
+    var age = 18
+    console.log(&apos;age = &apos; + age)
+    //结果输出 age = 18
+&lt;/script&gt;
+</code></pre><p>在页面中改变变量 age 的值：</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-11/55819352.jpg" alt="age"></p>
+<p>现在的 age = 19</p>
+<p>但是，刷新页面之后呢？</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-11/16450453.jpg" alt="age"></p>
+<p>可以看到刷新之后页面中的age值已经又变回了 18，这就是问题所在。</p>
+<h3 id="有什么办法可以使一个变量一直存在页面中或者从一个页面跳到另一个页面时值不变呢？答案就是-将变量保存在-LocalStorage。"><a href="#有什么办法可以使一个变量一直存在页面中或者从一个页面跳到另一个页面时值不变呢？答案就是-将变量保存在-LocalStorage。" class="headerlink" title="有什么办法可以使一个变量一直存在页面中或者从一个页面跳到另一个页面时值不变呢？答案就是 将变量保存在 LocalStorage。"></a>有什么办法可以使一个变量一直存在页面中或者从一个页面跳到另一个页面时值不变呢？答案就是 将变量保存在 LocalStorage。</h3><p>LocalStorage是不存储在页面中的，它存储在C盘（windows）的一个文件中。 </p>
+<p>使用localStorage存变量：</p>
+<pre><code>&lt;script&gt;
+    let age = localStorage.getItem(&apos;age&apos;) //读取名为age的变量值
+    if(! age) {
+        age = 18
+    }else {
+        age = (+age) + 1 //（+age）将age变成数字，同 parseInt(age, 10)
+    }
+    console.log(&apos;age = &apos; + age)
+    localStorage.setItem(&apos;age&apos;, age) //将age存进localStorage
+&lt;/script&gt;
+</code></pre><p>这样每次刷新都会将age加1，不会覆盖之前作的改变。</p>
+<p>打开控制台-&gt;Application-&gt;Local Storage，可以看到：</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-11/66361257.jpg" alt="图0"></p>
+<p>可以看到当前的age值为 28，为什么没有存变量名字呢？经过一番探索，我发现可以拉动下面的框，好了，key-value现出了它的庐山真面目：</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-11/13943624.jpg" alt="图1"></p>
+<p>控制台打印：</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-11/17297111.jpg" alt="图2"></p>
+<h3 id="localStorage接口"><a href="#localStorage接口" class="headerlink" title="localStorage接口"></a>localStorage接口</h3><p>1、增加一个数据项: </p>
+<pre><code>localStorage.setItem(&apos;name&apos;, &apos;xiaoxiao&apos;)
+</code></pre><p>2、读取一个localStorage项：</p>
+<pre><code>localStorage.getItem(&apos;name&apos;)    //xiaoxiao
+localStorage.name    //xiaoxiao
+</code></pre><p>3、读取所有localStorage项：</p>
+<pre><code>localStorage.valueOf()    //Storage {age: &quot;33&quot;, name: &quot;xiaoxiao&quot;, length: 2}
+</code></pre><p>4、读取第i项变量名：</p>
+<pre><code>localStorage.key(i)    //length不算在里面
+</code></pre><p>5、读取localStorage项数：</p>
+<pre><code>localStorage.length    //2，只有age和name
+</code></pre><p>6、移除一个localStorage项：</p>
+<pre><code>localStorage.remove(&apos;name&apos;)
+</code></pre><p>7、移除所有localStorage项：</p>
+<pre><code>localStorage.clear()
+</code></pre><p>8、检查localStorage里是否保存某个变量：</p>
+<pre><code>localStorage.hasOwnProperty(&apos;name&apos;) //true
+</code></pre><p>9、将数组转为字符串：</p>
+<pre><code>localStorage.array = [1,2,3,4]  //[]
+localStorage.array.toLocaleString()   //&quot;1,2,3,4&quot;
+</code></pre><p>10、存储JSON对象为字符串：</p>
+<pre><code>let sisters = {
+    xiaoxiao: {
+        name: &quot;xiaoxiao&quot;,
+        age: 10
+    },
+    xiaolu: {
+        name: &quot;xiaolu&quot;,
+        age: 8
+    }
+}
+localStorage.sisters = window.JSON.stringify(sisters)
+//    &quot;{&quot;xiaoxiao&quot;:{&quot;name&quot;:&quot;xiaoxiao&quot;,&quot;age&quot;:10},&quot;xiaolu&quot;:{&quot;name&quot;:&quot;xiaolu&quot;,&quot;age&quot;:8}}&quot;
+
+window.JSON.parse(localStorage.sisters) //可将字符串还原为对象
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/30/LocalStorage与SessionStorege/" data-id="cjlx7e2gx000f4c7l2tbtev7h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/30/LocalStorage与SessionStorage/" data-id="cjlxh1ga2000fec7lck3pzskc" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LocalStorage与SessionStorege/">LocalStorage与SessionStorege</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LocalStorage与SessionStorage/">LocalStorage与SessionStorage</a></li></ul>
 
     </footer>
   </div>
@@ -331,7 +396,7 @@ Promise.race([promise5(), promise2, promise3])
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/28/Session学习/" data-id="cjlx7e2h3000j4c7lo2mt5zms" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/28/Session学习/" data-id="cjlxh1ga6000jec7l5gm5pst2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Session/">Session</a></li></ul>
@@ -390,7 +455,7 @@ Promise.race([promise5(), promise2, promise3])
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/26/登录注册与cookie/" data-id="cjlx7e2hf000u4c7lpnq6j0yj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/26/登录注册与cookie/" data-id="cjlxh1gah000uec7lyj64b3og" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/登录注册与cookie/">登录注册与cookie</a></li></ul>
@@ -517,7 +582,7 @@ var array = {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/25/JS数据结构/" data-id="cjlx7e2gv000d4c7l72zhejyl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/25/JS数据结构/" data-id="cjlxh1ga0000dec7lc9ic8cp5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li></ul>
@@ -630,7 +695,7 @@ console.log(num)    // [1, 2, 5, 8, 9, 10, 32]
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/23/JS排序算法/" data-id="cjlx7e2gr000b4c7ldu4fazhu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/23/JS排序算法/" data-id="cjlxh1g9x000bec7l5qbres6k" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li></ul>
@@ -800,7 +865,7 @@ jQuery.ajax({
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/23/AJAX/" data-id="cjlx7e2g100014c7lfzyqka2u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/23/AJAX/" data-id="cjlxh1g960000ec7lypz37o98" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li></ul>
@@ -945,7 +1010,7 @@ response.write(`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/17/JSONP/" data-id="cjlx7e2gh00054c7lzjt1p1nj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/17/JSONP/" data-id="cjlxh1g9o0005ec7lhdaancyu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
@@ -1064,7 +1129,7 @@ $div.setText(&apos;hi&apos;)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/04/实现一个jQuery的API/" data-id="cjlx7e2hd000s4c7llny3pgrz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/04/实现一个jQuery的API/" data-id="cjlxh1gag000sec7ljq1ylclk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自己实现一个jQuery-API/">自己实现一个jQuery API</a></li></ul>
@@ -1125,7 +1190,7 @@ a  //Number {123}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/13/原型与原型链/" data-id="cjlx7e2ha000p4c7ljgltp30k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/13/原型与原型链/" data-id="cjlxh1gac000pec7lvndcemyu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li></ul>
@@ -1155,7 +1220,7 @@ a  //Number {123}
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP请求与响应基础/">HTTP请求与响应基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型/">JS中的数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型转换/">JS中的数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LocalStorage与SessionStorege/">LocalStorage与SessionStorege</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise及相关方法/">Promise及相关方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行基本命令/">命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/登录注册与cookie/">登录注册与cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自己实现一个jQuery-API/">自己实现一个jQuery API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP请求与响应基础/">HTTP请求与响应基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型/">JS中的数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型转换/">JS中的数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LocalStorage与SessionStorage/">LocalStorage与SessionStorage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise及相关方法/">Promise及相关方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行基本命令/">命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/登录注册与cookie/">登录注册与cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自己实现一个jQuery-API/">自己实现一个jQuery API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
     </div>
   </div>
 
@@ -1165,7 +1230,7 @@ a  //Number {123}
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/HTTP请求与响应基础/" style="font-size: 10px;">HTTP请求与响应基础</a> <a href="/tags/JS中的排序算法/" style="font-size: 10px;">JS中的排序算法</a> <a href="/tags/JS中的数据类型/" style="font-size: 10px;">JS中的数据类型</a> <a href="/tags/JS中的数据类型转换/" style="font-size: 10px;">JS中的数据类型转换</a> <a href="/tags/JS数据结构/" style="font-size: 10px;">JS数据结构</a> <a href="/tags/LocalStorage与SessionStorege/" style="font-size: 10px;">LocalStorage与SessionStorege</a> <a href="/tags/Promise及相关方法/" style="font-size: 10px;">Promise及相关方法</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a> <a href="/tags/命令行基本命令/" style="font-size: 10px;">命令行基本命令</a> <a href="/tags/登录注册与cookie/" style="font-size: 10px;">登录注册与cookie</a> <a href="/tags/自己实现一个jQuery-API/" style="font-size: 10px;">自己实现一个jQuery API</a> <a href="/tags/跨域之ajax/" style="font-size: 10px;">跨域之ajax</a> <a href="/tags/跨域之jsonp/" style="font-size: 10px;">跨域之jsonp</a>
+      <a href="/tags/HTTP请求与响应基础/" style="font-size: 10px;">HTTP请求与响应基础</a> <a href="/tags/JS中的排序算法/" style="font-size: 10px;">JS中的排序算法</a> <a href="/tags/JS中的数据类型/" style="font-size: 10px;">JS中的数据类型</a> <a href="/tags/JS中的数据类型转换/" style="font-size: 10px;">JS中的数据类型转换</a> <a href="/tags/JS数据结构/" style="font-size: 10px;">JS数据结构</a> <a href="/tags/LocalStorage与SessionStorage/" style="font-size: 10px;">LocalStorage与SessionStorage</a> <a href="/tags/Promise及相关方法/" style="font-size: 10px;">Promise及相关方法</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a> <a href="/tags/命令行基本命令/" style="font-size: 10px;">命令行基本命令</a> <a href="/tags/登录注册与cookie/" style="font-size: 10px;">登录注册与cookie</a> <a href="/tags/自己实现一个jQuery-API/" style="font-size: 10px;">自己实现一个jQuery API</a> <a href="/tags/跨域之ajax/" style="font-size: 10px;">跨域之ajax</a> <a href="/tags/跨域之jsonp/" style="font-size: 10px;">跨域之jsonp</a>
     </div>
   </div>
 
@@ -1191,7 +1256,7 @@ a  //Number {123}
           </li>
         
           <li>
-            <a href="/2018/08/30/LocalStorage与SessionStorege/">LocalStorage与SessionStorege</a>
+            <a href="/2018/08/30/LocalStorage与SessionStorage/">LocalStorage与SessionStorage</a>
           </li>
         
           <li>
