@@ -62,6 +62,66 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Session学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/11/Session学习/" class="article-date">
+  <time datetime="2018-09-11T03:25:38.000Z" itemprop="datePublished">2018-09-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/11/Session学习/">Session学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上次学习了<a href="https://lxiaox.github.io/2018/08/26/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E4%B8%8Ecookie/" target="_blank" rel="noopener">登录注册与Cookie</a>，Cookie用于保存用户登录信息。</p>
+<p>Cookie过程如下：</p>
+<ol>
+<li>服务器服务器通过 Set-Cookie 头给客户端一串字符串</li>
+<li>客户端每次访问相同域名的网页时都带上这段字符串，也就是Cookie</li>
+<li>服务器通过Cookie读取用户id等，填充并返回相应页面</li>
+<li>客户端在一段时间内保存Cookie，Cookie默认网页关闭后失效，但后台可以设置过期时间。</li>
+</ol>
+<p>但是Cookie存在一个问题，那就是用户是可以篡改Cookie信息的。<code>打开控制台-&gt;Application-&gt;Cookies</code>，我们就可以看到Cookie，改变它的值，如果我们把id改为别的id，那就可以直接登录别人的账户，这是非常不合理的。</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-11/59114318.jpg" alt="控制台Cookies"></p>
+<p>所以我们用到另外一种技术：</p>
+<h3 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h3><p>如果把Cookie理解为公园的一张门票，上面记录了你的姓名，性别等信息，那么Session就像是一张保密的门票，它只记录你的‘入场号’，而你的信息则存在与公园内部的记录册中，所以当你把门票出示给工作人员时，他仍可以根据入场号搜索到你的姓名，并说欢迎您，xxx。</p>
+<p>Session的工作原理正是如此：</p>
+<ol>
+<li>当用户登录后，服务器就会给用户生成相应的随机数，SessionID</li>
+<li>将SessionID<strong>通过Cookie</strong>返回给客户端</li>
+<li>客户端再次访问这个服务器的时候，带上这段Cookie</li>
+<li>事实上服务器上有hash表存储了所有的Session，当服务器读取到了SesssionID，就可以找到对应的Session</li>
+<li>最终得到用户的隐私信息，如id，邮箱。</li>
+</ol>
+<h4 id="Cookie、Session存储位置"><a href="#Cookie、Session存储位置" class="headerlink" title="Cookie、Session存储位置"></a>Cookie、Session存储位置</h4><p>Cookie是保存在客户端的，每次都随着请求发送给服务器。</p>
+<p>而Session是存储在服务器端的，每次通过Cookie将SessionID发送到服务器。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/11/Session学习/" data-id="cjlx6wl8j000hqc7l9nhs2k68" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Session/">Session</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Promise学习" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/09/07/Promise学习/" class="article-date">
@@ -232,7 +292,7 @@ Promise.race([promise5(), promise2, promise3])
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/07/Promise学习/" data-id="cjlwa27pc00075k7lp3xa8x9o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/07/Promise学习/" data-id="cjlx6wl8h000fqc7lf1xlu8ce" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Promise及相关方法/">Promise及相关方法</a></li></ul>
@@ -291,7 +351,7 @@ Promise.race([promise5(), promise2, promise3])
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/26/登录注册与cookie/" data-id="cjlwa27uf00105k7l5dbxkehm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/26/登录注册与cookie/" data-id="cjlx6wl8w000sqc7lste9vhia" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/登录注册与cookie/">登录注册与cookie</a></li></ul>
@@ -418,7 +478,7 @@ var array = {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/25/JS数据结构/" data-id="cjlwa27qc000e5k7l78o23ktj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/25/JS数据结构/" data-id="cjlx6wl8f000dqc7ls0qbyapz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li></ul>
@@ -531,7 +591,7 @@ console.log(num)    // [1, 2, 5, 8, 9, 10, 32]
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/23/JS排序算法/" data-id="cjlwa27py000c5k7lio9tzn60" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/23/JS排序算法/" data-id="cjlx6wl8c000bqc7ldr1sh5eb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li></ul>
@@ -701,7 +761,7 @@ jQuery.ajax({
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/23/AJAX/" data-id="cjlwa27gk00005k7lk4jx0yp9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/23/AJAX/" data-id="cjlx6wl6z0000qc7ljhainnfb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li></ul>
@@ -846,7 +906,7 @@ response.write(`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/17/JSONP/" data-id="cjlwa27or00035k7lgspccuxn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/17/JSONP/" data-id="cjlx6wl830005qc7l4io6w3sy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
@@ -965,7 +1025,7 @@ $div.setText(&apos;hi&apos;)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/04/实现一个jQuery的API/" data-id="cjlwa27vv00175k7lezk2luh7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/04/实现一个jQuery的API/" data-id="cjlx6wl8u000qqc7lw3sw0h7g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自己实现一个jQuery-API/">自己实现一个jQuery API</a></li></ul>
@@ -1026,7 +1086,7 @@ a  //Number {123}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/13/原型与原型链/" data-id="cjlwa27ql000g5k7l1yttp26n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/13/原型与原型链/" data-id="cjlx6wl8p000mqc7lk9d4kv78" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li></ul>
@@ -1125,89 +1185,10 @@ a  //Number {123}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/12/JS中的数据类型转换/" data-id="cjlwa27oz00045k7lpytd6nto" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/12/JS中的数据类型转换/" data-id="cjlx6wl890009qc7l8doe2ifc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS中的数据类型转换/">JS中的数据类型转换</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JS中的数据类型" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/06/09/JS中的数据类型/" class="article-date">
-  <time datetime="2018-06-09T15:07:26.000Z" itemprop="datePublished">2018-06-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/09/JS中的数据类型/">JS中的数据类型</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="js共有七种数据类型：number、string、boolean、symbol（ES6新增）、null、undefined、object"><a href="#js共有七种数据类型：number、string、boolean、symbol（ES6新增）、null、undefined、object" class="headerlink" title="js共有七种数据类型：number、string、boolean、symbol（ES6新增）、null、undefined、object"></a>js共有七种数据类型：number、string、boolean、symbol（ES6新增）、null、undefined、object</h3><blockquote>
-<p>通常，数值、字符串、布尔值这三种类型，合称为原始类型（primitive type）的值，即它们是最基本的数据类型，不能再细分了。对象则称为合成类型（complex type）的值，因为一个对象往往是多个原始类型的值的合成，可以看作是一个存放各种值的容器。至于undefined和null，一般将它们看成两个特殊值。</p>
-</blockquote>
-<h2 id="数值（number）："><a href="#数值（number）：" class="headerlink" title="数值（number）："></a>数值（number）：</h2><blockquote>
-<p>JavaScript 内部，所有数字都是以64位浮点数形式储存，即使整数也是如此。所以，1与1.0是相同的，是同一个数。</p>
-</blockquote>
-<ul>
-<li>整数和小数（比如<code>1</code>、<code>1.1</code>、<code>.1</code>)。</li>
-<li>也可用 科学记数法 表示: <code>1.23e2 = 123</code>。</li>
-<li>二进制表示：前缀<code>0b</code>。</li>
-<li>八进制表示：前缀<code>0</code>（后ES5添加<code>0o</code>）。</li>
-<li>十六进制：前缀<code>0x</code>。</li>
-<li><p>ES即ECMAScript：标准化JavaScript。</p>
-<h2 id="字符串（string）："><a href="#字符串（string）：" class="headerlink" title="字符串（string）："></a>字符串（string）：</h2><p>定义：零或多个排在一起的字符，使用’’或””表示。</p>
-</li>
-<li><p><code>&#39;&#39;</code>中可以使用<code>&quot;&quot;</code>或<code>&quot;</code>，<code>&quot;&quot;</code>中可以使用<code>&#39;&#39;</code>或<code>&#39;</code>。</p>
-</li>
-<li>在单(双)引号中使用单(双)引号：<code>\&#39;</code> <code>\&quot;</code>。</li>
-</ul>
-<p>字符串只能写在一行，如果想分多行写，可以:</p>
-<ul>
-<li>在每一行尾加 <code>\</code>，但<code>\</code>后只能接回车换行，尤其注意不能有空格，非常坑，别这样写！</li>
-<li>使用连接符<code>+</code>，行尾行首均可。</li>
-<li><p>使用反引号包住多行代码，但字符串中会增加<code>换行</code>字符。</p>
-<h2 id="布尔值（boolean）："><a href="#布尔值（boolean）：" class="headerlink" title="布尔值（boolean）："></a>布尔值（boolean）：</h2><p>只有表示真伪的两个特殊值，即<code>true</code>真 和 <code>false</code>假。<br><table><br><tr><th>会返回布尔值的运算符</th><td>&gt; 两元逻辑运算符： &amp;&amp; (And)，|| (Or)<br>&gt; 前置逻辑运算符： ! (Not)<br>&gt; 相等运算符：===，!==，==，!=<br>&gt; 比较运算符：&gt;，&gt;=，&lt;，&lt;=<br></td></tr><tr><th>会转为false的值</th><td>undefined、null、false、null、0、NaN、空字符串<br></td></tr><tr><th>会转为true的值</th><td>除上述的其他。包括[]、{}<br></td></tr></table></p>
-<h2 id="symbol"><a href="#symbol" class="headerlink" title="symbol:"></a>symbol:</h2><p>symbol用来生成一个全局唯一的值，但并不是字符串。symbol的名字与值无关。</p>
-<h2 id="undefined："><a href="#undefined：" class="headerlink" title="undefined："></a>undefined：</h2><p>表示“未定义”或不存在，即由于目前没有定义，所以此处暂时没有任何值。一般用于不赋值的<strong>非对象</strong>：<code>var n</code>，但不是规定。</p>
-<h2 id="null："><a href="#null：" class="headerlink" title="null："></a>null：</h2><p>表示空值，即此处的值为空。一般用于不赋值的<strong>对象</strong>。null转为数值时自动转为0，这样不便发现错误，于是JS之父Brendan Eich又设计了undefined，它会转为<code>NaN</code>(非数，特殊的数值)。<br><br>一个null的特例：<code>typeof null</code>值为<code>Object</code>,其它数据类型均为自身。</p>
-<h2 id="对象（object）："><a href="#对象（object）：" class="headerlink" title="对象（object）："></a>对象（object）：</h2><p>对象是JS核心概念，也是最重要的数据类型。对象就是各种键值对组成的集合<code>(key-value)</code>，是以上几种基本类型的<strong>无序</strong>的组合。</p>
-</li>
-<li><p>object中所有<code>key</code>均为<code>string</code>，<strong>字符串</strong>。全为数字或符合标识符规范的可不加引号。</p>
-</li>
-<li>object中所有<code>value</code>可以为各种类型和function。类型为string时必须加引号。</li>
-<li><code>Object[&#39;key&#39;]</code>，<code>key</code>必须加引号，<code>Object[key]</code>不加引号时<code>key</code>是变量，key全为数字除外，会自动转为字符串。</li>
-<li><code>Object[&#39;key&#39;]</code>可以写成<code>Object.key</code>，key全为数字除外，会将<code>.</code>看成小数点。</li>
-<li><code>Object[表达式]</code>是正确的，<code>Objecct[&#39;H&#39;+&#39;H&#39;]=Object[&#39;HH&#39;]</code>，注意数值键不加引号时<code>Objecct[1+2]=Object[3]</code>。</li>
-<li><code>delete object[&#39;key&#39;]</code>可以删除<code>key&amp;value</code>，<code>object[&#39;key&#39;] = undefined</code>只删除<code>value</code>。</li>
-<li><code>for(var key in Object)</code>可遍历对象所有可以遍历的属性，包括可以遍历的继承属性。</li>
-<li><code>Object.keys()</code>API可以查看对象所有key。</li>
-<li>在行首的<code>{&#39;x&#39;:&#39;y&#39;}</code>均看作代码块，所以对象要写成({‘x’:’y’})。<h2 id="typeof操作符"><a href="#typeof操作符" class="headerlink" title="typeof操作符"></a>typeof操作符</h2><code>typeof</code>运算符可以返回一个值的数据类型。<br><center><br><table><br><tr><th>各种值</th><th>typeof 值<br></th></tr><tr><td>string</td><td>‘string’<br></td></tr><tr><td>number</td><td>‘number’<br></td></tr><tr><td>boolean</td><td>‘boolean’<br></td></tr><tr><td>symbol</td><td>‘symbol’<br></td></tr><tr><td>undefined</td><td>‘undefined’<br></td></tr><tr><td>null<th>‘object’<br></th></td></tr><tr><td>object</td><td>‘object’<br></td></tr><tr><td>function<th>‘function’<br></th></td></tr></table><center></center></center></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/09/JS中的数据类型/" data-id="cjlwa27pj00085k7lpqihucby" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS中的数据类型/">JS中的数据类型</a></li></ul>
 
     </footer>
   </div>
@@ -1234,7 +1215,7 @@ a  //Number {123}
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP请求与响应基础/">HTTP请求与响应基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型/">JS中的数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型转换/">JS中的数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise及相关方法/">Promise及相关方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行基本命令/">命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/登录注册与cookie/">登录注册与cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自己实现一个jQuery-API/">自己实现一个jQuery API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP请求与响应基础/">HTTP请求与响应基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型/">JS中的数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型转换/">JS中的数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise及相关方法/">Promise及相关方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行基本命令/">命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/登录注册与cookie/">登录注册与cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自己实现一个jQuery-API/">自己实现一个jQuery API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
     </div>
   </div>
 
@@ -1244,7 +1225,7 @@ a  //Number {123}
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/HTTP请求与响应基础/" style="font-size: 10px;">HTTP请求与响应基础</a> <a href="/tags/JS中的排序算法/" style="font-size: 10px;">JS中的排序算法</a> <a href="/tags/JS中的数据类型/" style="font-size: 10px;">JS中的数据类型</a> <a href="/tags/JS中的数据类型转换/" style="font-size: 10px;">JS中的数据类型转换</a> <a href="/tags/JS数据结构/" style="font-size: 10px;">JS数据结构</a> <a href="/tags/Promise及相关方法/" style="font-size: 10px;">Promise及相关方法</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a> <a href="/tags/命令行基本命令/" style="font-size: 10px;">命令行基本命令</a> <a href="/tags/登录注册与cookie/" style="font-size: 10px;">登录注册与cookie</a> <a href="/tags/自己实现一个jQuery-API/" style="font-size: 10px;">自己实现一个jQuery API</a> <a href="/tags/跨域之ajax/" style="font-size: 10px;">跨域之ajax</a> <a href="/tags/跨域之jsonp/" style="font-size: 10px;">跨域之jsonp</a>
+      <a href="/tags/HTTP请求与响应基础/" style="font-size: 10px;">HTTP请求与响应基础</a> <a href="/tags/JS中的排序算法/" style="font-size: 10px;">JS中的排序算法</a> <a href="/tags/JS中的数据类型/" style="font-size: 10px;">JS中的数据类型</a> <a href="/tags/JS中的数据类型转换/" style="font-size: 10px;">JS中的数据类型转换</a> <a href="/tags/JS数据结构/" style="font-size: 10px;">JS数据结构</a> <a href="/tags/Promise及相关方法/" style="font-size: 10px;">Promise及相关方法</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a> <a href="/tags/命令行基本命令/" style="font-size: 10px;">命令行基本命令</a> <a href="/tags/登录注册与cookie/" style="font-size: 10px;">登录注册与cookie</a> <a href="/tags/自己实现一个jQuery-API/" style="font-size: 10px;">自己实现一个jQuery API</a> <a href="/tags/跨域之ajax/" style="font-size: 10px;">跨域之ajax</a> <a href="/tags/跨域之jsonp/" style="font-size: 10px;">跨域之jsonp</a>
     </div>
   </div>
 
@@ -1266,6 +1247,10 @@ a  //Number {123}
       <ul>
         
           <li>
+            <a href="/2018/09/11/Session学习/">Session学习</a>
+          </li>
+        
+          <li>
             <a href="/2018/09/07/Promise学习/">Promise学习</a>
           </li>
         
@@ -1279,10 +1264,6 @@ a  //Number {123}
         
           <li>
             <a href="/2018/08/23/JS排序算法/">日常学习JS排序算法</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/23/AJAX/">AJAX</a>
           </li>
         
       </ul>
