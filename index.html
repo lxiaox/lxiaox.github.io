@@ -232,7 +232,7 @@ Promise.race([promise5(), promise2, promise3])
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/07/Promise学习/" data-id="cjlxh1ga4000hec7l21sjlg5c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/07/Promise学习/" data-id="cjlxi5t4r000hw07llcqlzfaa" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Promise及相关方法/">Promise及相关方法</a></li></ul>
@@ -277,7 +277,7 @@ Promise.race([promise5(), promise2, promise3])
 <p>但是，刷新页面之后呢？</p>
 <p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-11/16450453.jpg" alt="age"></p>
 <p>可以看到刷新之后页面中的age值已经又变回了 18，这就是问题所在。</p>
-<h3 id="有什么办法可以使一个变量一直存在页面中或者从一个页面跳到另一个页面时值不变呢？答案就是-将变量保存在-LocalStorage。"><a href="#有什么办法可以使一个变量一直存在页面中或者从一个页面跳到另一个页面时值不变呢？答案就是-将变量保存在-LocalStorage。" class="headerlink" title="有什么办法可以使一个变量一直存在页面中或者从一个页面跳到另一个页面时值不变呢？答案就是 将变量保存在 LocalStorage。"></a>有什么办法可以使一个变量一直存在页面中或者从一个页面跳到另一个页面时值不变呢？答案就是 将变量保存在 LocalStorage。</h3><p>LocalStorage是不存储在页面中的，它存储在C盘（windows）的一个文件中。 </p>
+<h3 id="有什么办法可以使一个变量一直存在页面中或者从一个页面跳到另一个页面时值不变呢？答案就是-将变量保存在-LocalStorage里。"><a href="#有什么办法可以使一个变量一直存在页面中或者从一个页面跳到另一个页面时值不变呢？答案就是-将变量保存在-LocalStorage里。" class="headerlink" title="有什么办法可以使一个变量一直存在页面中或者从一个页面跳到另一个页面时值不变呢？答案就是 将变量保存在 LocalStorage里。"></a>有什么办法可以使一个变量一直存在页面中或者从一个页面跳到另一个页面时值不变呢？答案就是 将变量保存在 LocalStorage里。</h3><p>LocalStorage是不存储在页面中的，它存储在C盘（windows）的一个文件中。 </p>
 <p>使用localStorage存变量：</p>
 <pre><code>&lt;script&gt;
     let age = localStorage.getItem(&apos;age&apos;) //读取名为age的变量值
@@ -296,6 +296,16 @@ Promise.race([promise5(), promise2, promise3])
 <p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-11/13943624.jpg" alt="图1"></p>
 <p>控制台打印：</p>
 <p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-11/17297111.jpg" alt="图2"></p>
+<h3 id="localStorage典型应用：记录是否提示过用户"><a href="#localStorage典型应用：记录是否提示过用户" class="headerlink" title="localStorage典型应用：记录是否提示过用户"></a>localStorage典型应用：记录是否提示过用户</h3><p>代码如下：</p>
+<pre><code>let prompted = localStorage.getItem(&apos;是否提示&apos;)
+if(!prompted){
+    alert(&apos;这里是提示内容...&apos;)
+    localStorage.setItem(&apos;是否提示&apos;,true)
+}
+</code></pre><p>只有第一次进去页面会有此提示：</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-11/33075996.jpg" alt="图5"></p>
+<p>点击确定会看到localStorage增加了一项 <code>是否提示：true</code> ：</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-11/5605524.jpg" alt="图6"></p>
 <h3 id="localStorage接口"><a href="#localStorage接口" class="headerlink" title="localStorage接口"></a>localStorage接口</h3><p>1、增加一个数据项: </p>
 <pre><code>localStorage.setItem(&apos;name&apos;, &apos;xiaoxiao&apos;)
 </code></pre><p>2、读取一个localStorage项：</p>
@@ -331,11 +341,31 @@ localStorage.sisters = window.JSON.stringify(sisters)
 //    &quot;{&quot;xiaoxiao&quot;:{&quot;name&quot;:&quot;xiaoxiao&quot;,&quot;age&quot;:10},&quot;xiaolu&quot;:{&quot;name&quot;:&quot;xiaolu&quot;,&quot;age&quot;:8}}&quot;
 
 window.JSON.parse(localStorage.sisters) //可将字符串还原为对象
-</code></pre>
+</code></pre><h3 id="SessionStorage与localStorage比较"><a href="#SessionStorage与localStorage比较" class="headerlink" title="SessionStorage与localStorage比较"></a>SessionStorage与localStorage比较</h3><p>SessionStorage作用与用法LocalStorage基本相同，不同的是，localStorage是永久有效的，除非用户清理缓存，但是sessionStorage会在页面会话后就清除。</p>
+<p><strong>页面会话</strong>：在浏览器打开期间一直保持，并且重新加载或恢复页面仍会保持原来的页面会话。</p>
+<p>要注意的是：localStorage和sessionStorage都是仅限于页面的协议，虽然没有同源策略那么严格，但也只有相同域名的页面才能互相读取。</p>
+<h4 id="sessionStorage用法与localStorage差不多，简单介绍："><a href="#sessionStorage用法与localStorage差不多，简单介绍：" class="headerlink" title="sessionStorage用法与localStorage差不多，简单介绍："></a>sessionStorage用法与localStorage差不多，简单介绍：</h4><pre><code>// 保存数据到sessionStorage
+sessionStorage.setItem(&apos;key&apos;, &apos;value&apos;);
+
+// 从sessionStorage获取数据
+var data = sessionStorage.getItem(&apos;key&apos;);
+
+// 从sessionStorage删除保存的数据
+sessionStorage.removeItem(&apos;key&apos;);
+
+// 从sessionStorage删除所有保存的数据
+sessionStorage.clear();
+</code></pre><h3 id="localStorage与cookie比较"><a href="#localStorage与cookie比较" class="headerlink" title="localStorage与cookie比较"></a>localStorage与cookie比较</h3><p>事实上，localStorage是一个新的对象，为了使前端能够存储数据创建，以前都是由cookie完成，但是cookie要上传到服务器，使得页面加载非常地慢速，所以现在不推荐使用cookie，他们两者主要区别是：</p>
+<ul>
+<li>cookie需发送到服务器，localStorage与HTTP请求无关。</li>
+<li>cookie最大存储量在4kb左右，localStorage在5Mb左右（不同的浏览器各不相同）。</li>
+<li>cookie默认在页面关闭后清除（后端可以设置清除时间），LocalStorage理论上永久有效，除非用户清理缓存。</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/30/LocalStorage与SessionStorage/" data-id="cjlxh1ga2000fec7lck3pzskc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/30/LocalStorage与SessionStorage/" data-id="cjlxi5t4l000fw07lb8fh9cok" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LocalStorage与SessionStorage/">LocalStorage与SessionStorage</a></li></ul>
@@ -396,7 +426,7 @@ window.JSON.parse(localStorage.sisters) //可将字符串还原为对象
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/28/Session学习/" data-id="cjlxh1ga6000jec7l5gm5pst2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/28/Session学习/" data-id="cjlxi5t4w000jw07li97b7omv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Session/">Session</a></li></ul>
@@ -455,7 +485,7 @@ window.JSON.parse(localStorage.sisters) //可将字符串还原为对象
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/26/登录注册与cookie/" data-id="cjlxh1gah000uec7lyj64b3og" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/26/登录注册与cookie/" data-id="cjlxi5t5v001fw07lqc501si3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/登录注册与cookie/">登录注册与cookie</a></li></ul>
@@ -582,7 +612,7 @@ var array = {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/25/JS数据结构/" data-id="cjlxh1ga0000dec7lc9ic8cp5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/25/JS数据结构/" data-id="cjlxi5t4j000dw07ln00q9mfg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li></ul>
@@ -695,7 +725,7 @@ console.log(num)    // [1, 2, 5, 8, 9, 10, 32]
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/23/JS排序算法/" data-id="cjlxh1g9x000bec7l5qbres6k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/23/JS排序算法/" data-id="cjlxi5t4h000bw07lpg1ul25k" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li></ul>
@@ -865,7 +895,7 @@ jQuery.ajax({
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/23/AJAX/" data-id="cjlxh1g960000ec7lypz37o98" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/23/AJAX/" data-id="cjlxi5t3t0000w07lorya4bbz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li></ul>
@@ -1010,7 +1040,7 @@ response.write(`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/17/JSONP/" data-id="cjlxh1g9o0005ec7lhdaancyu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/17/JSONP/" data-id="cjlxi5t490005w07lt3x0nltr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
@@ -1129,7 +1159,7 @@ $div.setText(&apos;hi&apos;)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/04/实现一个jQuery的API/" data-id="cjlxh1gag000sec7ljq1ylclk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/04/实现一个jQuery的API/" data-id="cjlxi5t58000sw07lt769pmmj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自己实现一个jQuery-API/">自己实现一个jQuery API</a></li></ul>
@@ -1190,7 +1220,7 @@ a  //Number {123}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/13/原型与原型链/" data-id="cjlxh1gac000pec7lvndcemyu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/13/原型与原型链/" data-id="cjlxi5t54000pw07lau34212b" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li></ul>
