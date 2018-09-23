@@ -62,6 +62,106 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-正确快速排序学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/23/正确快速排序学习/" class="article-date">
+  <time datetime="2018-09-23T13:26:17.000Z" itemprop="datePublished">2018-09-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/23/正确快速排序学习/">正确快速排序学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="快速排序（又名划分交换排序-简称快排）"><a href="#快速排序（又名划分交换排序-简称快排）" class="headerlink" title="快速排序（又名划分交换排序,简称快排）"></a>快速排序（又名划分交换排序,简称快排）</h2><ul>
+<li>基本思想：利用分治法的思想，将一个序列分为两个子序列，对子序列递归地排序。</li>
+<li>时间复杂度：O(nlogn),最坏：O(n^2)</li>
+<li>步骤：<ol>
+<li>任找一个元素作为基准值</li>
+<li>将所有比基准值小的元素放在基准值前面；所有大于基准值的放在它右边；等于基准值的元素放前后都可。</li>
+<li>递归得对子数组进行上述操作。</li>
+<li>合并子数组</li>
+</ol>
+</li>
+</ul>
+<h2 id="JS-代码："><a href="#JS-代码：" class="headerlink" title="JS 代码："></a>JS 代码：</h2><pre><code>Array.prototype.quicksort = function(){
+  quick(this, 0, this.length-1)
+}
+function quick(arr,left,right){
+  let index = partition(arr,left,right)
+  if(left &lt;= index-2) quick(arr,left,index-1)
+  if(index &lt;= right-2) quick(arr,index,right)
+}
+
+//分治函数partition()
+function partition(arr, left, right){
+  let basis = arr[Math.floor((left+right)/2)]
+      //选中间元素作基准值
+  let i = left, j = right
+  while(i&lt;=j){
+    while(arr[i]&lt;basis) i+=1   
+      //不写arr[i]&lt;=basis能使本次排列，小于basis的全在所有basis左边，[1,4,3,4,3,2,3,2,3,6]
+      //从最左边开始，一直找到第一个大于等于basis的元素
+    while(arr[j]&gt;basis) j-=1   
+      //不写arr[j]&gt;=basis能使本次排列，大于basis的全在所有basis右边，[1,4,3,3,3,6]
+      //从最右边开始，一直找到第一个小于等于basis的元素
+    if(i &lt; j) {
+      [arr[i],arr[j]] = [arr[j],arr[i]]
+      //不加下面两句可能有死循环，如两个basis值不断交换
+      i += 1
+      j -= 1
+    }
+      //如果大于basis的在小于basis的左边，则交换位置
+      //如果i=j（i&gt;=j）证明已排好
+  }
+  return i  
+}
+var arr = [1,4,3,4,3,2,3,3,2,6]
+arr.quicksort()
+console.log(arr)
+</code></pre><p><a href="http://pythontutor.com/visualize.html#mode=edit" target="_blank" rel="noopener">另一种没有溢出的写法</a></p>
+<h4 id="之前写的错误的代码"><a href="#之前写的错误的代码" class="headerlink" title="之前写的错误的代码:"></a>之前写的错误的代码:</h4><p>（在网上看到是错误版本，空间复杂度增加到O(nlogn)，本应是O(1) ）</p>
+<pre><code>Array.prototype.quicksort = function(){
+  if(this.length &lt; 2) return this
+  let basis = this[0]
+  let left=[],right=[]
+  for(let i = 1; i&lt;this.length; i++){
+    if(this[i]&lt;basis) left.push(this[i])
+    else right.push(this[i])
+  }
+  return left.quicksort().concat(basis,right.quicksort())
+}
+
+let arr = [6,5,0,1,32,5,8,3,4,9]
+let arr2 = arr.quicksort()
+console.log(arr2)  //[0, 1, 3, 4, 5, 5, 6, 8, 9, 32]
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/23/正确快速排序学习/" data-id="cjmf20xvf000u6g7lpctbiq8j" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS中的排序算法之快排/">JS中的排序算法之快排</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-flex布局总结" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/09/21/flex布局总结/" class="article-date">
@@ -211,7 +311,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/21/flex布局总结/" data-id="cjmerp9s0000mbo7ldjdk673z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/21/flex布局总结/" data-id="cjmf20xv8000l6g7l3kf0lyb6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/flex布局/">flex布局</a></li></ul>
@@ -393,7 +493,7 @@ Promise.race([promise5(), promise2, promise3])
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/07/Promise学习/" data-id="cjmerp9rr000hbo7lj01sd7ld" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/07/Promise学习/" data-id="cjmf20xv0000f6g7lph2vq27y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Promise及相关方法/">Promise及相关方法</a></li></ul>
@@ -526,7 +626,7 @@ sessionStorage.clear();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/30/LocalStorage与SessionStorage/" data-id="cjmerp9rn000fbo7l0o8l7rjb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/30/LocalStorage与SessionStorage/" data-id="cjmf20xuy000d6g7lbcit66dm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LocalStorage与SessionStorage/">LocalStorage与SessionStorage</a></li></ul>
@@ -587,7 +687,7 @@ sessionStorage.clear();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/28/Session学习/" data-id="cjmerp9ru000jbo7l2wp0kkx6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/28/Session学习/" data-id="cjmf20xv3000h6g7lx2y2q1vg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Session/">Session</a></li></ul>
@@ -646,7 +746,7 @@ sessionStorage.clear();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/26/登录注册与cookie/" data-id="cjmerp9sb000wbo7lpe4ahg2t" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/26/登录注册与cookie/" data-id="cjmf20xvi000w6g7l1ho090us" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/登录注册与cookie/">登录注册与cookie</a></li></ul>
@@ -773,7 +873,7 @@ var array = {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/25/JS数据结构/" data-id="cjmerp9rj000dbo7l5chsggt6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/25/JS数据结构/" data-id="cjmf20xuu000b6g7lg1uyakfs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li></ul>
@@ -808,7 +908,7 @@ var array = {
     <div class="article-entry" itemprop="articleBody">
       
         <p>不断更新中……</p>
-<p>冒泡，选择，插入，计数，桶排序，基数排序……</p>
+<p>冒泡O(n^2)，选择O(n^2)，插入O(n^2)，快速，计数，归并，桶排序，基数排序……</p>
 <h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><ul>
 <li>基本思想：重复走访要排序的数列，一次比较两个元素，如果这两个数顺序错误就将其交换，每次走访都能找到一个最值，重复走访直到没有要进行交换的元素，那么排序就完成了。</li>
 <li>时间复杂度：O(n^2)</li>
@@ -894,7 +994,7 @@ console.log(num)    // [1, 2, 5, 8, 9, 10, 32]
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/23/JS排序算法/" data-id="cjmerp9rh000bbo7l5jnt5qq8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/23/JS排序算法/" data-id="cjmf20xw1001l6g7lddf3lnig" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li></ul>
@@ -1064,7 +1164,7 @@ jQuery.ajax({
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/23/AJAX/" data-id="cjmerp9qu0000bo7ltwxz2cqi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/23/AJAX/" data-id="cjmf20xu100006g7lz1bosnip" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li></ul>
@@ -1209,129 +1309,10 @@ response.write(`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/17/JSONP/" data-id="cjmerp9ra0005bo7l1vp2gci2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/17/JSONP/" data-id="cjmf20xuj00056g7lvewvp4p7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-实现一个jQuery的API" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/04/实现一个jQuery的API/" class="article-date">
-  <time datetime="2018-07-04T14:20:26.000Z" itemprop="datePublished">2018-07-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/04/实现一个jQuery的API/">实现一个jQuery的API</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>通过自己动手写 API 来学习 jQuery！</p>
-<h3 id="第1个API：addClass"><a href="#第1个API：addClass" class="headerlink" title="第1个API：addClass"></a>第1个API：addClass</h3><p>功能：通过节点或选择器给元素添加一个类</p>
-<h3 id="第2个API：setText"><a href="#第2个API：setText" class="headerlink" title="第2个API：setText"></a>第2个API：setText</h3><p>功能：设置元素的文本内容</p>
-<p>代码：</p>
-<p> html：</p>
-<pre><code>&lt;body&gt;
-  &lt;div&gt;hello&lt;/div&gt;
-  &lt;div&gt;hello&lt;/div&gt;
-  &lt;div&gt;hello&lt;/div&gt;
-  &lt;div&gt;hello&lt;/div&gt;
-  &lt;div&gt;hello&lt;/div&gt;
-&lt;/body&gt;
-</code></pre><p> css： </p>
-<pre><code>div{
-  border:1px solid red;
-  width: 150px;
-  height: 25px;
-  margin-top: 10px;
-}
-.blue{  color:blue; }
-.high{  height:50px; }
-.narrow{  width:60px; }
-</code></pre><p>此时效果为：</p>
-<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-7-4/94812649.jpg" alt="原始结果"></p>
-<p> js：</p>
-<pre><code>//jQuery就是一个函数，传进一个节点或选择器nodeOrSelector，返回一个对象nodes。
-window.jQuery = function(nodeOrSelector){
-  let nodes = {}
-  if(typeof nodeOrSelector === &apos;string&apos;){
-    //如果参数为字符串类型，也就是代表一个选择器，就获取到选择的所有元素存入nodes。
-    let temp = document.querySelectorAll(nodeOrSelector)
-    for(let i = 0; i&lt;temp.length; i++){
-       nodes[i] = temp[i]
-    }
-    nodes.length = temp.length
-  }else if( nodeOrSelector instanceof Node){
-        //如果参数是一个节点，那就只存一个节点；为了返回结果的一致性，仍将其存为伪数组。
-        nodes = {
-          0: nodeOrSelector,
-          length: 1
-        }
-  }
-
-  //API1 添加一个类
-  nodes.addClass = function(class1){
-      for(let i = 0; i&lt;nodes.length; i++){
-        nodes[i].classList.add(class1)
-      }
-
-  }
-
-    //添加多个类
-    //     nodes.addClass = function(classes){
-    //       classes.forEach( (value)=&gt;{
-    //         for(let i = 0; i&lt;nodes.length; i++){
-    //           nodes[i].classList.add(value)
-    //         }
-    //       })
-
-    //     }
-
-  //API2 设置文本内容
-  nodes.setText = function(text){
-    for(let i = 0; i&lt;nodes.length; i++){
-     nodes[i].textContent = text 
-    }
-
-  }
-  //nodes的key为0，1，2，...，length，addClass，setText等
-  return nodes  
-}
-
-window.$ = jQuery    //$为代替jQuery的缩写符,同时，在变量前加上$，可以区分jQuery与Dom的变量
-var $div = $(&apos;div&apos;)    //传入了选择器&apos;div&apos;,$div即返回的对象nodes
-$div.addClass(&apos;blue&apos;)
-//$div.addClass([&apos;blue&apos;,&apos;high&apos;,&apos;narrow&apos;])//添加多个类
-$div.setText(&apos;hi&apos;) 
-</code></pre><p>添加’blue’类的效果：</p>
-<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-7-4/73660343.jpg" alt="结果1"></p>
-<p>添加多个类的效果：</p>
-<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-7-4/88773623.jpg" alt="结果2"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/04/实现一个jQuery的API/" data-id="cjmerp9s9000ubo7lvf1hulek" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自己实现一个jQuery-API/">自己实现一个jQuery API</a></li></ul>
 
     </footer>
   </div>
@@ -1358,7 +1339,7 @@ $div.setText(&apos;hi&apos;)
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP请求与响应基础/">HTTP请求与响应基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型/">JS中的数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型转换/">JS中的数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LocalStorage与SessionStorage/">LocalStorage与SessionStorage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise及相关方法/">Promise及相关方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flex布局/">flex布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行基本命令/">命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/登录注册与cookie/">登录注册与cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自己实现一个jQuery-API/">自己实现一个jQuery API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP请求与响应基础/">HTTP请求与响应基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的排序算法之快排/">JS中的排序算法之快排</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型/">JS中的数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型转换/">JS中的数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LocalStorage与SessionStorage/">LocalStorage与SessionStorage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise及相关方法/">Promise及相关方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flex布局/">flex布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行基本命令/">命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/登录注册与cookie/">登录注册与cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自己实现一个jQuery-API/">自己实现一个jQuery API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之ajax/">跨域之ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域之jsonp/">跨域之jsonp</a></li></ul>
     </div>
   </div>
 
@@ -1368,7 +1349,7 @@ $div.setText(&apos;hi&apos;)
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/HTTP请求与响应基础/" style="font-size: 10px;">HTTP请求与响应基础</a> <a href="/tags/JS中的排序算法/" style="font-size: 10px;">JS中的排序算法</a> <a href="/tags/JS中的数据类型/" style="font-size: 10px;">JS中的数据类型</a> <a href="/tags/JS中的数据类型转换/" style="font-size: 10px;">JS中的数据类型转换</a> <a href="/tags/JS数据结构/" style="font-size: 10px;">JS数据结构</a> <a href="/tags/LocalStorage与SessionStorage/" style="font-size: 10px;">LocalStorage与SessionStorage</a> <a href="/tags/Promise及相关方法/" style="font-size: 10px;">Promise及相关方法</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/flex布局/" style="font-size: 10px;">flex布局</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a> <a href="/tags/命令行基本命令/" style="font-size: 10px;">命令行基本命令</a> <a href="/tags/登录注册与cookie/" style="font-size: 10px;">登录注册与cookie</a> <a href="/tags/自己实现一个jQuery-API/" style="font-size: 10px;">自己实现一个jQuery API</a> <a href="/tags/跨域之ajax/" style="font-size: 10px;">跨域之ajax</a> <a href="/tags/跨域之jsonp/" style="font-size: 10px;">跨域之jsonp</a>
+      <a href="/tags/HTTP请求与响应基础/" style="font-size: 10px;">HTTP请求与响应基础</a> <a href="/tags/JS中的排序算法/" style="font-size: 10px;">JS中的排序算法</a> <a href="/tags/JS中的排序算法之快排/" style="font-size: 10px;">JS中的排序算法之快排</a> <a href="/tags/JS中的数据类型/" style="font-size: 10px;">JS中的数据类型</a> <a href="/tags/JS中的数据类型转换/" style="font-size: 10px;">JS中的数据类型转换</a> <a href="/tags/JS数据结构/" style="font-size: 10px;">JS数据结构</a> <a href="/tags/LocalStorage与SessionStorage/" style="font-size: 10px;">LocalStorage与SessionStorage</a> <a href="/tags/Promise及相关方法/" style="font-size: 10px;">Promise及相关方法</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/flex布局/" style="font-size: 10px;">flex布局</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a> <a href="/tags/命令行基本命令/" style="font-size: 10px;">命令行基本命令</a> <a href="/tags/登录注册与cookie/" style="font-size: 10px;">登录注册与cookie</a> <a href="/tags/自己实现一个jQuery-API/" style="font-size: 10px;">自己实现一个jQuery API</a> <a href="/tags/跨域之ajax/" style="font-size: 10px;">跨域之ajax</a> <a href="/tags/跨域之jsonp/" style="font-size: 10px;">跨域之jsonp</a>
     </div>
   </div>
 
@@ -1390,6 +1371,10 @@ $div.setText(&apos;hi&apos;)
       <ul>
         
           <li>
+            <a href="/2018/09/23/正确快速排序学习/">正确快速排序学习</a>
+          </li>
+        
+          <li>
             <a href="/2018/09/21/flex布局总结/">flex布局总结</a>
           </li>
         
@@ -1403,10 +1388,6 @@ $div.setText(&apos;hi&apos;)
         
           <li>
             <a href="/2018/08/28/Session学习/">Session学习</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/26/登录注册与cookie/">登录注册与Cookie</a>
           </li>
         
       </ul>
