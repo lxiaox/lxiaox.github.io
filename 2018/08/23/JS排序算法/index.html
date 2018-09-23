@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="lxiaox">
 <meta property="og:description" content="不断更新中…… 冒泡，选择，插入，计数，桶排序，基数排序…… 冒泡排序 基本思想：重复走访要排序的数列，一次比较两个元素，如果这两个数顺序错误就将其交换，每次走访都能找到一个最值，重复走访直到没有要进行交换的元素，那么排序就完成了。 时间复杂度：O(n^2) 冒泡排序过程（升序）： 比较第一对相邻的元素，如果第一个比第二个大，就交换他们两个。 按1的方法比较第二对相邻元素，即第二个与第三个，以此类">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-23T10:24:48.484Z">
+<meta property="og:updated_time" content="2018-09-23T10:30:32.559Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="日常学习JS排序算法">
 <meta name="twitter:description" content="不断更新中…… 冒泡，选择，插入，计数，桶排序，基数排序…… 冒泡排序 基本思想：重复走访要排序的数列，一次比较两个元素，如果这两个数顺序错误就将其交换，每次走访都能找到一个最值，重复走访直到没有要进行交换的元素，那么排序就完成了。 时间复杂度：O(n^2) 冒泡排序过程（升序）： 比较第一对相邻的元素，如果第一个比第二个大，就交换他们两个。 按1的方法比较第二对相邻元素，即第二个与第三个，以此类">
@@ -102,9 +102,9 @@
 <li><p>JS 代码：</p>
 <pre><code>Array.prototype.bubbleSort = function() {
     var i, j, temp;
-        //每轮比较让最大的冒到最上面，i：轮数=元素个数-1
+        //每轮比较让最大的冒到最上面，i：轮数=元素个数-1，因为this[0]不需要再比较。
     for (i = 0; i &lt; this.length - 1; i++)
-            //每次选定this[j+1],所以也是j也需this.length-1; 第一轮j+1+=this.length,第二轮j+1=this.length-1,...所以是要-i
+            //每次选定this[j+1],所以j&lt;this.length-1; 第一轮j+1=this.length-1,第二轮j+1=this.length-2,...所以是要-i
         for (j = 0; j &lt; this.length - 1 - i; j++)
             if (this[j] &gt; this[j + 1]) {
                 temp = this[j];
@@ -127,7 +127,7 @@ console.log(num)    // [1, 2, 5, 8, 9, 10, 32]
         //每次选出最小的作为this[i]，i：选择的轮数=元素个数-1
     for (i = 0; i &lt; this.length - 1; i++) {
           min = i
-            //每次从this[i]比较到最后一个：this.length-1
+            //每次从this[i]比较到最后一个：this.length-1；
         for (j = i + 1; j &lt; this.length; j++) {
             if (this[j] &lt; this[min]) {
               min = j
@@ -174,7 +174,7 @@ console.log(num)    // [1, 2, 5, 8, 9, 10, 32]
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/23/JS排序算法/" data-id="cjmepvnvj00078w7lj0y77qju" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/23/JS排序算法/" data-id="cjmerp9rh000bbo7l5jnt5qq8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li></ul>
