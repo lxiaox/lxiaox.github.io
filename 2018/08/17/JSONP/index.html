@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="lxiaox">
 <meta property="og:description" content="JSONP（全称是 JSON with Padding）是JSON的一种“使用模式”，可用于解决主流浏览器的跨域数据访问的问题。JSONP通过GET请求向服务器请求数据。 浏览器发送请求的历史在了解JSONP之前，先来看看在JSONP之前浏览器是怎么向服务器发送请求的，前端程序员经过长时间的探索，曾先后使用过form、img等标签发请求，然而  form（可以发送post、get等请求）表单会刷新">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-27T01:20:27.527Z">
+<meta property="og:updated_time" content="2018-09-27T01:21:50.515Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JSONP">
 <meta name="twitter:description" content="JSONP（全称是 JSON with Padding）是JSON的一种“使用模式”，可用于解决主流浏览器的跨域数据访问的问题。JSONP通过GET请求向服务器请求数据。 浏览器发送请求的历史在了解JSONP之前，先来看看在JSONP之前浏览器是怎么向服务器发送请求的，前端程序员经过长时间的探索，曾先后使用过form、img等标签发请求，然而  form（可以发送post、get等请求）表单会刷新">
@@ -182,7 +182,9 @@ response.write(`
 <li>请求方接到响应，调用 xxx.call(‘undefined’,‘要的数据’)；</li>
 <li>这样请求方就得到了他要的数据。</li>
 </ol>
-<p>面试题：为什么JSONP不能发送POST请求？<br>答案：因为JONP是通过动态创建script标签实现的，script标签只能发送GET请求。</p>
+<ul>
+<li>为什么JSONP不能发送POST请求？<br>答案：因为JONP是通过动态创建script标签实现的，script标签只能发送GET请求。</li>
+</ul>
 <p>最后介绍一个jQuery使用JSONP的简单方法。</p>
 <pre><code>$.ajax({
     url: &quot;http://xxx.com:8002/pay&quot;,
@@ -198,7 +200,7 @@ response.write(`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/17/JSONP/" data-id="cjmjw6wzn0005j47la4qtifev" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/17/JSONP/" data-id="cjmk3wgji001o307l48ikznuf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jsonp/">jsonp</a></li></ul>

@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-26/25096540.jpg">
 <meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-26/43135778.jpg">
 <meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-26/83555573.jpg">
-<meta property="og:updated_time" content="2018-09-27T01:17:38.398Z">
+<meta property="og:updated_time" content="2018-09-27T04:56:19.495Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="canvas的使用">
 <meta name="twitter:description" content="一、canvas的作用canvas是一个HTML元素，可以使用脚本（如JS）绘制图形，制作照片，动画，甚至实时视频处理渲染。 二、属性canvas和img元素很像，但是没有src和alt属性，只有width和height两个属性（默认300px，150px） 三、替代内容跟audio/vedio等标签很像，直接将替代内容写在标签里面。比较老的不支持canvas的浏览器会展示替代内容，支持的会忽略替">
@@ -103,8 +103,10 @@
 </code></pre><h2 id="四、标签不可省"><a href="#四、标签不可省" class="headerlink" title="四、标签不可省"></a>四、标签不可省</h2><p>不同于img标签，canvas需要闭合。</p>
 <p><code>&lt;/canvas&gt;结束标签</code>没有时，后面的内容都将作为替代内容。</p>
 <h2 id="五、JS使用"><a href="#五、JS使用" class="headerlink" title="五、JS使用"></a>五、JS使用</h2><p>canvas创造了一块空白大小的空白画布（渲染上下文（名词）），它有一个 getContext()方法，可以获取到渲染上下文和绘画功能，它有一个参数，比如2D图形：</p>
-<pre><code>var canvas = document.getElementById(&apos;canvas&apos;);
-var ctx = canvas.getContext(&apos;2d&apos;);
+<pre><code>var canvas = document.getElementById(&apos;canvas&apos;)
+var ctx = canvas.getContext(&apos;2d&apos;)
+//or
+var ctx = document.getElementById(&apos;canvas&apos;).getContext(&apos;2d&apos;)
 </code></pre><p>也可以检查浏览器是否支持canvas，代码改为</p>
 <pre><code>if (canvas.getContext){
       var ctx = canvas.getContext(&apos;2d&apos;);
@@ -283,6 +285,14 @@ var img = new Image();
 <li>shadowOffsetX = float<br>shadowOffsetX 和 shadowOffsetY ：向右延申距离</li>
 <li>shadowOffsetY = float：向下延申距离<br>3、shadowBlur = float：阴影模糊程度<br>4、shadowColor = color：阴影颜色</li>
 </ol>
+<h2 id="十二、绘制文本"><a href="#十二、绘制文本" class="headerlink" title="十二、绘制文本"></a>十二、绘制文本</h2><ol>
+<li>ctx.fillText(‘kakami’,10,10)：填充文字和位置</li>
+<li>ctx.strkeText(‘kakami’,10,10)：只描边的文字</li>
+<li>ctx.font = “48px serif”：设置font</li>
+<li>ctx.textAlign=start(默认)/end/left/right/center：文字对齐方式</li>
+<li>textBaseline = top/hanging/middle/bottom/alphabetic(默认)/ideographic：基线对齐方式</li>
+<li>direction = ltr/rtl/inherit(默认)</li>
+</ol>
 <h2 id="一些注意事项"><a href="#一些注意事项" class="headerlink" title="一些注意事项"></a>一些注意事项</h2><ol>
 <li>画完一个（描边）图形之后，没有再次写ctx.beginPath()就画一个填充图形，那第一个图形也会被填充。</li>
 <li>一定要写fill/stroke()</li>
@@ -293,7 +303,7 @@ var img = new Image();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/01/canvas的使用/" data-id="cjmjw6x08000lj47laiy3d76n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/01/canvas的使用/" data-id="cjmk3wgi6000j307l32n5mgag" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/canvas的使用/">canvas的使用</a></li></ul>
