@@ -5,15 +5,20 @@
   
 
   
-  <title>Archives | lxiaox</title>
+  <title>JS中的this指向 | lxiaox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="lxiaox">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="一、全局中调用this，那么this指向window 二、 在全局的函数中（两种情况）  //第一种:window function f1(){ console.log(this)  } f1()    //window  //第二种：严格模式是undefined function f2(){ &amp;apos;use strict&amp;apos; console.log(this)  } f2()">
+<meta name="keywords" content="this指向（JS）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS中的this指向">
+<meta property="og:url" content="http://yoursite.com/2018/09/28/JS中的this指向/index.html">
 <meta property="og:site_name" content="lxiaox">
+<meta property="og:description" content="一、全局中调用this，那么this指向window 二、 在全局的函数中（两种情况）  //第一种:window function f1(){ console.log(this)  } f1()    //window  //第二种：严格模式是undefined function f2(){ &amp;apos;use strict&amp;apos; console.log(this)  } f2()">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-28T04:21:47.882Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="lxiaox">
+<meta name="twitter:title" content="JS中的this指向">
+<meta name="twitter:description" content="一、全局中调用this，那么this指向window 二、 在全局的函数中（两种情况）  //第一种:window function f1(){ console.log(this)  } f1()    //window  //第二种：严格模式是undefined function f2(){ &amp;apos;use strict&amp;apos; console.log(this)  } f2()">
   
     <link rel="alternate" href="/atom.xml" title="lxiaox" type="application/atom+xml">
   
@@ -60,216 +65,112 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/28/JS中的this指向/" class="archive-article-date">
-  <time datetime="2018-09-28T03:17:25.000Z" itemprop="datePublished">Sep 28</time>
+        <section id="main"><article id="post-JS中的this指向" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/28/JS中的this指向/" class="article-date">
+  <time datetime="2018-09-28T03:17:25.000Z" itemprop="datePublished">2018-09-28</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/28/JS中的this指向/">JS中的this指向</a>
+    <h1 class="article-title" itemprop="name">
+      JS中的this指向
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/24/总结垂直居中/" class="archive-article-date">
-  <time datetime="2018-09-24T05:49:26.000Z" itemprop="datePublished">Sep 24</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/24/总结垂直居中/">垂直居中总结</a>
-    </h1>
-  
+        <h2 id="一、"><a href="#一、" class="headerlink" title="一、"></a>一、</h2><p>全局中调用this，那么this指向window</p>
+<h2 id="二、"><a href="#二、" class="headerlink" title="二、"></a>二、</h2><ol>
+<li><p>在全局的函数中（两种情况）</p>
+<p> //第一种:window<br> function f1(){</p>
+<pre><code>console.log(this)
+</code></pre><p> }<br> f1()    //window</p>
+<p> //第二种：严格模式是undefined<br> function f2(){</p>
+<pre><code>&apos;use strict&apos;
+console.log(this)
+</code></pre><p> }<br> f2()    //undefined</p>
+</li>
+</ol>
+<h2 id="三、对象调用"><a href="#三、对象调用" class="headerlink" title="三、对象调用"></a>三、对象调用</h2><p><strong>函数中this在定义时是不能确定的，只有在执行时才知道，因为函数this永远指向最后调用这个函数的对象</strong></p>
+<pre><code>let o1 = {
+    a: 1,
+    f3: function f3(){
+        console.log(this)
+    }
+}
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/23/正确快速排序学习/" class="archive-article-date">
-  <time datetime="2018-09-23T13:26:17.000Z" itemprop="datePublished">Sep 23</time>
-</a>
+//1、用o1调用
+o1.f3()   //{a: 1, f3: ƒ}
+
+//2、不用o1
+let f4 = o1.f3
+f4()      //window
+</code></pre><h2 id="四、构造函数-指向构造出的实例"><a href="#四、构造函数-指向构造出的实例" class="headerlink" title="四、构造函数: 指向构造出的实例"></a>四、构造函数: 指向构造出的实例</h2><p>一、正常情况：指向构造出的实例</p>
+<pre><code>function F(){
+    this.b = 2
+}
+let f5 = new F()
+console.log(f5.b)    //2, 所以f5上是有属性 b 的，也就是构造时this指向f5
+</code></pre><p>二、非常情况（如果在构造函数有return）</p>
+<ol>
+<li><p>return 一个对象，那么构造实例就为这个对象，也就得不到正常结果，无所谓this指向了。</p>
+<pre><code>//return 对象
+function F(){
+    this.b = 2
+    let o2 = {name:&apos;xiao&apos;}    //xiao不加引号错误！
+    return o2    
+}
+let f5 = new F()
+
+console.log(f5)            //{name: &quot;xiao&quot;}
+console.log(f5.b)        //undefined
+</code></pre></li>
+<li><p>return 非对象，包括null，虽然 typeof(null) === ‘object’，那么新构造的实例还是正常的。</p>
+</li>
+</ol>
+<pre><code>function F(){
+    this.b = 2
+    return null    //或者return 1/undefined/&quot;abc&quot;
+}
+let f6 = new F()
+
+console.log(f6)   //{b:2}
+</code></pre><p>到这里，我发现这些非常情况似乎已经不是this指向问题了，而是new的返回问题了。</p>
+<p>所以记住，<strong>构造函数的this指向构造实例</strong> 就OK</p>
+<p>下一篇打算写new的…</p>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/23/正确快速排序学习/">正确快速排序学习</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/21/flex布局总结/" class="archive-article-date">
-  <time datetime="2018-09-21T13:47:00.000Z" itemprop="datePublished">Sep 21</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/28/JS中的this指向/" data-id="cjmli3mdg0003z07ljaagdk5t" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/21/flex布局总结/">flex布局总结</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/07/Promise学习/" class="archive-article-date">
-  <time datetime="2018-09-07T11:40:44.000Z" itemprop="datePublished">Sep 7</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/07/Promise学习/">Promise学习</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/this指向（JS）/">this指向（JS）</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/09/24/总结垂直居中/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">垂直居中总结</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/01/canvas的使用/" class="archive-article-date">
-  <time datetime="2018-09-01T06:11:49.000Z" itemprop="datePublished">Sep 1</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/01/canvas的使用/">canvas的使用</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/08/30/LocalStorage与SessionStorage/" class="archive-article-date">
-  <time datetime="2018-08-30T03:18:00.000Z" itemprop="datePublished">Aug 30</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/30/LocalStorage与SessionStorage/">LocalStorage与SessionStorage</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/08/28/Session学习/" class="archive-article-date">
-  <time datetime="2018-08-28T03:25:38.000Z" itemprop="datePublished">Aug 28</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/28/Session学习/">Session学习</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/08/26/登录注册与cookie/" class="archive-article-date">
-  <time datetime="2018-08-26T07:33:42.000Z" itemprop="datePublished">Aug 26</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/26/登录注册与cookie/">登录注册与Cookie</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/08/25/JS数据结构/" class="archive-article-date">
-  <time datetime="2018-08-25T03:11:17.000Z" itemprop="datePublished">Aug 25</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/25/JS数据结构/">JS中的数据结构</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-  </nav>
 
 </section>
         

@@ -5,15 +5,20 @@
   
 
   
-  <title>Archives | lxiaox</title>
+  <title>垂直居中总结 | lxiaox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="lxiaox">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="1、最常用的 parent: height不写死，  child：padding-top / padding-bottom设为同值。   当parent：height写死时：2、tabel 或 display: table 直接使用table &amp;lt;table class=&amp;quot;parent&amp;quot;&amp;gt;   &amp;lt;tr&amp;gt;&amp;lt;td class=&amp;quot;child&amp;qu">
+<meta name="keywords" content="垂直居中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="垂直居中总结">
+<meta property="og:url" content="http://yoursite.com/2018/09/24/总结垂直居中/index.html">
 <meta property="og:site_name" content="lxiaox">
+<meta property="og:description" content="1、最常用的 parent: height不写死，  child：padding-top / padding-bottom设为同值。   当parent：height写死时：2、tabel 或 display: table 直接使用table &amp;lt;table class=&amp;quot;parent&amp;quot;&amp;gt;   &amp;lt;tr&amp;gt;&amp;lt;td class=&amp;quot;child&amp;qu">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-27T07:10:15.157Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="lxiaox">
+<meta name="twitter:title" content="垂直居中总结">
+<meta name="twitter:description" content="1、最常用的 parent: height不写死，  child：padding-top / padding-bottom设为同值。   当parent：height写死时：2、tabel 或 display: table 直接使用table &amp;lt;table class=&amp;quot;parent&amp;quot;&amp;gt;   &amp;lt;tr&amp;gt;&amp;lt;td class=&amp;quot;child&amp;qu">
   
     <link rel="alternate" href="/atom.xml" title="lxiaox" type="application/atom+xml">
   
@@ -60,216 +65,163 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/28/JS中的this指向/" class="archive-article-date">
-  <time datetime="2018-09-28T03:17:25.000Z" itemprop="datePublished">Sep 28</time>
+        <section id="main"><article id="post-总结垂直居中" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/24/总结垂直居中/" class="article-date">
+  <time datetime="2018-09-24T05:49:26.000Z" itemprop="datePublished">2018-09-24</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/28/JS中的this指向/">JS中的this指向</a>
+    <h1 class="article-title" itemprop="name">
+      垂直居中总结
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/24/总结垂直居中/" class="archive-article-date">
-  <time datetime="2018-09-24T05:49:26.000Z" itemprop="datePublished">Sep 24</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/24/总结垂直居中/">垂直居中总结</a>
-    </h1>
-  
+        <h3 id="1、最常用的"><a href="#1、最常用的" class="headerlink" title="1、最常用的"></a>1、最常用的</h3><ol>
+<li><p>parent: height不写死，</p>
+</li>
+<li><p>child：padding-top / padding-bottom设为同值。</p>
+</li>
+</ol>
+<h2 id="当parent：height写死时："><a href="#当parent：height写死时：" class="headerlink" title="当parent：height写死时："></a>当parent：height写死时：</h2><h3 id="2、tabel-或-display-table"><a href="#2、tabel-或-display-table" class="headerlink" title="2、tabel 或 display: table"></a>2、tabel 或 display: table</h3><ol>
+<li><p>直接使用table</p>
+<pre><code>&lt;table class=&quot;parent&quot;&gt;
+  &lt;tr&gt;&lt;td class=&quot;child&quot;&gt;这里内容自动垂直居中&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre></li>
+<li><p>利用div伪造table</p>
+<pre><code>&lt;div class=&quot;parent&quot;&gt;
+  &lt;div class=&quot;child&quot;&gt; 垂直居中内容 &lt;/div&gt;
+&lt;/div&gt;
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/23/正确快速排序学习/" class="archive-article-date">
-  <time datetime="2018-09-23T13:26:17.000Z" itemprop="datePublished">Sep 23</time>
-</a>
+.parent{
+    height: 300px; 
+    display : table-cell;
+    vertical-align: middle;
+}
+.child{}
+</code></pre></li>
+</ol>
+<h3 id="3、加span或伪类-高度100"><a href="#3、加span或伪类-高度100" class="headerlink" title="3、加span或伪类(高度100%)"></a>3、加span或伪类(高度100%)</h3><ol>
+<li>添加span</li>
+</ol>
+<pre><code>&lt;div class=&quot;parent&quot;&gt;
+  &lt;span class=&quot;before&quot;&gt;&lt;/span&gt;
+  &lt;div class=&quot;child&quot;&gt; 垂直居中内容 &lt;/div&gt;
+  &lt;span class=&quot;after&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+//
+.before{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle
+}
+.child{
+    vertical-align: middle
+}
+</code></pre><ol start="2">
+<li><p>不需要加span，直接利用伪类</p>
+<pre><code>.parent:before,
+.parent:after{
+    content:&apos;&apos;;
+    display:inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+.child{
+    vertical: middle;
+}
+</code></pre></li>
+</ol>
+<h3 id="4、child绝对定位-偏移量"><a href="#4、child绝对定位-偏移量" class="headerlink" title="4、child绝对定位+偏移量"></a>4、child绝对定位+偏移量</h3><pre><code>&lt;div class=&quot;parent&quot;&gt;
+    &lt;div class=&quot;child&quot;&gt; 垂直居中内容 &lt;/div&gt;
+&lt;/div&gt;
+
+.parent{height:300px;position:relative;}
+
+//使用margin偏移，child高度的50%
+.child{
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+}
+
+//使用transform，可以不用知道child高度
+.child{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+</code></pre><p>同样适用于水平居中。</p>
+<h3 id="5、child-绝对定位-margin-auto"><a href="#5、child-绝对定位-margin-auto" class="headerlink" title="5、child 绝对定位 + margin: auto"></a>5、child 绝对定位 + margin: auto</h3><pre><code>.parent{
+    position: relative;
+    height: 300px;
+}
+.child{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 100px;
+    //不设置child height会拉伸
+}
+</code></pre><p>同样适用水平居中。</p>
+<h3 id="6、flex-弹性盒子布局"><a href="#6、flex-弹性盒子布局" class="headerlink" title="6、flex 弹性盒子布局"></a>6、flex 弹性盒子布局</h3><pre><code>.parent{
+    height: 300px;
+    display: flex;
+    align-items: center;
+}
+.child{}
+</code></pre><p>我的博客链接：</p>
+<p><a href="https://lxiaox.github.io/2018/09/21/flex%E5%B8%83%E5%B1%80%E6%80%BB%E7%BB%93/" target="_blank" rel="noopener">flex布局总结</a></p>
+<p><a href="https://lxiaox.github.io/2018/05/27/css%E5%B8%83%E5%B1%80/" target="_blank" rel="noopener">css布局</a></p>
+<p>本文总结自<a href="https://jscode.me/t/topic/1936" target="_blank" rel="noopener">七种方式实现垂直居中</a> （内含具体代码实现）。</p>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/23/正确快速排序学习/">正确快速排序学习</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/21/flex布局总结/" class="archive-article-date">
-  <time datetime="2018-09-21T13:47:00.000Z" itemprop="datePublished">Sep 21</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/24/总结垂直居中/" data-id="cjmli3meh000wz07llsc7bwxe" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/21/flex布局总结/">flex布局总结</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/07/Promise学习/" class="archive-article-date">
-  <time datetime="2018-09-07T11:40:44.000Z" itemprop="datePublished">Sep 7</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/07/Promise学习/">Promise学习</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/垂直居中/">垂直居中</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/28/JS中的this指向/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JS中的this指向
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/23/正确快速排序学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">正确快速排序学习</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/01/canvas的使用/" class="archive-article-date">
-  <time datetime="2018-09-01T06:11:49.000Z" itemprop="datePublished">Sep 1</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/01/canvas的使用/">canvas的使用</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/08/30/LocalStorage与SessionStorage/" class="archive-article-date">
-  <time datetime="2018-08-30T03:18:00.000Z" itemprop="datePublished">Aug 30</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/30/LocalStorage与SessionStorage/">LocalStorage与SessionStorage</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/08/28/Session学习/" class="archive-article-date">
-  <time datetime="2018-08-28T03:25:38.000Z" itemprop="datePublished">Aug 28</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/28/Session学习/">Session学习</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/08/26/登录注册与cookie/" class="archive-article-date">
-  <time datetime="2018-08-26T07:33:42.000Z" itemprop="datePublished">Aug 26</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/26/登录注册与cookie/">登录注册与Cookie</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/08/25/JS数据结构/" class="archive-article-date">
-  <time datetime="2018-08-25T03:11:17.000Z" itemprop="datePublished">Aug 25</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/25/JS数据结构/">JS中的数据结构</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-  </nav>
 
 </section>
         

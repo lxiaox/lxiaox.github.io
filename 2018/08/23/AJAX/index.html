@@ -7,18 +7,18 @@
   
   <title>AJAX | lxiaox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="上节我们介绍了JSONP与跨域，JSONP是一种通过 script 发送请求的跨域技术，但是我们也提到了 jsonp 的缺点，那就是 jsonp 是通过 script 只能发送 GET 请求，并只能以脚本运行。那么有没有方式能实现各种请求方式（get、post、put、delete...），并且我们想以什么方式展示都可以呢？针对这个需求，微软率先做出了突破。IE 5 在JS中引入了一个 Activ">
+  <meta name="description" content="之前我们介绍了JSONP与跨域，JSONP是一种通过 script 发送请求的跨域技术，但是我们也提到了 jsonp 的缺点： 那就是 jsonp 是通过 script 只能发送 GET 请求，并只能以脚本运行。 那么有没有方式能实现各种请求方式（get、post、put、delete...），并且我们想以什么方式展示都可以呢？ 针对这个需求，微软率先做出了突破： IE 5 在JS中引入了一个 A">
 <meta name="keywords" content="ajax">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AJAX">
 <meta property="og:url" content="http://yoursite.com/2018/08/23/AJAX/index.html">
 <meta property="og:site_name" content="lxiaox">
-<meta property="og:description" content="上节我们介绍了JSONP与跨域，JSONP是一种通过 script 发送请求的跨域技术，但是我们也提到了 jsonp 的缺点，那就是 jsonp 是通过 script 只能发送 GET 请求，并只能以脚本运行。那么有没有方式能实现各种请求方式（get、post、put、delete...），并且我们想以什么方式展示都可以呢？针对这个需求，微软率先做出了突破。IE 5 在JS中引入了一个 Activ">
+<meta property="og:description" content="之前我们介绍了JSONP与跨域，JSONP是一种通过 script 发送请求的跨域技术，但是我们也提到了 jsonp 的缺点： 那就是 jsonp 是通过 script 只能发送 GET 请求，并只能以脚本运行。 那么有没有方式能实现各种请求方式（get、post、put、delete...），并且我们想以什么方式展示都可以呢？ 针对这个需求，微软率先做出了突破： IE 5 在JS中引入了一个 A">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-27T01:20:32.086Z">
+<meta property="og:updated_time" content="2018-09-27T11:39:23.875Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AJAX">
-<meta name="twitter:description" content="上节我们介绍了JSONP与跨域，JSONP是一种通过 script 发送请求的跨域技术，但是我们也提到了 jsonp 的缺点，那就是 jsonp 是通过 script 只能发送 GET 请求，并只能以脚本运行。那么有没有方式能实现各种请求方式（get、post、put、delete...），并且我们想以什么方式展示都可以呢？针对这个需求，微软率先做出了突破。IE 5 在JS中引入了一个 Activ">
+<meta name="twitter:description" content="之前我们介绍了JSONP与跨域，JSONP是一种通过 script 发送请求的跨域技术，但是我们也提到了 jsonp 的缺点： 那就是 jsonp 是通过 script 只能发送 GET 请求，并只能以脚本运行。 那么有没有方式能实现各种请求方式（get、post、put、delete...），并且我们想以什么方式展示都可以呢？ 针对这个需求，微软率先做出了突破： IE 5 在JS中引入了一个 A">
   
     <link rel="alternate" href="/atom.xml" title="lxiaox" type="application/atom+xml">
   
@@ -87,13 +87,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>上节我们介绍了JSONP与跨域，JSONP是一种通过 script 发送请求的跨域技术，但是我们也提到了 jsonp 的缺点，那就是 jsonp 是通过 script 只能发送 GET 请求，并只能以脚本运行。那么有没有方式能实现各种请求方式<code>（get、post、put、delete...）</code>，并且我们想以什么方式展示都可以呢？针对这个需求，微软率先做出了突破。IE 5 在JS中引入了一个 ActiveX 对象，使得 JS 可以直接发起 HTTP 请求，随后 Mozilla、Safari、Opera 等浏览器也引进该对象，并取名 <code>XMLHttpRequest</code> ，被纳入 <a href="https://www.w3.org/Consortium/" target="_blank" rel="noopener">W3C</a> 规范。</p>
+        <p>之前我们介绍了JSONP与跨域，JSONP是一种通过 script 发送请求的跨域技术，但是我们也提到了 jsonp 的缺点：</p>
+<p>那就是 jsonp 是通过 script 只能发送 GET 请求，并只能以脚本运行。</p>
+<p>那么有没有方式能实现各种请求方式<code>（get、post、put、delete...）</code>，并且我们想以什么方式展示都可以呢？</p>
+<p>针对这个需求，微软率先做出了突破：</p>
+<p>IE 5 在JS中引入了一个 ActiveX 对象，使得 JS 可以直接发起 HTTP 请求，随后 Mozilla、Safari、Opera 等浏览器也引进该对象。</p>
+<p>该对象被纳入 <a href="https://www.w3.org/Consortium/" target="_blank" rel="noopener">W3C</a> 规范，取名为 <code>XMLHttpRequest</code> 。</p>
 <h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><p>使用上述对象  XMLHttpRequest 发送请求的步骤：</p>
 <ol>
 <li>使用 XMLHttpRequest 发请求，</li>
 <li>服务器返回XML格式的字符串（现在大多使用<a href="https://www.json.org/" target="_blank" rel="noopener">JSON</a>格式），</li>
-<li>JS 解析 XML ，并更新局部页面。<br><a href="https://zh.wikipedia.org/wiki/%E5%82%91%E8%A5%BF%C2%B7%E8%A9%B9%E5%A7%86%E5%A3%AB%C2%B7%E8%B3%88%E7%91%9E%E7%89%B9" target="_blank" rel="noopener">Jesse James Garrett</a> 将以上技术取名为 <code>AJAX</code> ，全称是 <code>Asynchronous JavaScript And XML</code>，意为异步的 JavaScript 和 <a href="https://zh.wikipedia.org/zh-hans/XML" target="_blank" rel="noopener">XML</a>。</li>
+<li>JS 解析 XML ，并更新局部页面。</li>
 </ol>
+<p><a href="https://zh.wikipedia.org/wiki/%E5%82%91%E8%A5%BF%C2%B7%E8%A9%B9%E5%A7%86%E5%A3%AB%C2%B7%E8%B3%88%E7%91%9E%E7%89%B9" target="_blank" rel="noopener">Jesse James Garrett</a> 将以上技术取名为 <code>AJAX</code> ，全称是 <code>Asynchronous JavaScript And XML</code>，意为异步的 JavaScript 和 <a href="https://zh.wikipedia.org/zh-hans/XML" target="_blank" rel="noopener">XML</a>。</p>
 <h2 id="用原生JS发-AJAX-请求实例"><a href="#用原生JS发-AJAX-请求实例" class="headerlink" title="用原生JS发 AJAX 请求实例"></a>用原生JS发 AJAX 请求实例</h2><p>上文提到使用 AJAX 的基本步骤，现在写一个请求实例。<br>客户端JS代码：</p>
 <pre><code>//页面中有一个 myButton 按钮，点击它发送请求。
 myButton.addEventListener(&apos;click&apos;,(e)=&gt;{
@@ -106,7 +112,7 @@ myButton.addEventListener(&apos;click&apos;,(e)=&gt;{
     //2、服务器发送XML(JSON)字符串
     //3、JS解析XML
     request.onreadystatechange = ()=&gt;{
-        if(request.readystate === 4){
+        if(request.readyState === 4){
             if(request.status &gt;= 200 &amp;&amp; request.status &lt;300){
                 let string = request.responseText
                 //把JSON格式的字符串转换为JS对应值
@@ -122,7 +128,7 @@ myButton.addEventListener(&apos;click&apos;,(e)=&gt;{
     response.statusCode = 200
     //设置响应第四部分数据格式为json格式
     response.setHeader(&apos;Content-Type&apos;, &apos;text/json;charset=utf-8&apos;)
-    //下行代码在后文说明
+    //跨域
     response.setHeader(&apos;Access-Control-Allow-Origin&apos;, &apos;http://abcdef.com:8001&apos;)
     response.write(`
     {
@@ -135,7 +141,10 @@ myButton.addEventListener(&apos;click&apos;,(e)=&gt;{
     }
     `)
     response.end()
-</code></pre><p>上述代码即使用AJAX发送请求，及服务器返回数据的过程。其中值得注意的是 <code>response.setHeader(&#39;Access-Control-Allow-Origin&#39;, &#39;http://abcdef.com:8001&#39;)</code> ，这一行代码就是为了应对浏览器的同源策略（只有协议+域名+端口完全一致才能获取到请求的数据）的机制，叫做 <code>CORS ( Cross-Origin Resource Sharing)</code>，即跨站资源共享，代码中 <code>Access-Control-Allow-Origin</code> 告诉浏览器，允许后面的网页跨域访问。</p>
+</code></pre><p>上述代码即使用AJAX发送请求，及服务器返回数据的过程。</p>
+<p>其中值得注意的是：<br> <code>response.setHeader(&#39;Access-Control-Allow-Origin&#39;, &#39;http://abcdef.com:8001&#39;)</code><br>这一行代码就是为了应对浏览器的同源策略（只有协议+域名+端口完全一致才能获取到请求的数据）的机制，</p>
+<p>叫做 <code>CORS ( Cross-Origin Resource Sharing)</code>，即跨站资源共享。</p>
+<p>代码中 <code>Access-Control-Allow-Origin</code> 告诉浏览器，允许后面的网页跨域访问。</p>
 <h2 id="封装一个-ajax"><a href="#封装一个-ajax" class="headerlink" title="封装一个 ajax()"></a>封装一个 ajax()</h2><p>为了方便使用AJAX发送请求，我们可以将上面的客户端代码封装成一个函数 ajax()：</p>
 <pre><code>window.jQuery.ajax = function(url,method,body,headers,success, fail){
     let request = new XMLHttpRequest()
@@ -144,8 +153,8 @@ myButton.addEventListener(&apos;click&apos;,(e)=&gt;{
          let value = headers[key]
           request.setRequestHeader(key, value)
     }
-    request.readystatechange = ()=&gt;{
-        if(request.readystate === 4){
+    request.onreadystatechange = ()=&gt;{
+        if(request.readyState === 4){
             if(request.status &gt;= 200 &amp;&amp; request.status &lt;300){
                 success.call(&apos;undefined&apos;,request.responseText)
             }else if(request.status &gt;= 400){
@@ -155,7 +164,7 @@ myButton.addEventListener(&apos;click&apos;,(e)=&gt;{
     }
     request.send(body)
 }
-</code></pre><p>这样我们使用的时候只需将请求方式，路径，请求体（请求第四部分），成功函数，失败函数传 给 ajax() 即可。</p>
+</code></pre><p>这样我们使用的时候只需将： 请求方式，路径，请求体（请求第四部分），成功函数，失败函数 传 给 ajax() 即可。</p>
 <p>事实上使用 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener">promise</a> 升级这个 ajax() 使其更加方便使用。</p>
 <pre><code>//这里我们可以将参数封装成一个对象（ES6语法,解构赋值）
 window.jQuery.ajax = function({url,method,body,headers}){
@@ -166,8 +175,8 @@ window.jQuery.ajax = function({url,method,body,headers}){
              let value = headers[key]
               request.setRequestHeader(key, value)
         }
-        request.readystatechange = () =&gt; {
-            if (request.readystate === 4) {
+        request.onreadystatechange = () =&gt; {
+            if (request.readyState === 4) {
                 if (request.status &gt;= 200 &amp;&amp; request.status &lt; 300) {
                     resolve.call(&apos;undefined&apos;, request.responseText)
                 } else if (request.status &gt;= 400) {
@@ -223,7 +232,7 @@ jQuery.ajax({
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/23/AJAX/" data-id="cjmk3wggy0000307legxvg05o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/23/AJAX/" data-id="cjmli3mcl0000z07lb7ds2t1z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ajax/">ajax</a></li></ul>
@@ -265,7 +274,7 @@ jQuery.ajax({
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP请求与响应基础/">HTTP请求与响应基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的排序算法之快排/">JS中的排序算法之快排</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型/">JS中的数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型转换/">JS中的数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LocalStorage与SessionStorage/">LocalStorage与SessionStorage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise及相关方法/">Promise及相关方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas的使用/">canvas的使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flex布局/">flex布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jsonp/">jsonp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行基本命令/">命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/登录注册与cookie/">登录注册与cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自己实现一个jQuery-API/">自己实现一个jQuery API</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP请求与响应基础/">HTTP请求与响应基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的排序算法/">JS中的排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的排序算法之快排/">JS中的排序算法之快排</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型/">JS中的数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS中的数据类型转换/">JS中的数据类型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS数据结构/">JS数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LocalStorage与SessionStorage/">LocalStorage与SessionStorage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise及相关方法/">Promise及相关方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas的使用/">canvas的使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css布局/">css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flex布局/">flex布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git入门/">git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5标签/">html5标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html常用标签/">html常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jsonp/">jsonp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/this指向（JS）/">this指向（JS）</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型与原型链/">原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令行基本命令/">命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/垂直居中/">垂直居中</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/登录注册与cookie/">登录注册与cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自己实现一个jQuery-API/">自己实现一个jQuery API</a></li></ul>
     </div>
   </div>
 
@@ -275,7 +284,7 @@ jQuery.ajax({
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/HTTP请求与响应基础/" style="font-size: 10px;">HTTP请求与响应基础</a> <a href="/tags/JS中的排序算法/" style="font-size: 10px;">JS中的排序算法</a> <a href="/tags/JS中的排序算法之快排/" style="font-size: 10px;">JS中的排序算法之快排</a> <a href="/tags/JS中的数据类型/" style="font-size: 10px;">JS中的数据类型</a> <a href="/tags/JS中的数据类型转换/" style="font-size: 10px;">JS中的数据类型转换</a> <a href="/tags/JS数据结构/" style="font-size: 10px;">JS数据结构</a> <a href="/tags/LocalStorage与SessionStorage/" style="font-size: 10px;">LocalStorage与SessionStorage</a> <a href="/tags/Promise及相关方法/" style="font-size: 10px;">Promise及相关方法</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/canvas的使用/" style="font-size: 10px;">canvas的使用</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/flex布局/" style="font-size: 10px;">flex布局</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/jsonp/" style="font-size: 10px;">jsonp</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a> <a href="/tags/命令行基本命令/" style="font-size: 10px;">命令行基本命令</a> <a href="/tags/登录注册与cookie/" style="font-size: 10px;">登录注册与cookie</a> <a href="/tags/自己实现一个jQuery-API/" style="font-size: 10px;">自己实现一个jQuery API</a>
+      <a href="/tags/HTTP请求与响应基础/" style="font-size: 10px;">HTTP请求与响应基础</a> <a href="/tags/JS中的排序算法/" style="font-size: 10px;">JS中的排序算法</a> <a href="/tags/JS中的排序算法之快排/" style="font-size: 10px;">JS中的排序算法之快排</a> <a href="/tags/JS中的数据类型/" style="font-size: 10px;">JS中的数据类型</a> <a href="/tags/JS中的数据类型转换/" style="font-size: 10px;">JS中的数据类型转换</a> <a href="/tags/JS数据结构/" style="font-size: 10px;">JS数据结构</a> <a href="/tags/LocalStorage与SessionStorage/" style="font-size: 10px;">LocalStorage与SessionStorage</a> <a href="/tags/Promise及相关方法/" style="font-size: 10px;">Promise及相关方法</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/canvas的使用/" style="font-size: 10px;">canvas的使用</a> <a href="/tags/css布局/" style="font-size: 10px;">css布局</a> <a href="/tags/flex布局/" style="font-size: 10px;">flex布局</a> <a href="/tags/git入门/" style="font-size: 10px;">git入门</a> <a href="/tags/html5标签/" style="font-size: 10px;">html5标签</a> <a href="/tags/html常用标签/" style="font-size: 10px;">html常用标签</a> <a href="/tags/jsonp/" style="font-size: 10px;">jsonp</a> <a href="/tags/this指向（JS）/" style="font-size: 10px;">this指向（JS）</a> <a href="/tags/原型与原型链/" style="font-size: 10px;">原型与原型链</a> <a href="/tags/命令行基本命令/" style="font-size: 10px;">命令行基本命令</a> <a href="/tags/垂直居中/" style="font-size: 10px;">垂直居中</a> <a href="/tags/登录注册与cookie/" style="font-size: 10px;">登录注册与cookie</a> <a href="/tags/自己实现一个jQuery-API/" style="font-size: 10px;">自己实现一个jQuery API</a>
     </div>
   </div>
 
@@ -297,6 +306,14 @@ jQuery.ajax({
       <ul>
         
           <li>
+            <a href="/2018/09/28/JS中的this指向/">JS中的this指向</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/24/总结垂直居中/">垂直居中总结</a>
+          </li>
+        
+          <li>
             <a href="/2018/09/23/正确快速排序学习/">正确快速排序学习</a>
           </li>
         
@@ -306,14 +323,6 @@ jQuery.ajax({
         
           <li>
             <a href="/2018/09/07/Promise学习/">Promise学习</a>
-          </li>
-        
-          <li>
-            <a href="/2018/09/01/canvas的使用/">canvas的使用</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/30/LocalStorage与SessionStorage/">LocalStorage与SessionStorage</a>
           </li>
         
       </ul>
