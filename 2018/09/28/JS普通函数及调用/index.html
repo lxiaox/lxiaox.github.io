@@ -5,15 +5,20 @@
   
 
   
-  <title>Archives: 2018/6 | lxiaox</title>
+  <title>JS普通函数及调用 | lxiaox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="lxiaox">
-<meta property="og:url" content="http://yoursite.com/archives/2018/06/index.html">
+  <meta name="description" content="想想还是决定把普通函数、构造函数分两篇总结。 一、声明（包括函数名情况）方法一：具名函数function f1(x){     console.log(x) }  //函数名 f1.name === &amp;apos;f1&amp;apos;    //true f1.name === &amp;apos;f1&amp;apos;    //true f1.name === &amp;apos;f1&amp;apos;    //true 方">
+<meta name="keywords" content="（JH）JS普通函数及调用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS普通函数及调用">
+<meta property="og:url" content="http://yoursite.com/2018/09/28/JS普通函数及调用/index.html">
 <meta property="og:site_name" content="lxiaox">
+<meta property="og:description" content="想想还是决定把普通函数、构造函数分两篇总结。 一、声明（包括函数名情况）方法一：具名函数function f1(x){     console.log(x) }  //函数名 f1.name === &amp;apos;f1&amp;apos;    //true f1.name === &amp;apos;f1&amp;apos;    //true f1.name === &amp;apos;f1&amp;apos;    //true 方">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-28T09:57:33.493Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="lxiaox">
+<meta name="twitter:title" content="JS普通函数及调用">
+<meta name="twitter:description" content="想想还是决定把普通函数、构造函数分两篇总结。 一、声明（包括函数名情况）方法一：具名函数function f1(x){     console.log(x) }  //函数名 f1.name === &amp;apos;f1&amp;apos;    //true f1.name === &amp;apos;f1&amp;apos;    //true f1.name === &amp;apos;f1&amp;apos;    //true 方">
   
     <link rel="alternate" href="/atom.xml" title="lxiaox" type="application/atom+xml">
   
@@ -60,59 +65,152 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/06/13/原型与原型链/" class="archive-article-date">
-  <time datetime="2018-06-13T13:37:24.000Z" itemprop="datePublished">Jun 13</time>
+        <section id="main"><article id="post-JS普通函数及调用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/28/JS普通函数及调用/" class="article-date">
+  <time datetime="2018-09-28T05:00:35.000Z" itemprop="datePublished">2018-09-28</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/13/原型与原型链/">原型与原型链</a>
+    <h1 class="article-title" itemprop="name">
+      JS普通函数及调用
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/06/09/JS中的数据类型/" class="archive-article-date">
-  <time datetime="2018-06-09T15:07:26.000Z" itemprop="datePublished">Jun 9</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/09/JS中的数据类型/">JS中的数据类型</a>
-    </h1>
-  
+        <p>想想还是决定把普通函数、构造函数分两篇总结。</p>
+<h2 id="一、声明（包括函数名情况）"><a href="#一、声明（包括函数名情况）" class="headerlink" title="一、声明（包括函数名情况）"></a>一、声明（包括函数名情况）</h2><h3 id="方法一：具名函数"><a href="#方法一：具名函数" class="headerlink" title="方法一：具名函数"></a>方法一：具名函数</h3><pre><code>function f1(x){
+    console.log(x)
+}
 
-    </header>
+//函数名
+f1.name === &apos;f1&apos;    //true
+f1.name === &apos;f1&apos;    //true
+f1.name === &apos;f1&apos;    //true
+</code></pre><h3 id="方法二：匿名函数"><a href="#方法二：匿名函数" class="headerlink" title="方法二：匿名函数"></a>方法二：匿名函数</h3><pre><code>let f2
+f2 = function(x){
+    console.log(x)
+}
+
+//函数名
+f2.name === &apos;f2&apos;    //true
+f2.name === &apos;f2&apos;    //true
+f2.name === &apos;f2&apos;    //true
+</code></pre><h3 id="方法三：具名函数赋值"><a href="#方法三：具名函数赋值" class="headerlink" title="方法三：具名函数赋值"></a>方法三：具名函数赋值</h3><pre><code>let f3 = function f4(){
+    console.log(&apos;f3&apos;)
+}
+
+//函数名
+f3.name === &apos;f4&apos;    //true
+f3.name === &apos;f4&apos;    //true
+f3.name === &apos;f4&apos;    //true
+
+//注意 
+f4.name        //报错：f4 is not defined
+f4.name        //报错：f4 is not defined
+f4.name        //报错：f4 is not defined
+</code></pre><h3 id="方法四：使用window-Function"><a href="#方法四：使用window-Function" class="headerlink" title="方法四：使用window.Function"></a>方法四：使用window.Function</h3><pre><code>let f5 = new Function(&apos;x&apos;,&apos;y&apos;,&apos;return x+y&apos;)
+f5(1,2)        //3
+
+//函数名
+f5.name        //&apos;annoymous&apos;  匿名的
+f5.name        //&apos;annoymous&apos;  匿名的
+f5.name        //&apos;annoymous&apos;  匿名的
+</code></pre><h3 id="方法五：箭头函数"><a href="#方法五：箭头函数" class="headerlink" title="方法五：箭头函数"></a>方法五：箭头函数</h3><pre><code>(x)=&gt;{console.log(x)}
+
+let f6 = (x)=&gt;{console.log(x)}
+
+//箭头函数只有一句返回时，可以省略大括号和return
+let f6 = (x,y)=&gt;{return x + y}
+let f6 = (x,y)=&gt; x + y
+
+//箭头函数只有一个参数时，可以省略小括号
+let f6 = (x)=&gt;{return x*2}
+let f6 = x =&gt; x*2
+</code></pre><h2 id="二、函数返回"><a href="#二、函数返回" class="headerlink" title="二、函数返回"></a>二、函数返回</h2><ul>
+<li>函数需要return；</li>
+<li>没有return 就默认 return undefined。</li>
+</ul>
+<h2 id="三、函数调用"><a href="#三、函数调用" class="headerlink" title="三、函数调用"></a>三、函数调用</h2><ol>
+<li><p>使用 <code>fn(x1,x2)</code></p>
+</li>
+<li><p>作为对象方法 <code>obj.xx.fn(x,y)</code></p>
+</li>
+<li><p>call()</p>
+<pre><code> fn.call(asThis,x1,x2,...)
+
+//call第一个参数是this，后面的做真正的参数。
+
+function ff(x,y,z){return x+y+z}
+ff.call(1,2,2,2)    //6
+</code></pre></li>
+<li><p>apply()</p>
+<pre><code>fn.apply(asThis,[x1,x2,...])
+
+//apply区别与call就是它第二个参数接受数组，
+//我们需要把剩下的参数作为一个数组传递。
+
+function ff(x,y,z){return x+y+z}
+ff.apply(1,[2,2,2])    //6
+</code></pre></li>
+</ol>
+<ol start="5">
+<li><p>bind()（绑定不调用）</p>
+<pre><code>fn.bind(asThis,[x1,x2,...])
+
+//bind方法不会调用函数，而是生成一个绑定函数(而且已经传好参数，不可改)
+//它的参数同call一致
+
+function ff(x,y,z){return x+y+z}
+let mm = ff.bind(1,2,2,2)
+mm()    //6    
+mm(1,1,1)    //6，没有变
+mm.call(1,3,3,3)    //6，新传的参数不起作用
+</code></pre></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/28/JS普通函数及调用/" data-id="cjmlw4g7e001xb87lo6nzjz59" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（JH）JS普通函数及调用/">（JH）JS普通函数及调用</a></li></ul>
+
+    </footer>
   </div>
-</article>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/28/JS构造函数（含new做了什么）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JS构造函数（含new做了什么）
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2018/09/28/JS中的this指向/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JS中的this指向</div>
+    </a>
   
+</nav>
 
+  
+</article>
 
 </section>
         

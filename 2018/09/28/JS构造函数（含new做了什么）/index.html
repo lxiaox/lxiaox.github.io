@@ -5,15 +5,20 @@
   
 
   
-  <title>Archives: 2018/6 | lxiaox</title>
+  <title>JS构造函数（含new做了什么） | lxiaox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="lxiaox">
-<meta property="og:url" content="http://yoursite.com/archives/2018/06/index.html">
+  <meta name="description" content="一、构造函数和普通函数的区别 构造函数名一般第一个字母大写：Function/Number/String，普通函数为驼峰式名命：puTongHanShu  构造函数由new调用：new String(&amp;#39;abc&amp;#39;), （abc不要忘了引号）  构造函数中可以使用this，普通函数一般不使用  构造函数一般默认不return  原型指向：  //只写个形式表达意思 function F">
+<meta name="keywords" content="（JH）JS构造函数、new做了什么">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS构造函数（含new做了什么）">
+<meta property="og:url" content="http://yoursite.com/2018/09/28/JS构造函数（含new做了什么）/index.html">
 <meta property="og:site_name" content="lxiaox">
+<meta property="og:description" content="一、构造函数和普通函数的区别 构造函数名一般第一个字母大写：Function/Number/String，普通函数为驼峰式名命：puTongHanShu  构造函数由new调用：new String(&amp;#39;abc&amp;#39;), （abc不要忘了引号）  构造函数中可以使用this，普通函数一般不使用  构造函数一般默认不return  原型指向：  //只写个形式表达意思 function F">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-28T10:52:50.203Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="lxiaox">
+<meta name="twitter:title" content="JS构造函数（含new做了什么）">
+<meta name="twitter:description" content="一、构造函数和普通函数的区别 构造函数名一般第一个字母大写：Function/Number/String，普通函数为驼峰式名命：puTongHanShu  构造函数由new调用：new String(&amp;#39;abc&amp;#39;), （abc不要忘了引号）  构造函数中可以使用this，普通函数一般不使用  构造函数一般默认不return  原型指向：  //只写个形式表达意思 function F">
   
     <link rel="alternate" href="/atom.xml" title="lxiaox" type="application/atom+xml">
   
@@ -60,59 +65,103 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/06/13/原型与原型链/" class="archive-article-date">
-  <time datetime="2018-06-13T13:37:24.000Z" itemprop="datePublished">Jun 13</time>
+        <section id="main"><article id="post-JS构造函数（含new做了什么）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/28/JS构造函数（含new做了什么）/" class="article-date">
+  <time datetime="2018-09-28T08:56:05.000Z" itemprop="datePublished">2018-09-28</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/13/原型与原型链/">原型与原型链</a>
+    <h1 class="article-title" itemprop="name">
+      JS构造函数（含new做了什么）
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/06/09/JS中的数据类型/" class="archive-article-date">
-  <time datetime="2018-06-09T15:07:26.000Z" itemprop="datePublished">Jun 9</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/09/JS中的数据类型/">JS中的数据类型</a>
-    </h1>
-  
+        <h2 id="一、构造函数和普通函数的区别"><a href="#一、构造函数和普通函数的区别" class="headerlink" title="一、构造函数和普通函数的区别"></a>一、构造函数和普通函数的区别</h2><ol>
+<li><p>构造函数名一般第一个字母大写：<code>Function/Number/String</code>，普通函数为驼峰式名命：<code>puTongHanShu</code></p>
+</li>
+<li><p>构造函数由new调用：<code>new String(&#39;abc&#39;)</code>, （abc不要忘了引号）</p>
+</li>
+<li><p>构造函数中可以使用this，普通函数一般不使用</p>
+</li>
+<li><p>构造函数一般默认不return</p>
+</li>
+<li><p>原型指向： </p>
+<pre><code>//只写个形式表达意思
+function FF(){//...}
+let ff = new FF()
 
-    </header>
+//那么，这个生成实例的__proto__指向构造它的函数的prototype
+ff.__proto__ === FF.prototype        //true
+FF.__proto__ === Function.prototype    //true    
+</code></pre></li>
+</ol>
+<h2 id="使用new时到底做了什么"><a href="#使用new时到底做了什么" class="headerlink" title="使用new时到底做了什么"></a>使用new时到底做了什么</h2><p>构造函数可由new调用，那么new到底做了什么：</p>
+<ol>
+<li><p>创建临时对象，并将this指向这个临时对象</p>
+</li>
+<li><p>将临时对象的__proto__指向构造函数的prototype（并将构造函数Fn的prototype.constructor=Fn）</p>
+</li>
+<li><p>执行构造函数中的代码</p>
+</li>
+<li><p>返回这个临时对象</p>
+</li>
+</ol>
+<p>代码举例：</p>
+<pre><code>function F1(x){
+    this.name = &apos;xiao&apos;
+    console.log(x*100)
+}
+let f1 = new F1()     //NaN 执行了打印代码
+let f2 = new F1(5)     //500
+
+//返回对象，f1是对象
+f1(5)        //报错： f1 is not a function
+f1            //F1 {name: &quot;xiao&quot;}
+f1.name        //&quot;xiao&quot;
+
+//指定对象原型
+f1.__proto__ === F1.prototype     //true
+f1.constructor === F1             //true
+
+//另外
+F1.constructor === F1             //false
+F1.constructor === Function         //true
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/28/JS构造函数（含new做了什么）/" data-id="cjmlw4g5t000fb87lhr89y7e0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（JH）JS构造函数、new做了什么/">（JH）JS构造函数、new做了什么</a></li></ul>
+
+    </footer>
   </div>
-</article>
+  
+    
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/09/28/JS普通函数及调用/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JS普通函数及调用</div>
+    </a>
   
+</nav>
 
+  
+</article>
 
 </section>
         
