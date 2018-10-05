@@ -8,14 +8,14 @@
   <title>JS构造函数（含new做了什么） | lxiaox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一、构造函数和普通函数的区别 构造函数名一般第一个字母大写：Function/Number/String，普通函数为驼峰式名命：puTongHanShu  构造函数由new调用：new String(&amp;#39;abc&amp;#39;), （abc不要忘了引号）  构造函数中可以使用this，普通函数一般不使用  构造函数一般默认不return  原型指向：  //只写个形式表达意思 function F">
-<meta name="keywords" content="（JH）JS构造函数、new做了什么">
+<meta name="keywords" content="（JH）JS-构造函数、new做了什么">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS构造函数（含new做了什么）">
 <meta property="og:url" content="http://yoursite.com/2018/09/28/JS构造函数（含new做了什么）/index.html">
 <meta property="og:site_name" content="lxiaox">
 <meta property="og:description" content="一、构造函数和普通函数的区别 构造函数名一般第一个字母大写：Function/Number/String，普通函数为驼峰式名命：puTongHanShu  构造函数由new调用：new String(&amp;#39;abc&amp;#39;), （abc不要忘了引号）  构造函数中可以使用this，普通函数一般不使用  构造函数一般默认不return  原型指向：  //只写个形式表达意思 function F">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-28T10:52:50.203Z">
+<meta property="og:updated_time" content="2018-09-29T11:05:10.783Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS构造函数（含new做了什么）">
 <meta name="twitter:description" content="一、构造函数和普通函数的区别 构造函数名一般第一个字母大写：Function/Number/String，普通函数为驼峰式名命：puTongHanShu  构造函数由new调用：new String(&amp;#39;abc&amp;#39;), （abc不要忘了引号）  构造函数中可以使用this，普通函数一般不使用  构造函数一般默认不return  原型指向：  //只写个形式表达意思 function F">
@@ -137,20 +137,53 @@ f1.constructor === F1             //true
 //另外
 F1.constructor === F1             //false
 F1.constructor === Function         //true
-</code></pre>
+</code></pre><h2 id="return返回情况"><a href="#return返回情况" class="headerlink" title="return返回情况"></a>return返回情况</h2><p>因为new会帮我们return 临时对象，我们就不需要自己再return，但是如果硬要return，就有如下两种情况：</p>
+<ol>
+<li><p><code>return 非 Object（String/Number/Boolean/Null/Undefined）</code>，仍返回新生成的（this指向的）对象；</p>
+<pre><code>function F(){
+    this.b = 2
+    return null    //或者return 1/undefined/&quot;abc&quot;
+}
+let f6 = new F()
+
+console.log(f6)   //{b:2}
+</code></pre></li>
+<li><p><code>return Object</code>，那就返回这个Object。</p>
+<pre><code>//return 对象
+    function F(){
+        this.b = 2
+        let o2 = {name:&apos;xiao&apos;}    //xiao不加引号错误！
+        return o2    
+    }
+    let f5 = new F()
+
+    console.log(f5)            //{name: &quot;xiao&quot;}
+    console.log(f5.b)        //undefined
+</code></pre></li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/28/JS构造函数（含new做了什么）/" data-id="cjmlw4g5t000fb87lhr89y7e0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/28/JS构造函数（含new做了什么）/" data-id="cjmw1mfyz000pes7lguowi6ps" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（JH）JS构造函数、new做了什么/">（JH）JS构造函数、new做了什么</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（JH）JS-构造函数、new做了什么/">（JH）JS-构造函数、new做了什么</a></li></ul>
 
     </footer>
   </div>
   
     
 <nav id="article-nav">
+  
+    <a href="/2018/10/05/JS实现继承的几种方法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JS实现继承的几种方法
+        
+      </div>
+    </a>
   
   
     <a href="/2018/09/28/JS普通函数及调用/" id="article-nav-older" class="article-nav-link-wrap">
@@ -174,7 +207,7 @@ F1.constructor === Function         //true
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）css布局/">（C）css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）flex布局/">（C）flex布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）垂直居中/">（C）垂直居中</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（G）git入门/">（G）git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）canvas的使用/">（H）canvas的使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）html-常用标签/">（H）html-常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）html5-标签/">（H）html5-标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS-this指向/">（JH）JS-this指向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS普通函数及调用/">（JH）JS普通函数及调用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS构造函数、new做了什么/">（JH）JS构造函数、new做了什么</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）JS-数据类型/">（J）JS-数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）JS-数据结构/">（J）JS-数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）Promise/">（J）Promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）原型与原型链/">（J）原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）自己实现-jQuery-API/">（J）自己实现-jQuery API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（M）命令行基本命令/">（M）命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（S）快速排序-js/">（S）快速排序-js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（S）排序算法-js/">（S）排序算法-js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）HTTP（入门）/">（W）HTTP（入门）</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）Session/">（W）Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）Web-Storage/">（W）Web Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）ajax/">（W）ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）jsonp/">（W）jsonp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）登录注册、cookie/">（W）登录注册、cookie</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）css布局/">（C）css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）flex布局/">（C）flex布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）垂直居中/">（C）垂直居中</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（G）git入门/">（G）git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）canvas的使用/">（H）canvas的使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）html-常用标签/">（H）html-常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）html5-标签/">（H）html5-标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS-this指向/">（JH）JS-this指向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS-普通函数及调用/">（JH）JS-普通函数及调用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS-构造函数、new做了什么/">（JH）JS-构造函数、new做了什么</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）JS-数据类型/">（J）JS-数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）JS-数据结构/">（J）JS-数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）Promise/">（J）Promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）原型与原型链/">（J）原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）继承/">（J）继承</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）自己实现-jQuery-API/">（J）自己实现-jQuery API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（M）命令行基本命令/">（M）命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（S）快速排序-js/">（S）快速排序-js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（S）排序算法-js/">（S）排序算法-js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）HTTP（入门）/">（W）HTTP（入门）</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）Session/">（W）Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）Web-Storage/">（W）Web Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）ajax/">（W）ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）jsonp/">（W）jsonp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）登录注册、cookie/">（W）登录注册、cookie</a></li></ul>
     </div>
   </div>
 
@@ -184,7 +217,7 @@ F1.constructor === Function         //true
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/（C）css布局/" style="font-size: 10px;">（C）css布局</a> <a href="/tags/（C）flex布局/" style="font-size: 10px;">（C）flex布局</a> <a href="/tags/（C）垂直居中/" style="font-size: 10px;">（C）垂直居中</a> <a href="/tags/（G）git入门/" style="font-size: 10px;">（G）git入门</a> <a href="/tags/（H）canvas的使用/" style="font-size: 10px;">（H）canvas的使用</a> <a href="/tags/（H）html-常用标签/" style="font-size: 10px;">（H）html-常用标签</a> <a href="/tags/（H）html5-标签/" style="font-size: 10px;">（H）html5-标签</a> <a href="/tags/（JH）JS-this指向/" style="font-size: 10px;">（JH）JS-this指向</a> <a href="/tags/（JH）JS普通函数及调用/" style="font-size: 10px;">（JH）JS普通函数及调用</a> <a href="/tags/（JH）JS构造函数、new做了什么/" style="font-size: 10px;">（JH）JS构造函数、new做了什么</a> <a href="/tags/（J）JS-数据类型/" style="font-size: 10px;">（J）JS-数据类型</a> <a href="/tags/（J）JS-数据结构/" style="font-size: 10px;">（J）JS-数据结构</a> <a href="/tags/（J）Promise/" style="font-size: 10px;">（J）Promise</a> <a href="/tags/（J）原型与原型链/" style="font-size: 10px;">（J）原型与原型链</a> <a href="/tags/（J）自己实现-jQuery-API/" style="font-size: 10px;">（J）自己实现-jQuery API</a> <a href="/tags/（M）命令行基本命令/" style="font-size: 10px;">（M）命令行基本命令</a> <a href="/tags/（S）快速排序-js/" style="font-size: 10px;">（S）快速排序-js</a> <a href="/tags/（S）排序算法-js/" style="font-size: 10px;">（S）排序算法-js</a> <a href="/tags/（W）HTTP（入门）/" style="font-size: 10px;">（W）HTTP（入门）</a> <a href="/tags/（W）Session/" style="font-size: 10px;">（W）Session</a> <a href="/tags/（W）Web-Storage/" style="font-size: 10px;">（W）Web Storage</a> <a href="/tags/（W）ajax/" style="font-size: 10px;">（W）ajax</a> <a href="/tags/（W）jsonp/" style="font-size: 10px;">（W）jsonp</a> <a href="/tags/（W）登录注册、cookie/" style="font-size: 10px;">（W）登录注册、cookie</a>
+      <a href="/tags/（C）css布局/" style="font-size: 10px;">（C）css布局</a> <a href="/tags/（C）flex布局/" style="font-size: 10px;">（C）flex布局</a> <a href="/tags/（C）垂直居中/" style="font-size: 10px;">（C）垂直居中</a> <a href="/tags/（G）git入门/" style="font-size: 10px;">（G）git入门</a> <a href="/tags/（H）canvas的使用/" style="font-size: 10px;">（H）canvas的使用</a> <a href="/tags/（H）html-常用标签/" style="font-size: 10px;">（H）html-常用标签</a> <a href="/tags/（H）html5-标签/" style="font-size: 10px;">（H）html5-标签</a> <a href="/tags/（JH）JS-this指向/" style="font-size: 10px;">（JH）JS-this指向</a> <a href="/tags/（JH）JS-普通函数及调用/" style="font-size: 10px;">（JH）JS-普通函数及调用</a> <a href="/tags/（JH）JS-构造函数、new做了什么/" style="font-size: 10px;">（JH）JS-构造函数、new做了什么</a> <a href="/tags/（J）JS-数据类型/" style="font-size: 10px;">（J）JS-数据类型</a> <a href="/tags/（J）JS-数据结构/" style="font-size: 10px;">（J）JS-数据结构</a> <a href="/tags/（J）Promise/" style="font-size: 10px;">（J）Promise</a> <a href="/tags/（J）原型与原型链/" style="font-size: 10px;">（J）原型与原型链</a> <a href="/tags/（J）继承/" style="font-size: 10px;">（J）继承</a> <a href="/tags/（J）自己实现-jQuery-API/" style="font-size: 10px;">（J）自己实现-jQuery API</a> <a href="/tags/（M）命令行基本命令/" style="font-size: 10px;">（M）命令行基本命令</a> <a href="/tags/（S）快速排序-js/" style="font-size: 10px;">（S）快速排序-js</a> <a href="/tags/（S）排序算法-js/" style="font-size: 10px;">（S）排序算法-js</a> <a href="/tags/（W）HTTP（入门）/" style="font-size: 10px;">（W）HTTP（入门）</a> <a href="/tags/（W）Session/" style="font-size: 10px;">（W）Session</a> <a href="/tags/（W）Web-Storage/" style="font-size: 10px;">（W）Web Storage</a> <a href="/tags/（W）ajax/" style="font-size: 10px;">（W）ajax</a> <a href="/tags/（W）jsonp/" style="font-size: 10px;">（W）jsonp</a> <a href="/tags/（W）登录注册、cookie/" style="font-size: 10px;">（W）登录注册、cookie</a>
     </div>
   </div>
 
@@ -193,7 +226,7 @@ F1.constructor === Function         //true
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
     </div>
   </div>
 
@@ -204,6 +237,10 @@ F1.constructor === Function         //true
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/10/05/JS实现继承的几种方法/">JS实现继承的几种方法</a>
+          </li>
         
           <li>
             <a href="/2018/09/28/JS构造函数（含new做了什么）/">JS构造函数（含new做了什么）</a>
@@ -219,10 +256,6 @@ F1.constructor === Function         //true
         
           <li>
             <a href="/2018/09/24/总结垂直居中/">垂直居中总结</a>
-          </li>
-        
-          <li>
-            <a href="/2018/09/23/正确快速排序学习/">快速排序（正确版）</a>
           </li>
         
       </ul>

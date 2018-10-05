@@ -62,6 +62,108 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS实现继承的几种方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/05/JS实现继承的几种方法/" class="article-date">
+  <time datetime="2018-10-05T12:45:37.000Z" itemprop="datePublished">2018-10-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/05/JS实现继承的几种方法/">JS实现继承的几种方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>类式继承（单纯的原型链继承）</li>
+<li>构造继承</li>
+<li>组合继承 （1，2组合）</li>
+<li>寄生组合继承（3的优化）</li>
+<li>extends</li>
+</ol>
+<h3 id="类式继承"><a href="#类式继承" class="headerlink" title="类式继承"></a>类式继承</h3><p>形如：</p>
+<pre><code>function A(){this.a = ...}
+A.prototype.aa = ...
+function B(){}
+B.prototype = new A()    //标记代码
+//效果是 B.prototype.__proto__ = A.prototype
+</code></pre><p>如此，子类B就拥有了父类A的原型（方法、属性）。</p>
+<p>但是它的缺点之二是：</p>
+<ol>
+<li>来自原型的所有属性要被所有实例共享</li>
+<li>无法在新建子类实例时，向父类构造函数传参，（只能在标记代码处传），那由B衍生的后代，这些属性值就是统一的。</li>
+</ol>
+<h3 id="构造函数继承"><a href="#构造函数继承" class="headerlink" title="构造函数继承"></a>构造函数继承</h3><p>形如：</p>
+<pre><code>function A(){this.a = ...}
+A.prototype.aa = ...
+function B(){
+    A.call(this,...)    //改变作用域，使得A属性方法都赋给B（this）
+}
+//B无法获得A原型（上的aa），只能获得A上的属性方法（a）
+</code></pre><h3 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h3><p>很显然，上面两种各有所长，互相弥补，结合他们就得到了更好地方法–组合继承。</p>
+<pre><code>function A(){this.a = ...}
+A.prototype.aa = ...
+function B(){
+    A.call(this,...)    //构造函数
+}
+B.prototype = new A()        //类式（原型链）
+
+//缺点是调用了两次A()
+
+B.prototype.constructor = B    //本来的constructor被覆盖，重写一下
+</code></pre><h3 id="寄生组合继承"><a href="#寄生组合继承" class="headerlink" title="寄生组合继承"></a>寄生组合继承</h3><p>弥补组合继承的劣势，将类式继承改一下，如：</p>
+<pre><code>//写法一
+let C = function(){}
+C.prototype = A.prototype
+B.prototype = new C()
+
+//C()什么也不干，要优秀一点
+
+//写法二
+B.prototype = Object.create(A.prototype)    
+//b = Object.create(a)的作用就是使 b.__proto__ = a
+</code></pre><h3 id="extends继承"><a href="#extends继承" class="headerlink" title="extends继承"></a>extends继承</h3><p>ES6的class实现继承，形如：</p>
+<pre><code>class A{
+    constructor(a){
+        this.a = a
+    }
+}
+A.prototype.aa = ...
+
+class B extends A{
+    constructor(a){
+        super(a)    //子类没有this，为了继承父类的this对象
+        this.a = a
+    }
+}
+
+//B自动地继承A的原型
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/10/05/JS实现继承的几种方法/" data-id="cjmw1mfxy000aes7lrmlg9exs" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（J）继承/">（J）继承</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-JS构造函数（含new做了什么）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/09/28/JS构造函数（含new做了什么）/" class="article-date">
@@ -134,14 +236,38 @@ f1.constructor === F1             //true
 //另外
 F1.constructor === F1             //false
 F1.constructor === Function         //true
-</code></pre>
+</code></pre><h2 id="return返回情况"><a href="#return返回情况" class="headerlink" title="return返回情况"></a>return返回情况</h2><p>因为new会帮我们return 临时对象，我们就不需要自己再return，但是如果硬要return，就有如下两种情况：</p>
+<ol>
+<li><p><code>return 非 Object（String/Number/Boolean/Null/Undefined）</code>，仍返回新生成的（this指向的）对象；</p>
+<pre><code>function F(){
+    this.b = 2
+    return null    //或者return 1/undefined/&quot;abc&quot;
+}
+let f6 = new F()
+
+console.log(f6)   //{b:2}
+</code></pre></li>
+<li><p><code>return Object</code>，那就返回这个Object。</p>
+<pre><code>//return 对象
+    function F(){
+        this.b = 2
+        let o2 = {name:&apos;xiao&apos;}    //xiao不加引号错误！
+        return o2    
+    }
+    let f5 = new F()
+
+    console.log(f5)            //{name: &quot;xiao&quot;}
+    console.log(f5.b)        //undefined
+</code></pre></li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/28/JS构造函数（含new做了什么）/" data-id="cjmlw4g5t000fb87lhr89y7e0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/28/JS构造函数（含new做了什么）/" data-id="cjmw1mfyz000pes7lguowi6ps" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（JH）JS构造函数、new做了什么/">（JH）JS构造函数、new做了什么</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（JH）JS-构造函数、new做了什么/">（JH）JS-构造函数、new做了什么</a></li></ul>
 
     </footer>
   </div>
@@ -266,10 +392,10 @@ mm.call(1,3,3,3)    //6，新传的参数不起作用
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/28/JS普通函数及调用/" data-id="cjmlw4g7e001xb87lo6nzjz59" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/28/JS普通函数及调用/" data-id="cjmw1mfyj000fes7ltmv5wk6n" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（JH）JS普通函数及调用/">（JH）JS普通函数及调用</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（JH）JS-普通函数及调用/">（JH）JS-普通函数及调用</a></li></ul>
 
     </footer>
   </div>
@@ -354,7 +480,8 @@ let f4 = o1.f3
 f4()      //window对象   this指向window
 //即
 f4.call()
-</code></pre><h2 id="四、构造函数-指向构造出的实例"><a href="#四、构造函数-指向构造出的实例" class="headerlink" title="四、构造函数: 指向构造出的实例"></a>四、构造函数: 指向构造出的实例</h2><p>一、正常情况：指向构造出的实例，这是因为new源码中就是把this指向新生成的实例。</p>
+</code></pre><h2 id="四、构造函数"><a href="#四、构造函数" class="headerlink" title="四、构造函数"></a>四、构造函数</h2><p>首先要知道：构造函数生成一个临时对象AAA，把this指向AAA。</p>
+<p>一、正常情况下，构造函数会return临时对象AAA，那么构造实例就是AAA，this也就<strong>指向构造出的实例</strong>，</p>
 <pre><code>function F(){
     this.b = 2
 }
@@ -362,7 +489,7 @@ let f5 = new F()
 console.log(f5.b)    //2, 所以f5上是有属性 b 的，也就是构造时this指向f5
 </code></pre><p>二、非常情况（如果在构造函数有return）</p>
 <ol>
-<li><p>return 一个对象，那么构造实例就为这个对象，也就得不到正常结果，无所谓this指向了。</p>
+<li><p>return 一个对象 BBB，那么构造实例就为BBB，this仍指向构造函数生成的临时对象AAA，所以this<strong>并不指向构造实例</strong>。</p>
 <pre><code>//return 对象
 function F(){
     this.b = 2
@@ -374,7 +501,7 @@ let f5 = new F()
 console.log(f5)            //{name: &quot;xiao&quot;}
 console.log(f5.b)        //undefined
 </code></pre></li>
-<li><p>return 非对象，包括null，虽然 typeof(null) === ‘object’，那么新构造的实例还是正常的。</p>
+<li><p>return 非对象，包括null，虽然 typeof(null) === ‘object’，那么新构造的实例还是this指向的临时对象。</p>
 </li>
 </ol>
 <pre><code>function F(){
@@ -405,7 +532,7 @@ o3.f7.call(this)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/28/JS中的this指向/" data-id="cjmlw4g5g0009b87lff138cx5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/28/JS中的this指向/" data-id="cjmw1mfys000jes7lj6obydna" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（JH）JS-this指向/">（JH）JS-this指向</a></li></ul>
@@ -544,7 +671,7 @@ o3.f7.call(this)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/24/总结垂直居中/" data-id="cjmlw4g6f0010b87lwusz7kpu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/24/总结垂直居中/" data-id="cjmw1mg0e001xes7lv348kwwt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（C）垂直居中/">（C）垂直居中</a></li></ul>
@@ -644,7 +771,7 @@ console.log(arr2)  //[0, 1, 3, 4, 5, 5, 6, 8, 9, 32]
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/23/正确快速排序学习/" data-id="cjmlw4g6h0012b87lq6dk9bd2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/23/正确快速排序学习/" data-id="cjmw1mfze0014es7lrm66td1d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（S）快速排序-js/">（S）快速排序-js</a></li></ul>
@@ -799,7 +926,7 @@ console.log(arr2)  //[0, 1, 3, 4, 5, 5, 6, 8, 9, 32]
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/21/flex布局总结/" data-id="cjmlw4g67000qb87lhaprq6gd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/21/flex布局总结/" data-id="cjmw1mfzg0016es7l1j8xzh1p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（C）flex布局/">（C）flex布局</a></li></ul>
@@ -981,7 +1108,7 @@ Promise.race([promise5(), promise2, promise3])
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/07/Promise学习/" data-id="cjmlw4g5z000jb87lqqi1nhxc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/07/Promise学习/" data-id="cjmw1mfyx000nes7llcrzniie" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（J）Promise/">（J）Promise</a></li></ul>
@@ -1225,7 +1352,7 @@ var img = new Image();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/01/canvas的使用/" data-id="cjmlw4g61000lb87l1h1cezdt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/01/canvas的使用/" data-id="cjmw1mfz2000ses7l7xuaoonw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（H）canvas的使用/">（H）canvas的使用</a></li></ul>
@@ -1358,71 +1485,10 @@ sessionStorage.clear();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/30/LocalStorage与SessionStorage/" data-id="cjmlw4g5x000hb87lrdja06ie" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/30/LocalStorage与SessionStorage/" data-id="cjmw1mfyv000les7l2f2uvml7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（W）Web-Storage/">（W）Web Storage</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Session学习" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/08/28/Session学习/" class="article-date">
-  <time datetime="2018-08-28T03:25:38.000Z" itemprop="datePublished">2018-08-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/28/Session学习/">Session学习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>上次学习了<a href="https://lxiaox.github.io/2018/08/26/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E4%B8%8Ecookie/" target="_blank" rel="noopener">登录注册与Cookie</a>，Cookie用于保存用户登录信息。</p>
-<p>Cookie过程如下：</p>
-<ol>
-<li>服务器服务器通过 Set-Cookie 头给客户端一串字符串</li>
-<li>客户端每次访问相同域名的网页时都带上这段字符串，也就是Cookie</li>
-<li>服务器通过Cookie读取用户id等，填充并返回相应页面</li>
-<li>客户端在一段时间内保存Cookie，Cookie默认网页关闭后失效，但后台可以设置过期时间。</li>
-</ol>
-<p>但是Cookie存在一个问题，那就是用户是可以篡改Cookie信息的。<code>打开控制台-&gt;Application-&gt;Cookies</code>，我们就可以看到Cookie，改变它的值，如果我们把id改为别的id，那就可以直接登录别人的账户，这是非常不合理的。</p>
-<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-11/59114318.jpg" alt="控制台Cookies"></p>
-<p>所以我们用到另外一种技术：</p>
-<h3 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h3><p>如果把Cookie理解为公园的一张门票，上面记录了你的姓名，性别等信息，那么Session就像是一张保密的门票，它只记录你的‘入场号’，而你的信息则存在与公园内部的记录册中，所以当你把门票出示给工作人员时，他仍可以根据入场号搜索到你的姓名，并说欢迎您，xxx。</p>
-<p>Session的工作原理正是如此：</p>
-<ol>
-<li>当用户登录后，服务器就会给用户生成相应的随机数，SessionID</li>
-<li>将SessionID<strong>通过Cookie</strong>返回给客户端</li>
-<li>客户端再次访问这个服务器的时候，带上这段Cookie</li>
-<li>事实上服务器上有hash表存储了所有的Session，当服务器读取到了SesssionID，就可以找到对应的Session</li>
-<li>最终得到用户的隐私信息，如id，邮箱。</li>
-</ol>
-<h4 id="Cookie、Session存储位置"><a href="#Cookie、Session存储位置" class="headerlink" title="Cookie、Session存储位置"></a>Cookie、Session存储位置</h4><p>Cookie是保存在客户端的，每次都随着请求发送给服务器。</p>
-<p>而Session是存储在服务器端的，每次通过Cookie将SessionID发送到服务器。</p>
-<p>Seesion缺点：所有用户的Sessioon都存储在服务器，这是很占内存的。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/28/Session学习/" data-id="cjmlw4g62000mb87lql1ybf5k" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（W）Session/">（W）Session</a></li></ul>
 
     </footer>
   </div>
@@ -1449,7 +1515,7 @@ sessionStorage.clear();
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）css布局/">（C）css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）flex布局/">（C）flex布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）垂直居中/">（C）垂直居中</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（G）git入门/">（G）git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）canvas的使用/">（H）canvas的使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）html-常用标签/">（H）html-常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）html5-标签/">（H）html5-标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS-this指向/">（JH）JS-this指向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS普通函数及调用/">（JH）JS普通函数及调用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS构造函数、new做了什么/">（JH）JS构造函数、new做了什么</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）JS-数据类型/">（J）JS-数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）JS-数据结构/">（J）JS-数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）Promise/">（J）Promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）原型与原型链/">（J）原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）自己实现-jQuery-API/">（J）自己实现-jQuery API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（M）命令行基本命令/">（M）命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（S）快速排序-js/">（S）快速排序-js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（S）排序算法-js/">（S）排序算法-js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）HTTP（入门）/">（W）HTTP（入门）</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）Session/">（W）Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）Web-Storage/">（W）Web Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）ajax/">（W）ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）jsonp/">（W）jsonp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）登录注册、cookie/">（W）登录注册、cookie</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）css布局/">（C）css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）flex布局/">（C）flex布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）垂直居中/">（C）垂直居中</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（G）git入门/">（G）git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）canvas的使用/">（H）canvas的使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）html-常用标签/">（H）html-常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）html5-标签/">（H）html5-标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS-this指向/">（JH）JS-this指向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS-普通函数及调用/">（JH）JS-普通函数及调用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS-构造函数、new做了什么/">（JH）JS-构造函数、new做了什么</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）JS-数据类型/">（J）JS-数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）JS-数据结构/">（J）JS-数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）Promise/">（J）Promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）原型与原型链/">（J）原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）继承/">（J）继承</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）自己实现-jQuery-API/">（J）自己实现-jQuery API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（M）命令行基本命令/">（M）命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（S）快速排序-js/">（S）快速排序-js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（S）排序算法-js/">（S）排序算法-js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）HTTP（入门）/">（W）HTTP（入门）</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）Session/">（W）Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）Web-Storage/">（W）Web Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）ajax/">（W）ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）jsonp/">（W）jsonp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）登录注册、cookie/">（W）登录注册、cookie</a></li></ul>
     </div>
   </div>
 
@@ -1459,7 +1525,7 @@ sessionStorage.clear();
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/（C）css布局/" style="font-size: 10px;">（C）css布局</a> <a href="/tags/（C）flex布局/" style="font-size: 10px;">（C）flex布局</a> <a href="/tags/（C）垂直居中/" style="font-size: 10px;">（C）垂直居中</a> <a href="/tags/（G）git入门/" style="font-size: 10px;">（G）git入门</a> <a href="/tags/（H）canvas的使用/" style="font-size: 10px;">（H）canvas的使用</a> <a href="/tags/（H）html-常用标签/" style="font-size: 10px;">（H）html-常用标签</a> <a href="/tags/（H）html5-标签/" style="font-size: 10px;">（H）html5-标签</a> <a href="/tags/（JH）JS-this指向/" style="font-size: 10px;">（JH）JS-this指向</a> <a href="/tags/（JH）JS普通函数及调用/" style="font-size: 10px;">（JH）JS普通函数及调用</a> <a href="/tags/（JH）JS构造函数、new做了什么/" style="font-size: 10px;">（JH）JS构造函数、new做了什么</a> <a href="/tags/（J）JS-数据类型/" style="font-size: 10px;">（J）JS-数据类型</a> <a href="/tags/（J）JS-数据结构/" style="font-size: 10px;">（J）JS-数据结构</a> <a href="/tags/（J）Promise/" style="font-size: 10px;">（J）Promise</a> <a href="/tags/（J）原型与原型链/" style="font-size: 10px;">（J）原型与原型链</a> <a href="/tags/（J）自己实现-jQuery-API/" style="font-size: 10px;">（J）自己实现-jQuery API</a> <a href="/tags/（M）命令行基本命令/" style="font-size: 10px;">（M）命令行基本命令</a> <a href="/tags/（S）快速排序-js/" style="font-size: 10px;">（S）快速排序-js</a> <a href="/tags/（S）排序算法-js/" style="font-size: 10px;">（S）排序算法-js</a> <a href="/tags/（W）HTTP（入门）/" style="font-size: 10px;">（W）HTTP（入门）</a> <a href="/tags/（W）Session/" style="font-size: 10px;">（W）Session</a> <a href="/tags/（W）Web-Storage/" style="font-size: 10px;">（W）Web Storage</a> <a href="/tags/（W）ajax/" style="font-size: 10px;">（W）ajax</a> <a href="/tags/（W）jsonp/" style="font-size: 10px;">（W）jsonp</a> <a href="/tags/（W）登录注册、cookie/" style="font-size: 10px;">（W）登录注册、cookie</a>
+      <a href="/tags/（C）css布局/" style="font-size: 10px;">（C）css布局</a> <a href="/tags/（C）flex布局/" style="font-size: 10px;">（C）flex布局</a> <a href="/tags/（C）垂直居中/" style="font-size: 10px;">（C）垂直居中</a> <a href="/tags/（G）git入门/" style="font-size: 10px;">（G）git入门</a> <a href="/tags/（H）canvas的使用/" style="font-size: 10px;">（H）canvas的使用</a> <a href="/tags/（H）html-常用标签/" style="font-size: 10px;">（H）html-常用标签</a> <a href="/tags/（H）html5-标签/" style="font-size: 10px;">（H）html5-标签</a> <a href="/tags/（JH）JS-this指向/" style="font-size: 10px;">（JH）JS-this指向</a> <a href="/tags/（JH）JS-普通函数及调用/" style="font-size: 10px;">（JH）JS-普通函数及调用</a> <a href="/tags/（JH）JS-构造函数、new做了什么/" style="font-size: 10px;">（JH）JS-构造函数、new做了什么</a> <a href="/tags/（J）JS-数据类型/" style="font-size: 10px;">（J）JS-数据类型</a> <a href="/tags/（J）JS-数据结构/" style="font-size: 10px;">（J）JS-数据结构</a> <a href="/tags/（J）Promise/" style="font-size: 10px;">（J）Promise</a> <a href="/tags/（J）原型与原型链/" style="font-size: 10px;">（J）原型与原型链</a> <a href="/tags/（J）继承/" style="font-size: 10px;">（J）继承</a> <a href="/tags/（J）自己实现-jQuery-API/" style="font-size: 10px;">（J）自己实现-jQuery API</a> <a href="/tags/（M）命令行基本命令/" style="font-size: 10px;">（M）命令行基本命令</a> <a href="/tags/（S）快速排序-js/" style="font-size: 10px;">（S）快速排序-js</a> <a href="/tags/（S）排序算法-js/" style="font-size: 10px;">（S）排序算法-js</a> <a href="/tags/（W）HTTP（入门）/" style="font-size: 10px;">（W）HTTP（入门）</a> <a href="/tags/（W）Session/" style="font-size: 10px;">（W）Session</a> <a href="/tags/（W）Web-Storage/" style="font-size: 10px;">（W）Web Storage</a> <a href="/tags/（W）ajax/" style="font-size: 10px;">（W）ajax</a> <a href="/tags/（W）jsonp/" style="font-size: 10px;">（W）jsonp</a> <a href="/tags/（W）登录注册、cookie/" style="font-size: 10px;">（W）登录注册、cookie</a>
     </div>
   </div>
 
@@ -1468,7 +1534,7 @@ sessionStorage.clear();
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
     </div>
   </div>
 
@@ -1479,6 +1545,10 @@ sessionStorage.clear();
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/10/05/JS实现继承的几种方法/">JS实现继承的几种方法</a>
+          </li>
         
           <li>
             <a href="/2018/09/28/JS构造函数（含new做了什么）/">JS构造函数（含new做了什么）</a>
@@ -1494,10 +1564,6 @@ sessionStorage.clear();
         
           <li>
             <a href="/2018/09/24/总结垂直居中/">垂直居中总结</a>
-          </li>
-        
-          <li>
-            <a href="/2018/09/23/正确快速排序学习/">快速排序（正确版）</a>
           </li>
         
       </ul>

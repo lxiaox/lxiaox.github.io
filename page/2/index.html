@@ -62,6 +62,67 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Session学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/28/Session学习/" class="article-date">
+  <time datetime="2018-08-28T03:25:38.000Z" itemprop="datePublished">2018-08-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/28/Session学习/">Session学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上次学习了<a href="https://lxiaox.github.io/2018/08/26/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E4%B8%8Ecookie/" target="_blank" rel="noopener">登录注册与Cookie</a>，Cookie用于保存用户登录信息。</p>
+<p>Cookie过程如下：</p>
+<ol>
+<li>服务器服务器通过 Set-Cookie 头给客户端一串字符串</li>
+<li>客户端每次访问相同域名的网页时都带上这段字符串，也就是Cookie</li>
+<li>服务器通过Cookie读取用户id等，填充并返回相应页面</li>
+<li>客户端在一段时间内保存Cookie，Cookie默认网页关闭后失效，但后台可以设置过期时间。</li>
+</ol>
+<p>但是Cookie存在一个问题，那就是用户是可以篡改Cookie信息的。<code>打开控制台-&gt;Application-&gt;Cookies</code>，我们就可以看到Cookie，改变它的值，如果我们把id改为别的id，那就可以直接登录别人的账户，这是非常不合理的。</p>
+<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-11/59114318.jpg" alt="控制台Cookies"></p>
+<p>所以我们用到另外一种技术：</p>
+<h3 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h3><p>如果把Cookie理解为公园的一张门票，上面记录了你的姓名，性别等信息，那么Session就像是一张保密的门票，它只记录你的‘入场号’，而你的信息则存在与公园内部的记录册中，所以当你把门票出示给工作人员时，他仍可以根据入场号搜索到你的姓名，并说欢迎您，xxx。</p>
+<p>Session的工作原理正是如此：</p>
+<ol>
+<li>当用户登录后，服务器就会给用户生成相应的随机数，SessionID</li>
+<li>将SessionID<strong>通过Cookie</strong>返回给客户端</li>
+<li>客户端再次访问这个服务器的时候，带上这段Cookie</li>
+<li>事实上服务器上有hash表存储了所有的Session，当服务器读取到了SesssionID，就可以找到对应的Session</li>
+<li>最终得到用户的隐私信息，如id，邮箱。</li>
+</ol>
+<h4 id="Cookie、Session存储位置"><a href="#Cookie、Session存储位置" class="headerlink" title="Cookie、Session存储位置"></a>Cookie、Session存储位置</h4><p>Cookie是保存在客户端的，每次都随着请求发送给服务器。</p>
+<p>而Session是存储在服务器端的，每次通过Cookie将SessionID发送到服务器。</p>
+<p>Seesion缺点：所有用户的Sessioon都存储在服务器，这是很占内存的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/28/Session学习/" data-id="cjmw1mfz1000res7logcseak0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（W）Session/">（W）Session</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-登录注册与cookie" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/08/26/登录注册与cookie/" class="article-date">
@@ -109,7 +170,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/26/登录注册与cookie/" data-id="cjmlw4g6i0013b87luk9lpl25" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/26/登录注册与cookie/" data-id="cjmw1mg0h001yes7lc82x7l22" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（W）登录注册、cookie/">（W）登录注册、cookie</a></li></ul>
@@ -236,7 +297,7 @@ var array = {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/25/JS数据结构/" data-id="cjmlw4g5p000db87lqupubnxr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/25/JS数据结构/" data-id="cjmw1mfyg000ees7l2b5a8cbg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（J）JS-数据结构/">（J）JS-数据结构</a></li></ul>
@@ -357,7 +418,7 @@ console.log(num)    // [1, 2, 5, 8, 9, 10, 32]
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/23/JS排序算法/" data-id="cjmlw4g5j000bb87lrvpf5i2e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/23/JS排序算法/" data-id="cjmw1mfyo000hes7lx39txpws" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（S）排序算法-js/">（S）排序算法-js</a></li></ul>
@@ -536,7 +597,7 @@ jQuery.ajax({
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/23/AJAX/" data-id="cjmlw4g4s0000b87l439t3apy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/23/AJAX/" data-id="cjmw1mfqe0000es7lhsb21ce4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（W）ajax/">（W）ajax</a></li></ul>
@@ -683,7 +744,7 @@ response.write(`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/17/JSONP/" data-id="cjmlw4g5c0005b87l7hh55yjs" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/17/JSONP/" data-id="cjmw1mfxw0009es7leef8wo7f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（W）jsonp/">（W）jsonp</a></li></ul>
@@ -802,7 +863,7 @@ $div.setText(&apos;hi&apos;)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/04/实现一个jQuery的API/" data-id="cjmlw4g6d000yb87lyq0z3e6q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/04/实现一个jQuery的API/" data-id="cjmw1mfzd0012es7ls8fm21g8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（J）自己实现-jQuery-API/">（J）自己实现-jQuery API</a></li></ul>
@@ -872,7 +933,7 @@ Number.prototype.__proto__ === Object.prototype        //true
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/13/原型与原型链/" data-id="cjmlw4g6a000ub87lneiw385b" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/13/原型与原型链/" data-id="cjmw1mfz6000wes7lb1sv7m1x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（J）原型与原型链/">（J）原型与原型链</a></li></ul>
@@ -951,7 +1012,7 @@ Number.prototype.__proto__ === Object.prototype        //true
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/09/JS中的数据类型/" data-id="cjmlw4g5e0008b87l491sr6k4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/09/JS中的数据类型/" data-id="cjmw1mfy2000bes7l07znefah" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（J）JS-数据类型/">（J）JS-数据类型</a></li></ul>
@@ -1068,78 +1129,10 @@ Number.prototype.__proto__ === Object.prototype        //true
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/27/css布局/" data-id="cjmlw4g65000pb87l4yzz8vqd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/27/css布局/" data-id="cjmw1mfzb0010es7llndeh6se" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（C）css布局/">（C）css布局</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-HTML常用标签" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/09/HTML常用标签/" class="article-date">
-  <time datetime="2018-05-09T02:57:35.000Z" itemprop="datePublished">2018-05-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/09/HTML常用标签/">HTML常用标签及简单介绍</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文介绍内容主要分为HTML结构、标题标签、段落标签、图形标签、一些常用标签、制表、表单、框架标签、超链接标签、字符控制、列表控制以及多媒体等。</p>
-<h2 id="HTML结构"><a href="#HTML结构" class="headerlink" title="HTML结构"></a>HTML结构</h2><table><br><tr><td><th>标签</th><th>描述<br></th></td></tr><tr><td></td><td>DOCTYPE</td><td>指定文件类型，如html5中:<br>&lt;!DOCTYPE html&gt;<br></td></tr><tr><td></td><td>html</td><td>文档的根元素<br></td></tr><tr><td></td><td>head</td><td>网页中顶级元素，一般包含浏览器环境设置部分<br></td></tr><tr><th rowspan="5" width="4">head嵌套</th><td>title</td><td>定义网页的标题<br></td></tr><tr><td>style</td><td>设置html元素的样式<br></td></tr><tr><td>script</td><td>定义网页使用哪种脚本语言<br></td></tr><tr><td>meta</td><td>定义网页元数据，如文档关键字、描述和作者信息<br></td></tr><tr><td>object</td><td>定义对象<br></td></tr><tr><td></td><td>body</td><td>包含显示在浏览器可视区的信息主体，及正文部分<br></td></tr></table>
-
-<h2 id="标题标签-lt-h1-gt-lt-h6-gt"><a href="#标题标签-lt-h1-gt-lt-h6-gt" class="headerlink" title="标题标签&lt;h1&gt;~&lt;h6&gt;"></a>标题标签&lt;h1&gt;~&lt;h6&gt;</h2><table><br><tr><th>标签</th><th>示例<br></th></tr><tr><td>h1</td><td><h1>一级标题</h1><br></td></tr><tr><td>h1</td><td><h2>二级标题</h2><br></td></tr><tr><td>h3</td><td><h3>三级标题</h3><br></td></tr><tr><td>h4</td><td><h4>四级标题</h4><br></td></tr><tr><td>h5</td><td><h5>五级标题</h5><br></td></tr><tr><td>h6</td><td><h6>六级标题</h6><br></td></tr><tr><th>标题align属性</th><th>中间对齐方式<br></th></tr><tr><td>left</td><td>左对齐<br></td></tr><tr><td>right</td><td>右对齐<br></td></tr><tr><td>center</td><td>中间对齐<br></td></tr><tr><td>justify</td><td>两边对齐<br></td></tr></table>
-
-<h2 id="段落标签-lt-p-gt"><a href="#段落标签-lt-p-gt" class="headerlink" title="段落标签&lt;p&gt;"></a>段落标签&lt;p&gt;</h2><table><br><tr><th>标签</th><th>描述<br></th></tr><tr><td>p</td><td>用于在网页中显示一个段落<br></td></tr><tr><td colspan="2">align属性对齐方式与&lt;h1&gt;方式一致<br></td></tr></table>
-
-<h2 id="图形标签-lt-img-gt"><a href="#图形标签-lt-img-gt" class="headerlink" title="图形标签&lt;img&gt;"></a>图形标签&lt;img&gt;</h2><p>img是一个空元素，不需要结束元素,一般格式如下：</p>
-<pre><code>&lt;img src=&quot;&quot; width=&quot;&quot; height=&quot;&quot; alt=&quot;&quot;&gt;
-</code></pre><ol>
-<li>src属性为img元素的必选属性，用于指定图形文件的路径，由URL确定，可以是本地资源，也可以是远程资源。</li>
-<li>width和height属性分别表示图形显示在浏览器中的宽度和高度，为可选属性。</li>
-<li>alt表示图片不能正常显示时的替换文字。</li>
-<li>align属性<table><br><tr><th>align属性值</th><th>对齐方式<br></th></tr><tr><td>left</td><td>把图像和左边界对齐<br></td></tr><tr><td>right</td><td>把图像和右边界对齐<br></td></tr><tr><td>center</td><td>把图像居中<br></td></tr><tr><td>middle</td><td>把图像中部和行的中部对齐<br></td></tr><tr><td>top</td><td>把图像和同行中的最高部分对齐<br></td></tr><tr><td>bottom</td><td>把图像的底部和和同行文本的底部对齐<br></td></tr><tr><td>texttop</td><td>把图像和同行中的最高文本的顶部对齐<br></td></tr><tr><td>absmiddle</td><td>把图像中部和同行中最大顶的中部对齐<br></td></tr><tr><td>absbottom</td><td>把图像的底部和同行中的最大顶对齐<br></td></tr><tr><td>baseline</td><td>把图像的底部和文本的基线对齐<br></td></tr><tr><td colspan="2"><strong>通过设置align属性可以达到图文环绕的效果</strong><br></td></tr></table></li>
-</ol>
-<h2 id="一些常用标签"><a href="#一些常用标签" class="headerlink" title="一些常用标签"></a>一些常用标签</h2><table><br><tr><th>标签</th><th>描述<br></th></tr><tr><td>&lt;!–注释–&gt;</td><td>注释多行内容。<br>快捷方式：选中想注释掉的文本内容，按键盘Ctrl+/。<br></td></tr><tr><td>hr</td><td>在网页中画一条横线<br></td></tr><tr><td>br</td><td>另起一行<br></td></tr><tr><td>center</td><td>使内容居中显示<br></td></tr><tr><td>div</td><td>定义一个块级容器，用来规划网页<br></td></tr><tr><td>span</td><td>定义一个行内容器<br></td></tr></table>
-
-<h2 id="制表标签"><a href="#制表标签" class="headerlink" title="制表标签"></a>制表标签</h2><table><br><tr><th>标签</th><th>描述<br></th></tr><tr><td>table</td><td>建立表格的主要元素。含border，bgcolor，bordercolor等属性。<br></td></tr><tr><td rowspan="2">caption</td><td>用于把一行文本置于表格上方或下方<br></td></tr><tr><td>&lt;caption align=”top/bottom”&gt;表格标题&lt;/caption&gt;<br></td></tr><tr><td>thead</td><td rowspan="3">分别定义表格的表头，表体和底部，书写顺序不影响其先后顺序。<br></td></tr><tr><td>tbody<br></td></tr><tr><td>tfoot<br></td></tr><tr><td>tr</td><td>定义表格中的一行。属性有align、bgcolor、border、bordercolor、nowrap（禁止浏览器对单元格中的内容产生换行）、valign（设置单元格内容在垂直方向的对齐方式：top、middle、bottom）<br></td></tr><tr><td>th</td><td>与td用法一致，但内容以粗体显示，可用来设计表格的表头。<br></td></tr><tr><td>td</td><td>定义一行中的一列，又叫单元格。具有colspan和rowspan属性，即一个单元格所占的列数和行数，可设置单元格合并;可设置宽高width、height，align等。<br></td></tr><tr><td rowspan="2">colgrop</td><td>设置某一列的width和bgcolor<br></td></tr><tr><td>&lt;colgrop&gt;&lt;col width=”” bgcolor=””&gt;&lt;colgrop&gt;<br></td></tr></table>
-
-<h2 id="表单元素"><a href="#表单元素" class="headerlink" title="表单元素"></a>表单元素</h2><table><br><tr><td><th>标签</th><th>描述<br></th></td></tr><tr><td></td><td>form</td><td>建立表单的主要元素。含method属性（与服务器交换信息时使用的方式），一般选择post或<s>get</s><br></td></tr><tr><td></td><td>input</td><td>定义一个用于用户输入的表单控件。由type属性规定其类型；由name属性定义控件名称，按照name/value发送给服务器，没有写那么属性的控件不会发送。<br></td></tr><tr><td rowspan="10">input元素的type属性值</td><td>text</td><td>文本框<br></td></tr><tr><td>password</td><td>密码或口令<br></td></tr><tr><td>radio</td><td>单选按钮<br></td></tr><tr><td>checkbox</td><td>复选框，可选，可多选，可不选<br></td></tr><tr><td>file</td><td>文件按钮<br></td></tr><tr><td>hiddle</td><td>隐藏按钮<br></td></tr><tr><td>image</td><td>图像控件<br></td></tr><tr><td>button</td><td>命令按钮<br></td></tr><tr><td>submit</td><td>提交按钮，发送表单<br></td></tr><tr><td>reset</td><td>重置按钮，将表单填写清零<br></td></tr><tr><td rowspan="2"></td><td rowspan="2">select</td><td>下拉列表选择控件。通常包含若干个option元素。<br></td></tr><tr><td>默认multiple一次只能选择一项；设置multiple size=#，一次可选择#项（按住Ctrl或Shift键单击）<br></td></tr><tr><td></td><td>option</td><td>定义select元素的列表选项。属性：selected默认选中该项，disabled不能选择该项。<br></td></tr><tr><td></td><td>textarea</td><td>支持多行输入。属性：cols文本框宽度；rows文本框高度；或者使用width、height（准确）<br></td></tr></table>
-
-<h2 id="框架标签"><a href="#框架标签" class="headerlink" title="框架标签"></a>框架标签</h2><table><br><tr><th>标签</th><th>描述<br></th></tr><tr><td rowspan="3">frameset</td><td>定义框架结构，放在body元素外。HTML5不支持。<br></td></tr><tr><td>用法：<br>&lt;frameset rows=”#,…,#”&gt;<br>&lt;frameset&gt;<br><br>&lt;frameset cols=”#,…,#”&gt;<br>&lt;frameset&gt;<br><br>＃的个数是将窗口所分区域数，#可以是整数，也可以是百分数。<br></td></tr><tr><td>frameborder属性值为‘0’隐藏边框，‘1’显示边框<br></td></tr><tr><td>frame</td><td>定义一个区域中的内容，HTML5不支持。<br></td></tr><tr><td>noframes</td><td>包含框架不能显示时的替换内容，HTML5不支持。<br></td></tr><tr><td>iframe</td><td>用法：&lt;iframe src=”” name=”name”&gt;<br></td></tr></table>
-
-<h2 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h2><table><br><tr><th>标签</th><th>描述<br></th></tr><tr><td>a</td><td>用法：&lt;a href=”” target=””&gt;链接对象&lt;a&gt;<br></td></tr><tr><td rowspan="5">href属性值</td><td>href属性用于指定超链接的链接对象，可以为相对地址或绝对地址。<br></td></tr><tr><td>http://或ftp://或gopher://等<br></td></tr><tr><td>mailto:…<br>提供一个E-mail地址，启动E-mail默认程序发送信件。<br></td></tr><tr><td>伪协议：javascript:;点击a时不做任何动作<br></td></tr><tr><td>锚点”#”；查询参数”？name=”。<br></td></tr><tr><td rowspan="5">target属性值</td><td>_blank<br>新打开一个浏览器窗口显示链接对象<br></td></tr><tr><td>_self<br>在原网页所在窗口打开<br></td></tr><tr><td>_top<br>在浏览器整个窗口（祖宗窗口）中显示<br></td></tr><tr><td>_parent<br>在父窗口中显示<br></td></tr><tr><td>框架name<br>在相应框架中显示<br></td></tr><tr><td>图片链接</td><td>&lt;a href=””&gt;&lt;img src=”” border=0&gt;&lt;a&gt;<br><br></td></tr></table>
-
-<h2 id="字符控制"><a href="#字符控制" class="headerlink" title="字符控制"></a>字符控制</h2><table><br><tr><th>标签</th><th>描述<br></th></tr><tr><td rowspan="2">font</td><td>控制文字的字体、字号、颜色<br></td></tr><tr><td>用法：&lt;font face=”” size=”” color=””&gt;&lt;font&gt;<br></td></tr><tr><th colspan="2">字体样式标签<br></th></tr><tr><td>small</td><td>用小一号字体显示文字<br></td></tr><tr><td>strong</td><td>加粗显示<br></td></tr><tr><td>b</td><td>加粗显示<br></td></tr><tr><td>big</td><td>加大一号字体加粗显示<br></td></tr><tr><td>i</td><td>斜体强调显示<br></td></tr><tr><td>em</td><td>斜体强调显示<br></td></tr><tr><td>s</td><td>加上删除线<br></td></tr><tr><td>u</td><td>加上下划线<br></td></tr></table>
-
-<h2 id="列表控制"><a href="#列表控制" class="headerlink" title="列表控制"></a>列表控制</h2><table><br><tr><th>标签</th><th>描述<br></th></tr><tr><td>dl</td><td>定义列表<br></td></tr><tr><td>dt</td><td>由dd元素定义的对象<br></td></tr><tr><td>dd</td><td>对dt元素的定义<br></td></tr><tr><td>menu</td><td>设定菜单或列表的开头<br></td></tr><tr><td>ul</td><td>无序列表<br></td></tr><tr><td>ol</td><td>有序列表<br></td></tr><tr><td>li</td><td>列表项目<br></td></tr><tr><th colspan="2">ul、ol元素的type属性<br></th></tr><tr><td>1</td><td>以整数作为项目标记符<br></td></tr><tr><td>a</td><td>以小写字母作为项目标记符<br></td></tr><tr><td>A</td><td>以大写字母作为项目标记符<br></td></tr><tr><td>i</td><td>以小写罗马数字作为项目标记符<br></td></tr><tr><td>I</td><td>以大写罗马数字作为项目标记符<br></td></tr><tr><td>circle</td><td>以空心圆作为项目标记符<br></td></tr><tr><td>disc</td><td>以实心圆作为项目标记符<br></td></tr><tr><td>square</td><td>以方块作为项目标记符<br></td></tr></table>
-
-<h2 id="多媒体"><a href="#多媒体" class="headerlink" title="多媒体"></a>多媒体</h2><table><br><tr><th>技术</th><th>实现方法<br></th></tr><tr><td>声音与视频</td><td>使用a标签<br></td></tr><tr><td>背景音乐</td><td>在head标签中写入：<br>&lt;bgsound src=”” loop=””&gt;<br>（loop为循环次数）(IE元素，非标准)<br></td></tr><tr><td>音频</td><td>使用audio、object、embed<br></td></tr><tr><td>动态文件</td><td>使用img元素的dynsrc（引入各种格式的多媒体）、loop、start（值为mouseover等）等IE属性。<br></td></tr><tr><td>动画和视频的插入</td><td>使用embed元素，用法：<br>&lt;embed src=”” width=”” height=””&gt;<br></td></tr><tr><td>文本滚动</td><td>使用&lt;marquee&gt;元素，内含width、height、bgcolor、border、behavior（=slide、sroll、alternate等）、direction、loop等属性。<br></td></tr></table>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/09/HTML常用标签/" data-id="cjmlw4g5a0004b87l0ryzzlub" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（H）html-常用标签/">（H）html-常用标签</a></li></ul>
 
     </footer>
   </div>
@@ -1166,7 +1159,7 @@ Number.prototype.__proto__ === Object.prototype        //true
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）css布局/">（C）css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）flex布局/">（C）flex布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）垂直居中/">（C）垂直居中</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（G）git入门/">（G）git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）canvas的使用/">（H）canvas的使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）html-常用标签/">（H）html-常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）html5-标签/">（H）html5-标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS-this指向/">（JH）JS-this指向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS普通函数及调用/">（JH）JS普通函数及调用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS构造函数、new做了什么/">（JH）JS构造函数、new做了什么</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）JS-数据类型/">（J）JS-数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）JS-数据结构/">（J）JS-数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）Promise/">（J）Promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）原型与原型链/">（J）原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）自己实现-jQuery-API/">（J）自己实现-jQuery API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（M）命令行基本命令/">（M）命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（S）快速排序-js/">（S）快速排序-js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（S）排序算法-js/">（S）排序算法-js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）HTTP（入门）/">（W）HTTP（入门）</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）Session/">（W）Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）Web-Storage/">（W）Web Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）ajax/">（W）ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）jsonp/">（W）jsonp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）登录注册、cookie/">（W）登录注册、cookie</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）css布局/">（C）css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）flex布局/">（C）flex布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）垂直居中/">（C）垂直居中</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（G）git入门/">（G）git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）canvas的使用/">（H）canvas的使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）html-常用标签/">（H）html-常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）html5-标签/">（H）html5-标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS-this指向/">（JH）JS-this指向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS-普通函数及调用/">（JH）JS-普通函数及调用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS-构造函数、new做了什么/">（JH）JS-构造函数、new做了什么</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）JS-数据类型/">（J）JS-数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）JS-数据结构/">（J）JS-数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）Promise/">（J）Promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）原型与原型链/">（J）原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）继承/">（J）继承</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）自己实现-jQuery-API/">（J）自己实现-jQuery API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（M）命令行基本命令/">（M）命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（S）快速排序-js/">（S）快速排序-js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（S）排序算法-js/">（S）排序算法-js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）HTTP（入门）/">（W）HTTP（入门）</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）Session/">（W）Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）Web-Storage/">（W）Web Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）ajax/">（W）ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）jsonp/">（W）jsonp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）登录注册、cookie/">（W）登录注册、cookie</a></li></ul>
     </div>
   </div>
 
@@ -1176,7 +1169,7 @@ Number.prototype.__proto__ === Object.prototype        //true
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/（C）css布局/" style="font-size: 10px;">（C）css布局</a> <a href="/tags/（C）flex布局/" style="font-size: 10px;">（C）flex布局</a> <a href="/tags/（C）垂直居中/" style="font-size: 10px;">（C）垂直居中</a> <a href="/tags/（G）git入门/" style="font-size: 10px;">（G）git入门</a> <a href="/tags/（H）canvas的使用/" style="font-size: 10px;">（H）canvas的使用</a> <a href="/tags/（H）html-常用标签/" style="font-size: 10px;">（H）html-常用标签</a> <a href="/tags/（H）html5-标签/" style="font-size: 10px;">（H）html5-标签</a> <a href="/tags/（JH）JS-this指向/" style="font-size: 10px;">（JH）JS-this指向</a> <a href="/tags/（JH）JS普通函数及调用/" style="font-size: 10px;">（JH）JS普通函数及调用</a> <a href="/tags/（JH）JS构造函数、new做了什么/" style="font-size: 10px;">（JH）JS构造函数、new做了什么</a> <a href="/tags/（J）JS-数据类型/" style="font-size: 10px;">（J）JS-数据类型</a> <a href="/tags/（J）JS-数据结构/" style="font-size: 10px;">（J）JS-数据结构</a> <a href="/tags/（J）Promise/" style="font-size: 10px;">（J）Promise</a> <a href="/tags/（J）原型与原型链/" style="font-size: 10px;">（J）原型与原型链</a> <a href="/tags/（J）自己实现-jQuery-API/" style="font-size: 10px;">（J）自己实现-jQuery API</a> <a href="/tags/（M）命令行基本命令/" style="font-size: 10px;">（M）命令行基本命令</a> <a href="/tags/（S）快速排序-js/" style="font-size: 10px;">（S）快速排序-js</a> <a href="/tags/（S）排序算法-js/" style="font-size: 10px;">（S）排序算法-js</a> <a href="/tags/（W）HTTP（入门）/" style="font-size: 10px;">（W）HTTP（入门）</a> <a href="/tags/（W）Session/" style="font-size: 10px;">（W）Session</a> <a href="/tags/（W）Web-Storage/" style="font-size: 10px;">（W）Web Storage</a> <a href="/tags/（W）ajax/" style="font-size: 10px;">（W）ajax</a> <a href="/tags/（W）jsonp/" style="font-size: 10px;">（W）jsonp</a> <a href="/tags/（W）登录注册、cookie/" style="font-size: 10px;">（W）登录注册、cookie</a>
+      <a href="/tags/（C）css布局/" style="font-size: 10px;">（C）css布局</a> <a href="/tags/（C）flex布局/" style="font-size: 10px;">（C）flex布局</a> <a href="/tags/（C）垂直居中/" style="font-size: 10px;">（C）垂直居中</a> <a href="/tags/（G）git入门/" style="font-size: 10px;">（G）git入门</a> <a href="/tags/（H）canvas的使用/" style="font-size: 10px;">（H）canvas的使用</a> <a href="/tags/（H）html-常用标签/" style="font-size: 10px;">（H）html-常用标签</a> <a href="/tags/（H）html5-标签/" style="font-size: 10px;">（H）html5-标签</a> <a href="/tags/（JH）JS-this指向/" style="font-size: 10px;">（JH）JS-this指向</a> <a href="/tags/（JH）JS-普通函数及调用/" style="font-size: 10px;">（JH）JS-普通函数及调用</a> <a href="/tags/（JH）JS-构造函数、new做了什么/" style="font-size: 10px;">（JH）JS-构造函数、new做了什么</a> <a href="/tags/（J）JS-数据类型/" style="font-size: 10px;">（J）JS-数据类型</a> <a href="/tags/（J）JS-数据结构/" style="font-size: 10px;">（J）JS-数据结构</a> <a href="/tags/（J）Promise/" style="font-size: 10px;">（J）Promise</a> <a href="/tags/（J）原型与原型链/" style="font-size: 10px;">（J）原型与原型链</a> <a href="/tags/（J）继承/" style="font-size: 10px;">（J）继承</a> <a href="/tags/（J）自己实现-jQuery-API/" style="font-size: 10px;">（J）自己实现-jQuery API</a> <a href="/tags/（M）命令行基本命令/" style="font-size: 10px;">（M）命令行基本命令</a> <a href="/tags/（S）快速排序-js/" style="font-size: 10px;">（S）快速排序-js</a> <a href="/tags/（S）排序算法-js/" style="font-size: 10px;">（S）排序算法-js</a> <a href="/tags/（W）HTTP（入门）/" style="font-size: 10px;">（W）HTTP（入门）</a> <a href="/tags/（W）Session/" style="font-size: 10px;">（W）Session</a> <a href="/tags/（W）Web-Storage/" style="font-size: 10px;">（W）Web Storage</a> <a href="/tags/（W）ajax/" style="font-size: 10px;">（W）ajax</a> <a href="/tags/（W）jsonp/" style="font-size: 10px;">（W）jsonp</a> <a href="/tags/（W）登录注册、cookie/" style="font-size: 10px;">（W）登录注册、cookie</a>
     </div>
   </div>
 
@@ -1185,7 +1178,7 @@ Number.prototype.__proto__ === Object.prototype        //true
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
     </div>
   </div>
 
@@ -1196,6 +1189,10 @@ Number.prototype.__proto__ === Object.prototype        //true
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/10/05/JS实现继承的几种方法/">JS实现继承的几种方法</a>
+          </li>
         
           <li>
             <a href="/2018/09/28/JS构造函数（含new做了什么）/">JS构造函数（含new做了什么）</a>
@@ -1211,10 +1208,6 @@ Number.prototype.__proto__ === Object.prototype        //true
         
           <li>
             <a href="/2018/09/24/总结垂直居中/">垂直居中总结</a>
-          </li>
-        
-          <li>
-            <a href="/2018/09/23/正确快速排序学习/">快速排序（正确版）</a>
           </li>
         
       </ul>
