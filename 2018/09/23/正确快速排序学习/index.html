@@ -5,20 +5,20 @@
   
 
   
-  <title>快速排序（正确版） | lxiaox</title>
+  <title>快速排序 | lxiaox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="快速排序（又名划分交换排序,简称快排） 基本思想：利用分治法的思想，将一个序列分为两个子序列，对子序列递归地排序。 时间复杂度：O(nlogn),最坏：O(n^2) 步骤： 任找一个元素作为基准值 将所有比基准值小的元素放在基准值前面；所有大于基准值的放在它右边；等于基准值的元素放前后都可。 递归得对子数组进行上述操作。 合并子数组    JS 代码：Array.prototype.quickso">
+  <meta name="description" content="快速排序（又名划分交换排序,简称快排） 基本思想：利用分治法的思想，将一个序列分为两个子序列，对子序列递归地排序。 时间复杂度：O(nlogn),最坏：O(n^2) 步骤： 任找一个元素作为基准值 将所有比基准值小的元素放在基准值前面；所有大于基准值的放在它右边；等于基准值的元素放前后都可。 递归得对子数组进行上述操作。 合并子数组    JS 代码(v2)：Array.prototype.qui">
 <meta name="keywords" content="（S）快速排序-js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="快速排序（正确版）">
+<meta property="og:title" content="快速排序">
 <meta property="og:url" content="http://yoursite.com/2018/09/23/正确快速排序学习/index.html">
 <meta property="og:site_name" content="lxiaox">
-<meta property="og:description" content="快速排序（又名划分交换排序,简称快排） 基本思想：利用分治法的思想，将一个序列分为两个子序列，对子序列递归地排序。 时间复杂度：O(nlogn),最坏：O(n^2) 步骤： 任找一个元素作为基准值 将所有比基准值小的元素放在基准值前面；所有大于基准值的放在它右边；等于基准值的元素放前后都可。 递归得对子数组进行上述操作。 合并子数组    JS 代码：Array.prototype.quickso">
+<meta property="og:description" content="快速排序（又名划分交换排序,简称快排） 基本思想：利用分治法的思想，将一个序列分为两个子序列，对子序列递归地排序。 时间复杂度：O(nlogn),最坏：O(n^2) 步骤： 任找一个元素作为基准值 将所有比基准值小的元素放在基准值前面；所有大于基准值的放在它右边；等于基准值的元素放前后都可。 递归得对子数组进行上述操作。 合并子数组    JS 代码(v2)：Array.prototype.qui">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-28T05:23:39.628Z">
+<meta property="og:updated_time" content="2018-10-21T02:34:43.848Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="快速排序（正确版）">
-<meta name="twitter:description" content="快速排序（又名划分交换排序,简称快排） 基本思想：利用分治法的思想，将一个序列分为两个子序列，对子序列递归地排序。 时间复杂度：O(nlogn),最坏：O(n^2) 步骤： 任找一个元素作为基准值 将所有比基准值小的元素放在基准值前面；所有大于基准值的放在它右边；等于基准值的元素放前后都可。 递归得对子数组进行上述操作。 合并子数组    JS 代码：Array.prototype.quickso">
+<meta name="twitter:title" content="快速排序">
+<meta name="twitter:description" content="快速排序（又名划分交换排序,简称快排） 基本思想：利用分治法的思想，将一个序列分为两个子序列，对子序列递归地排序。 时间复杂度：O(nlogn),最坏：O(n^2) 步骤： 任找一个元素作为基准值 将所有比基准值小的元素放在基准值前面；所有大于基准值的放在它右边；等于基准值的元素放前后都可。 递归得对子数组进行上述操作。 合并子数组    JS 代码(v2)：Array.prototype.qui">
   
     <link rel="alternate" href="/atom.xml" title="lxiaox" type="application/atom+xml">
   
@@ -79,7 +79,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      快速排序（正确版）
+      快速排序
     </h1>
   
 
@@ -98,43 +98,29 @@
 </ol>
 </li>
 </ul>
-<h2 id="JS-代码："><a href="#JS-代码：" class="headerlink" title="JS 代码："></a>JS 代码：</h2><pre><code>Array.prototype.quicksort = function(){
+<h2 id="JS-代码-v2-："><a href="#JS-代码-v2-：" class="headerlink" title="JS 代码(v2)："></a>JS 代码(v2)：</h2><pre><code>Array.prototype.quicksort = function(){
   quick(this, 0, this.length-1)
 }
 function quick(arr,left,right){
-  let index = partition(arr,left,right)
-  if(left &lt;= index-2) quick(arr,left,index-1)
-  if(index &lt;= right-2) quick(arr,index,right)
-}
-
-//分治函数partition()
-function partition(arr, left, right){
-  let basis = arr[Math.floor((left+right)/2)]
-      //选中间元素作基准值
+  if(left &gt;= right) return
+  let basis = arr[left]
   let i = left, j = right
-  while(i&lt;=j){
-    while(arr[i]&lt;basis) i+=1   
-      //不写arr[i]&lt;=basis能使本次排列，小于basis的全在所有basis左边，[1,4,3,4,3,2,3,2,3,6]
-      //从最左边开始，一直找到第一个大于等于basis的元素
-    while(arr[j]&gt;basis) j-=1   
-      //不写arr[j]&gt;=basis能使本次排列，大于basis的全在所有basis右边，[1,4,3,3,3,6]
-      //从最右边开始，一直找到第一个小于等于basis的元素
-    if(i &lt; j) {
-      [arr[i],arr[j]] = [arr[j],arr[i]]
-      //不加下面两句可能有死循环，如两个basis值不断交换
-      i += 1
-      j -= 1
+  while(i!=j){ 
+    while(arr[j]&gt;=basis &amp;&amp; i&lt;j) j-=1     //标记代码
+    while(arr[i]&lt;=basis &amp;&amp; i&lt;j) i+=1    
+
+    if(i &lt; j){
+      [arr[i],arr[j]] = [arr[j],arr[i]]  
     }
-      //如果大于basis的在小于basis的左边，则交换位置
-      //如果i=j（i&gt;=j）证明已排好
   }
-  return i  
+  [arr[left],arr[i]] = [arr[i],arr[left]]
+  quick(arr,left,i-1)
+  quick(arr,i+1,right)
 }
-var arr = [1,4,3,4,3,2,3,3,2,6]
+var arr = [2,8,5,4,3,9,0.-1,3,2]
 arr.quicksort()
-console.log(arr)
-</code></pre><p><a href="http://pythontutor.com/visualize.html#mode=edit" target="_blank" rel="noopener">另一种没有溢出的写法</a></p>
-<h4 id="之前写的错误的代码"><a href="#之前写的错误的代码" class="headerlink" title="之前写的错误的代码:"></a>之前写的错误的代码:</h4><p>（在网上看到是错误版本，空间复杂度增加到O(nlogn)，本应是O(1) ）</p>
+console.log(arr)  //[-1, 2, 2, 3, 3, 4, 5, 8, 9]
+</code></pre><h4 id="另附上错误版本代码"><a href="#另附上错误版本代码" class="headerlink" title="另附上错误版本代码:"></a>另附上错误版本代码:</h4><p>（空间复杂度增加到O(nlogn)，本应是O(1) ）</p>
 <pre><code>Array.prototype.quicksort = function(){
   if(this.length &lt; 2) return this
   let basis = this[0]
@@ -153,7 +139,7 @@ console.log(arr2)  //[0, 1, 3, 4, 5, 5, 6, 8, 9, 32]
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/23/正确快速排序学习/" data-id="cjnd323sp0019is7l34etb2hd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/23/正确快速排序学习/" data-id="cjni9g7uh001du87lkl0v3fj0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（S）快速排序-js/">（S）快速排序-js</a></li></ul>

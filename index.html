@@ -152,7 +152,7 @@ class B extends A{
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/10/05/JS实现继承的几种方法/" data-id="cjnd323rh000cis7lap4ixv29" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/10/05/JS实现继承的几种方法/" data-id="cjni9g7r60009u87lr2j4m6xj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（J）继承/">（J）继承</a></li></ul>
@@ -264,7 +264,7 @@ console.log(f6)   //{b:2}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/28/JS构造函数（含new做了什么）/" data-id="cjnd323sb000vis7l95rsbxz6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/28/JS构造函数（含new做了什么）/" data-id="cjni9g7t8000uu87li54eotap" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（JH）JS-构造函数、new做了什么/">（JH）JS-构造函数、new做了什么</a></li></ul>
@@ -392,7 +392,7 @@ mm.call(1,3,3,3)    //6，新传的参数不起作用
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/28/JS普通函数及调用/" data-id="cjnd323rr000his7l823xnpwu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/28/JS普通函数及调用/" data-id="cjni9g7rk000fu87lojzvuyyx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（JH）JS-普通函数及调用/">（JH）JS-普通函数及调用</a></li></ul>
@@ -532,7 +532,7 @@ o3.f7.call(this)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/28/JS中的this指向/" data-id="cjnd323r80009is7l2ftmqgvy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/28/JS中的this指向/" data-id="cjni9g7rb000bu87l6c17xvx6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（JH）JS-this指向/">（JH）JS-this指向</a></li></ul>
@@ -671,7 +671,7 @@ o3.f7.call(this)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/24/总结垂直居中/" data-id="cjnd323sk0013is7l7k31n458" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/24/总结垂直居中/" data-id="cjni9g7vm0021u87ld006n544" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（C）垂直居中/">（C）垂直居中</a></li></ul>
@@ -697,7 +697,7 @@ o3.f7.call(this)
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/23/正确快速排序学习/">快速排序（正确版）</a>
+      <a class="article-title" href="/2018/09/23/正确快速排序学习/">快速排序</a>
     </h1>
   
 
@@ -716,43 +716,29 @@ o3.f7.call(this)
 </ol>
 </li>
 </ul>
-<h2 id="JS-代码："><a href="#JS-代码：" class="headerlink" title="JS 代码："></a>JS 代码：</h2><pre><code>Array.prototype.quicksort = function(){
+<h2 id="JS-代码-v2-："><a href="#JS-代码-v2-：" class="headerlink" title="JS 代码(v2)："></a>JS 代码(v2)：</h2><pre><code>Array.prototype.quicksort = function(){
   quick(this, 0, this.length-1)
 }
 function quick(arr,left,right){
-  let index = partition(arr,left,right)
-  if(left &lt;= index-2) quick(arr,left,index-1)
-  if(index &lt;= right-2) quick(arr,index,right)
-}
-
-//分治函数partition()
-function partition(arr, left, right){
-  let basis = arr[Math.floor((left+right)/2)]
-      //选中间元素作基准值
+  if(left &gt;= right) return
+  let basis = arr[left]
   let i = left, j = right
-  while(i&lt;=j){
-    while(arr[i]&lt;basis) i+=1   
-      //不写arr[i]&lt;=basis能使本次排列，小于basis的全在所有basis左边，[1,4,3,4,3,2,3,2,3,6]
-      //从最左边开始，一直找到第一个大于等于basis的元素
-    while(arr[j]&gt;basis) j-=1   
-      //不写arr[j]&gt;=basis能使本次排列，大于basis的全在所有basis右边，[1,4,3,3,3,6]
-      //从最右边开始，一直找到第一个小于等于basis的元素
-    if(i &lt; j) {
-      [arr[i],arr[j]] = [arr[j],arr[i]]
-      //不加下面两句可能有死循环，如两个basis值不断交换
-      i += 1
-      j -= 1
+  while(i!=j){ 
+    while(arr[j]&gt;=basis &amp;&amp; i&lt;j) j-=1     //标记代码
+    while(arr[i]&lt;=basis &amp;&amp; i&lt;j) i+=1    
+
+    if(i &lt; j){
+      [arr[i],arr[j]] = [arr[j],arr[i]]  
     }
-      //如果大于basis的在小于basis的左边，则交换位置
-      //如果i=j（i&gt;=j）证明已排好
   }
-  return i  
+  [arr[left],arr[i]] = [arr[i],arr[left]]
+  quick(arr,left,i-1)
+  quick(arr,i+1,right)
 }
-var arr = [1,4,3,4,3,2,3,3,2,6]
+var arr = [2,8,5,4,3,9,0.-1,3,2]
 arr.quicksort()
-console.log(arr)
-</code></pre><p><a href="http://pythontutor.com/visualize.html#mode=edit" target="_blank" rel="noopener">另一种没有溢出的写法</a></p>
-<h4 id="之前写的错误的代码"><a href="#之前写的错误的代码" class="headerlink" title="之前写的错误的代码:"></a>之前写的错误的代码:</h4><p>（在网上看到是错误版本，空间复杂度增加到O(nlogn)，本应是O(1) ）</p>
+console.log(arr)  //[-1, 2, 2, 3, 3, 4, 5, 8, 9]
+</code></pre><h4 id="另附上错误版本代码"><a href="#另附上错误版本代码" class="headerlink" title="另附上错误版本代码:"></a>另附上错误版本代码:</h4><p>（空间复杂度增加到O(nlogn)，本应是O(1) ）</p>
 <pre><code>Array.prototype.quicksort = function(){
   if(this.length &lt; 2) return this
   let basis = this[0]
@@ -771,7 +757,7 @@ console.log(arr2)  //[0, 1, 3, 4, 5, 5, 6, 8, 9, 32]
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/23/正确快速排序学习/" data-id="cjnd323sp0019is7l34etb2hd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/23/正确快速排序学习/" data-id="cjni9g7uh001du87lkl0v3fj0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（S）快速排序-js/">（S）快速排序-js</a></li></ul>
@@ -856,7 +842,7 @@ console.log(arr2)  //[0, 1, 3, 4, 5, 5, 6, 8, 9, 32]
 <li>wrap-reverse：行之间排列反转。比如第一行在最下面。</li>
 </ol>
 <h3 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow:"></a>flex-flow:</h3><p>是flex-direction和flex-wrap的简写</p>
-<p><code>如：flex-flow: colimn wrap</code></p>
+<p><code>如：flex-flow: column wrap</code></p>
 <h3 id="align-content-属性"><a href="#align-content-属性" class="headerlink" title="align-content 属性"></a>align-content 属性</h3><ol>
 <li>stretch：（默认）各行将会伸展以占用剩余的空间。</li>
 <li>flex-start： 各行向容器的起始位置堆叠。</li>
@@ -926,7 +912,7 @@ console.log(arr2)  //[0, 1, 3, 4, 5, 5, 6, 8, 9, 32]
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/21/flex布局总结/" data-id="cjnd323se000yis7lmp402saa" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/21/flex布局总结/" data-id="cjni9g7tr000zu87lm45zv7ch" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（C）flex布局/">（C）flex布局</a></li></ul>
@@ -1108,7 +1094,7 @@ Promise.race([promise5(), promise2, promise3])
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/07/Promise学习/" data-id="cjnd323s4000ois7li9bjbggx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/07/Promise学习/" data-id="cjni9g7tc000vu87la2sieslp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（J）Promise/">（J）Promise</a></li></ul>
@@ -1352,7 +1338,7 @@ var img = new Image();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/01/canvas的使用/" data-id="cjnd323sn0017is7lyscna7os" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/01/canvas的使用/" data-id="cjni9g7to000yu87lyew4s8cz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（H）canvas的使用/">（H）canvas的使用</a></li></ul>
@@ -1485,7 +1471,7 @@ sessionStorage.clear();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/30/LocalStorage与SessionStorage/" data-id="cjnd323rt000iis7lquezm0pa" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/30/LocalStorage与SessionStorage/" data-id="cjni9g7tg000xu87leu8mhtiy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（W）Web-Storage/">（W）Web Storage</a></li></ul>
