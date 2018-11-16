@@ -15,14 +15,14 @@
 <meta property="og:site_name" content="lxiaox">
 <meta property="og:description" content="今天简要总结一下 JS 中的几种数据结构。 1、哈希 哈希表(Hash table，也叫散列表)，是根据关键码值(Key value)而直接进行访问的数据结构。也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做散列表。  简单地说，形如键值一一对应的数据结构就是哈希。用哈希可以表示JS中的对象，根据是key-value对应，key">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/tree1.png">
-<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/%E6%BB%A1-%E5%AE%8C%E5%85%A8-%E4%BA%8C%E5%8F%89%E6%A0%91.jpg">
-<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91.png">
-<meta property="og:updated_time" content="2018-09-28T05:22:09.464Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qzkcoshj207c05b745.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qzkn7vqj209g044wed.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qzkicxoj20al06v0t0.jpg">
+<meta property="og:updated_time" content="2018-11-16T03:36:51.412Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS中的数据结构">
 <meta name="twitter:description" content="今天简要总结一下 JS 中的几种数据结构。 1、哈希 哈希表(Hash table，也叫散列表)，是根据关键码值(Key value)而直接进行访问的数据结构。也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做散列表。  简单地说，形如键值一一对应的数据结构就是哈希。用哈希可以表示JS中的对象，根据是key-value对应，key">
-<meta name="twitter:image" content="http://p8rplhkt6.bkt.clouddn.com/tree1.png">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qzkcoshj207c05b745.jpg">
   
     <link rel="alternate" href="/atom.xml" title="lxiaox" type="application/atom+xml">
   
@@ -143,7 +143,7 @@ var array = {
 <p><em>队列、栈可以用数组实现，而链表可以用哈希（即JS 对象）实现。</em></p>
 <p>这里说一下，哈希正是一种结合了数组和链表的优点的数据结构，既容易寻址查找，又容易插入删除。</p>
 <h2 id="5、树"><a href="#5、树" class="headerlink" title="5、树"></a>5、树</h2><p>之前的栈、队列、链表等都是顺序数据结构，而树就是一种<strong>非顺序结构</strong>。树形状像一颗根在上的倒挂的树，以此命名，如下图：</p>
-<p><img src="http://p8rplhkt6.bkt.clouddn.com/tree1.png" alt="树"></p>
+<p><img src="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qzkcoshj207c05b745.jpg" alt="树"></p>
 <h4 id="树的基本概念："><a href="#树的基本概念：" class="headerlink" title="树的基本概念："></a>树的基本概念：</h4><ul>
 <li>节点：树中的每个元素都叫节点；</li>
 <li>根节点：没有父节点的节点，树只有唯一的根节点，图中为 A；</li>
@@ -173,18 +173,18 @@ var array = {
 <li>完全二叉树：除了最底层，所有层的节点数均达到最大值，最底层的左右节点连续紧密地排列，这样的二叉树叫做完全二叉树。</li>
 <li>满二叉树：所有叶子节点均在最底层的二叉树。<em>满二叉树和完全二叉树用数组就可以表示</em>。</li>
 </ul>
-<p><img src="http://p8rplhkt6.bkt.clouddn.com/%E6%BB%A1-%E5%AE%8C%E5%85%A8-%E4%BA%8C%E5%8F%89%E6%A0%91.jpg" alt="满/完全二叉树"></p>
+<p><img src="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qzkn7vqj209g044wed.jpg" alt="满/完全二叉树"></p>
 <ul>
 <li>平衡二叉树（AVL树）：当且仅当任何节点的两棵子树的高度差不大于1的二叉树；</li>
 <li>排序二叉树(二叉查找树)：只允许你在左侧节点储存比父节点小的值，右侧只允许储存比父节点大的值。也称二叉搜索树、有序二叉树；</li>
 </ul>
-<p><img src="http://p8rplhkt6.bkt.clouddn.com/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91.png" alt="二叉查找树"></p>
+<p><img src="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qzkicxoj20al06v0t0.jpg" alt="二叉查找树"></p>
 <h5 id="还有一种特殊的数据结构—-堆"><a href="#还有一种特殊的数据结构—-堆" class="headerlink" title="还有一种特殊的数据结构—-堆"></a>还有一种特殊的数据结构—-堆</h5><p><strong>堆(heap)</strong>，形状上像完全二叉树，堆的特点是所有父节点都比它的子节点要大（最大堆） 或者要小（最小堆）。正如我们堆东西将大的放下面，小的放上面，树不能表现出这种特性，所以叫做堆。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/25/JS数据结构/" data-id="cjnitw3nm000dbg7lpc3zihnv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/25/JS数据结构/" data-id="cjojhwp0a00172g7l98c1lgvu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（J）JS-数据结构/">（J）JS-数据结构</a></li></ul>

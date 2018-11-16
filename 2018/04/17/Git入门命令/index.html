@@ -7,22 +7,22 @@
   
   <title>Git入门命令 | lxiaox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、git init这是仓库初始化命令，进入一个安全目录，在目录下运行git init后会创建一个.git目录，使用ls -a命令可以看到它，它就是一个仓库。 2、git add将文件添加到暂存区，例如：新建一个a.txt文件，用git status -sb查看文件状态，可以看到文件前有??，这表示git不知到如何处理文件变动，这时运行git add a.txt，再用git status -sb查">
+  <meta name="description" content="1、git init 这是仓库初始化命令，进入一个安全目录，在目录下运行git init后会创建一个.git目录，使用ls -a命令可以看到它，它就是一个仓库。  2、git add 将文件添加到暂存区，例如： 新建一个a.txt文件，用git status -sb查看文件状态，可以看到文件前有”??“，这表示git不知到如何处理文件变动， 这时运行git add a.txt 添加，再用git s">
 <meta name="keywords" content="（G）git入门">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git入门命令">
 <meta property="og:url" content="http://yoursite.com/2018/04/17/Git入门命令/index.html">
 <meta property="og:site_name" content="lxiaox">
-<meta property="og:description" content="1、git init这是仓库初始化命令，进入一个安全目录，在目录下运行git init后会创建一个.git目录，使用ls -a命令可以看到它，它就是一个仓库。 2、git add将文件添加到暂存区，例如：新建一个a.txt文件，用git status -sb查看文件状态，可以看到文件前有??，这表示git不知到如何处理文件变动，这时运行git add a.txt，再用git status -sb查">
+<meta property="og:description" content="1、git init 这是仓库初始化命令，进入一个安全目录，在目录下运行git init后会创建一个.git目录，使用ls -a命令可以看到它，它就是一个仓库。  2、git add 将文件添加到暂存区，例如： 新建一个a.txt文件，用git status -sb查看文件状态，可以看到文件前有”??“，这表示git不知到如何处理文件变动， 这时运行git add a.txt 添加，再用git s">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2018/04/17/Git入门命令/git%20init.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/17/Git入门命令/git%20add.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/17/Git入门命令/git%20commit.png">
-<meta property="og:updated_time" content="2018-09-28T05:18:23.591Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qolwz0bj20e905iq65.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qol6h21j209d0670vg.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qolivkqj209z03vwga.jpg">
+<meta property="og:updated_time" content="2018-11-16T03:27:25.934Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git入门命令">
-<meta name="twitter:description" content="1、git init这是仓库初始化命令，进入一个安全目录，在目录下运行git init后会创建一个.git目录，使用ls -a命令可以看到它，它就是一个仓库。 2、git add将文件添加到暂存区，例如：新建一个a.txt文件，用git status -sb查看文件状态，可以看到文件前有??，这表示git不知到如何处理文件变动，这时运行git add a.txt，再用git status -sb查">
-<meta name="twitter:image" content="http://yoursite.com/2018/04/17/Git入门命令/git%20init.png">
+<meta name="twitter:description" content="1、git init 这是仓库初始化命令，进入一个安全目录，在目录下运行git init后会创建一个.git目录，使用ls -a命令可以看到它，它就是一个仓库。  2、git add 将文件添加到暂存区，例如： 新建一个a.txt文件，用git status -sb查看文件状态，可以看到文件前有”??“，这表示git不知到如何处理文件变动， 这时运行git add a.txt 添加，再用git s">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qolwz0bj20e905iq65.jpg">
   
     <link rel="alternate" href="/atom.xml" title="lxiaox" type="application/atom+xml">
   
@@ -91,14 +91,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1、<br>git init<br>这是仓库初始化命令，进入一个安全目录，在目录下运行git init后会创建一个.git目录，使用ls -a命令可以看到它，它就是一个仓库。<br><img src="/2018/04/17/Git入门命令/git init.png" alt="git init截图"></p>
-<p>2、<br>git add<br>将文件添加到暂存区，例如：新建一个a.txt文件，用git status -sb查看文件状态，可以看到文件前有??，这表示git不知到如何处理文件变动，这时运行git add a.txt，再用git status -sb查看就会发现文件前符号变成了A，意思就是添加。<br><img src="/2018/04/17/Git入门命令/git add.png" alt="git add截图"></p>
-<p>3、<br>git commit -m “提交信息”<br>将add过的变动提交至仓库，提交信息就是你想要的注释等，方便以后查阅。<br>可以选择一次提交一个文件：git commit filename -m “xxx”<br>或者一次全部提交：git commit . -m “xxxx”<br><img src="/2018/04/17/Git入门命令/git commit.png" alt="git commit截图"></p>
+        <p>1、git init</p>
+<p>这是仓库初始化命令，进入一个安全目录，在目录下运行git init后会创建一个.git目录，使用ls -a命令可以看到它，它就是一个仓库。</p>
+<p><img src="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qolwz0bj20e905iq65.jpg" alt="git init截图"></p>
+<p>2、git add</p>
+<p>将文件添加到暂存区，例如：</p>
+<p>新建一个a.txt文件，用git status -sb查看文件状态，可以看到文件前有”<strong>??</strong>“，这表示git不知到如何处理文件变动，</p>
+<p>这时运行git add a.txt 添加，再用git status -sb查看就会发现文件前符号变成了A，意思就是添加。<br><img src="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qol6h21j209d0670vg.jpg" alt="git add截图"></p>
+<p>3、git commit -m “提交信息”</p>
+<p>将add过的变动提交至仓库，提交信息就是你想要的注释等，方便以后查阅。</p>
+<p>可以选择一次提交一个文件：git commit filename -m “xxx”</p>
+<p>或者一次全部提交：git commit . -m “xxxx”<br><img src="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qolivkqj209z03vwga.jpg" alt="git commit截图"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/17/Git入门命令/" data-id="cjnitw3mt0001bg7l7ac6ygvg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/17/Git入门命令/" data-id="cjojhwoza000h2g7lpo1fug0k" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（G）git入门/">（G）git入门</a></li></ul>

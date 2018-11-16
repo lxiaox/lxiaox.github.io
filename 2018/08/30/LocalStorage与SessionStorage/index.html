@@ -17,12 +17,12 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-11/55819352.jpg">
 <meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-11/16450453.jpg">
-<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-11/66361257.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/d826ea31ly1fx9r4zw6osj20ki06xt8x.jpg">
 <meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-11/13943624.jpg">
-<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-11/17297111.jpg">
-<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-11/33075996.jpg">
-<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-11/5605524.jpg">
-<meta property="og:updated_time" content="2018-09-28T05:23:39.631Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/d826ea31ly1fx9r2960l0j208y0490sl.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/d826ea31ly1fx9r68yhbwj20cm03zt8l.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/d826ea31ly1fx9r28qtbjj20kc04waa4.jpg">
+<meta property="og:updated_time" content="2018-11-16T03:42:48.604Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LocalStorage与SessionStorage">
 <meta name="twitter:description" content="在学习LocalStorage前先来看一下，JS中变量有什么问题：&amp;lt;script&amp;gt;     var age = 18     console.log(&amp;apos;age = &amp;apos; + age)     //结果输出 age = 18 &amp;lt;/script&amp;gt; 在页面中改变变量 age 的值：  现在的 age = 19 但是，刷新页面之后呢？  可以看到刷新之后页面中的a">
@@ -120,11 +120,11 @@
 &lt;/script&gt;
 </code></pre><p>这样每次刷新都会将age加1，不会覆盖之前作的改变。</p>
 <p>打开控制台-&gt;Application-&gt;Local Storage，可以看到：</p>
-<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-11/66361257.jpg" alt="图0"></p>
-<p>可以看到当前的age值为 28，为什么没有存变量名字呢？经过一番探索，我发现可以拉动下面的框，好了，key-value现出了它的庐山真面目：</p>
+<p><img src="https://ws1.sinaimg.cn/large/d826ea31ly1fx9r4zw6osj20ki06xt8x.jpg" alt="图0"></p>
+<p>可以看到当前的age值为 27，可以拉动下面的框，出现 key-value</p>
 <p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-11/13943624.jpg" alt="图1"></p>
 <p>控制台打印：</p>
-<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-11/17297111.jpg" alt="图2"></p>
+<p><img src="https://ws1.sinaimg.cn/large/d826ea31ly1fx9r2960l0j208y0490sl.jpg" alt="图2"></p>
 <h3 id="localStorage典型应用：记录是否提示过用户"><a href="#localStorage典型应用：记录是否提示过用户" class="headerlink" title="localStorage典型应用：记录是否提示过用户"></a>localStorage典型应用：记录是否提示过用户</h3><p>代码如下：</p>
 <pre><code>let prompted = localStorage.getItem(&apos;是否提示&apos;)
 if(!prompted){
@@ -132,9 +132,9 @@ if(!prompted){
     localStorage.setItem(&apos;是否提示&apos;,true)
 }
 </code></pre><p>只有第一次进去页面会有此提示：</p>
-<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-11/33075996.jpg" alt="图5"></p>
+<p><img src="https://ws1.sinaimg.cn/large/d826ea31ly1fx9r68yhbwj20cm03zt8l.jpg" alt="图5"></p>
 <p>点击确定会看到localStorage增加了一项 <code>是否提示：true</code> ：</p>
-<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-11/5605524.jpg" alt="图6"></p>
+<p><img src="https://ws1.sinaimg.cn/large/d826ea31ly1fx9r28qtbjj20kc04waa4.jpg" alt="图6"></p>
 <h3 id="localStorage接口"><a href="#localStorage接口" class="headerlink" title="localStorage接口"></a>localStorage接口</h3><p>1、增加一个数据项: </p>
 <pre><code>localStorage.setItem(&apos;name&apos;, &apos;xiaoxiao&apos;)
 </code></pre><p>2、读取一个localStorage项：</p>
@@ -194,7 +194,7 @@ sessionStorage.clear();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/30/LocalStorage与SessionStorage/" data-id="cjnitw3pg0010bg7l5j1f81ba" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/30/LocalStorage与SessionStorage/" data-id="cjojhwoze000j2g7lg76zledr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（W）Web-Storage/">（W）Web Storage</a></li></ul>

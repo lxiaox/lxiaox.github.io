@@ -15,17 +15,17 @@
 <meta property="og:site_name" content="lxiaox">
 <meta property="og:description" content="一、canvas的作用canvas是一个HTML元素，可以使用脚本（如JS）绘制图形，制作照片，动画，甚至实时视频处理渲染。 二、属性canvas和img元素很像，但是没有src和alt属性，只有width和height两个属性（默认300px，150px） 三、替代内容跟audio/vedio等标签很像，直接将替代内容写在标签里面。比较老的不支持canvas的浏览器会展示替代内容，支持的会忽略替">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-26/124307.jpg">
-<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-26/97079506.jpg">
-<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-26/13245959.jpg">
-<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-26/25096540.jpg">
-<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-26/43135778.jpg">
-<meta property="og:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-26/83555573.jpg">
-<meta property="og:updated_time" content="2018-09-28T05:18:13.531Z">
+<meta property="og:image" content="https://i.loli.net/2018/11/16/5bee35a1dd3e6.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qj7e0ypj2066034we9.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qjgm0flj204203o741.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/d826ea31gy1fx9qk9q99qj206904edfl.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/d826ea31gy1fx9qknvff6j208u054t8j.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qjh5fiqj20a40a7whm.jpg">
+<meta property="og:updated_time" content="2018-11-16T03:21:52.876Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="canvas的使用">
 <meta name="twitter:description" content="一、canvas的作用canvas是一个HTML元素，可以使用脚本（如JS）绘制图形，制作照片，动画，甚至实时视频处理渲染。 二、属性canvas和img元素很像，但是没有src和alt属性，只有width和height两个属性（默认300px，150px） 三、替代内容跟audio/vedio等标签很像，直接将替代内容写在标签里面。比较老的不支持canvas的浏览器会展示替代内容，支持的会忽略替">
-<meta name="twitter:image" content="http://p8rplhkt6.bkt.clouddn.com/18-9-26/124307.jpg">
+<meta name="twitter:image" content="https://i.loli.net/2018/11/16/5bee35a1dd3e6.jpg">
   
     <link rel="alternate" href="/atom.xml" title="lxiaox" type="application/atom+xml">
   
@@ -173,7 +173,7 @@ ctx.stroke()
  ctx.quadraticCurveTo(125,25,75,25);
  ctx.stroke();
 </code></pre><p>结果图：</p>
-<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-26/124307.jpg" alt="对话框"></p>
+<p><img src="https://i.loli.net/2018/11/16/5bee35a1dd3e6.jpg" alt="对话框"></p>
 <p>还可以用三次贝塞尔曲线画心型等等。</p>
 <h3 id="4、Path2D"><a href="#4、Path2D" class="headerlink" title="4、Path2D"></a>4、Path2D</h3><p>可以把创建的图形存为path2D对象，再引用它们。</p>
 <p>code:</p>
@@ -189,7 +189,7 @@ circle.arc(100, 35, 25, 0, 2 * Math.PI)
 ctx.stroke(rectangle);
 ctx.fill(circle);    
 </code></pre><p>结果：</p>
-<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-26/97079506.jpg" alt="path2d"></p>
+<p><img src="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qj7e0ypj2066034we9.jpg" alt="path2d"></p>
 <h3 id="5、使用SVG-paths"><a href="#5、使用SVG-paths" class="headerlink" title="5、使用SVG paths"></a>5、使用SVG paths</h3><p>获取路径时以svg或canvavs方式重用：</p>
 <pre><code>var p = new Path2D(&quot;M 80 20 h 20 v 80 h -80 Z&quot;);
 ctx.fill(p)
@@ -199,7 +199,7 @@ ctx.fill(p)
 //h -80 向左移80
 //z  回到起点
 </code></pre><p>结果图：</p>
-<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-26/13245959.jpg" alt="svg"></p>
+<p><img src="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qjgm0flj204203o741.jpg" alt="svg"></p>
 <h2 id="七、指定颜色"><a href="#七、指定颜色" class="headerlink" title="七、指定颜色"></a>七、指定颜色</h2><p>如：</p>
 <pre><code>ctx.fillStyle = &quot;red&quot;    //指定填充颜色为红色
 ctx.strokeStyle = &quot;green&quot;   //指定描边为绿色
@@ -231,7 +231,7 @@ ctx.strokeStyle = &quot;green&quot;   //指定描边为绿色
 ctx.lineDashOffset = 10
 ctx.strokeRect(100,20, 100, 100)
 </code></pre><p>结果：</p>
-<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-26/25096540.jpg" alt="虚线"></p>
+<p><img src="https://ws1.sinaimg.cn/large/d826ea31gy1fx9qk9q99qj206904edfl.jpg" alt="虚线"></p>
 <h2 id="九、渐变Gradient"><a href="#九、渐变Gradient" class="headerlink" title="九、渐变Gradient"></a>九、渐变Gradient</h2><ol>
 <li><p>创建Gradient对象（并定义渐变位置）</p>
 <ul>
@@ -267,7 +267,7 @@ ctx.strokeStyle = gradient
   ctx.fillRect(10,10,100,130)
 ctx.strokeRect(130,10,100,130);
 </code></pre><p>结果图：</p>
-<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-26/43135778.jpg" alt="渐变"></p>
+<p><img src="https://ws1.sinaimg.cn/large/d826ea31gy1fx9qknvff6j208u054t8j.jpg" alt="渐变"></p>
 <h2 id="十、添加图案-Pattern"><a href="#十、添加图案-Pattern" class="headerlink" title="十、添加图案 Pattern"></a>十、添加图案 Pattern</h2><p>将image对象赋给图案，将图案作为填充样式：代码</p>
 <pre><code>//1、创建image对象
 var img = new Image();
@@ -280,7 +280,7 @@ var img = new Image();
     ctx.fillRect(0,0,350,350);
   }
 </code></pre><p>结果：</p>
-<p><img src="http://p8rplhkt6.bkt.clouddn.com/18-9-26/83555573.jpg" alt="图案"></p>
+<p><img src="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qjh5fiqj20a40a7whm.jpg" alt="图案"></p>
 <h2 id="十一、阴影shadows"><a href="#十一、阴影shadows" class="headerlink" title="十一、阴影shadows"></a>十一、阴影shadows</h2><ol>
 <li>shadowOffsetX = float<br>shadowOffsetX 和 shadowOffsetY ：向右延申距离</li>
 <li>shadowOffsetY = float：向下延申距离<br>3、shadowBlur = float：阴影模糊程度<br>4、shadowColor = color：阴影颜色</li>
@@ -304,7 +304,7 @@ var img = new Image();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/01/canvas的使用/" data-id="cjnitw3pk0011bg7loxmnmcsd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/01/canvas的使用/" data-id="cjojhwozu000u2g7ltfgsi6nu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（H）canvas的使用/">（H）canvas的使用</a></li></ul>
