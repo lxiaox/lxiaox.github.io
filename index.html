@@ -62,6 +62,152 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-view路由-视图" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/07/view路由-视图/" class="article-date">
+  <time datetime="2019-04-07T04:41:58.000Z" itemprop="datePublished">2019-04-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/07/view路由-视图/">vue路由/视图</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、命名路由"><a href="#1、命名路由" class="headerlink" title="1、命名路由"></a>1、命名路由</h3><pre><code>const router = new VueRouter({
+  routes: [
+    {
+      path: &apos;/user/:userId&apos;,
+      name: &apos;user&apos;,        // 给路由命名
+      component: User
+    }
+  ]
+})
+// 就是给route一个名字
+</code></pre><h3 id="2、嵌套路由"><a href="#2、嵌套路由" class="headerlink" title="2、嵌套路由"></a>2、嵌套路由</h3><pre><code>const router = new VueRouter({
+  routes: [
+    { path: &apos;/user/:id&apos;, component: User,
+      children: [
+        {
+          // 当 /user/:id/profile 匹配成功，
+          // UserProfile 会被渲染在 User 的 &lt;router-view&gt; 中
+          path: &apos;profile&apos;,
+          component: UserProfile
+        },
+        {
+          // 当 /user/:id/posts 匹配成功
+          // UserPosts 会被渲染在 User 的 &lt;router-view&gt; 中
+          path: &apos;posts&apos;,
+          component: UserPosts
+        }
+      ]
+    }
+  ]
+})
+// 就是路由下面有子路由children: [path:...]
+</code></pre><h4 id="嵌套路由和命名路由不是对立的概念"><a href="#嵌套路由和命名路由不是对立的概念" class="headerlink" title="嵌套路由和命名路由不是对立的概念"></a>嵌套路由和命名路由不是对立的概念</h4><h3 id="3、命名视图"><a href="#3、命名视图" class="headerlink" title="3、命名视图"></a>3、命名视图</h3><pre><code>// 一个路由下---多个视图（多个组件）
+// js
+const router = new VueRouter({
+  routes: [
+    {
+      path: &apos;/&apos;,
+      components: {
+        default: Foo,    // 给3个视图命名
+        a: Bar,
+        b: Baz
+      }
+    }
+  ]
+})
+// html
+// 如果 router-view 没有设置名字，那么默认为 default
+&lt;router-view class=&quot;view one&quot;&gt;&lt;/router-view&gt;
+&lt;router-view class=&quot;view two&quot; name=&quot;a&quot;&gt;&lt;/router-view&gt;
+&lt;router-view class=&quot;view three&quot; name=&quot;b&quot;&gt;&lt;/router-view&gt;
+</code></pre><h4 id="3-1-嵌套命名视图"><a href="#3-1-嵌套命名视图" class="headerlink" title="3.1 嵌套命名视图"></a>3.1 嵌套命名视图</h4><p>嵌套–多级，并且有命名</p>
+<pre><code>{
+  path: &apos;/settings&apos;,
+  component: UserSettings,    //一级路由，一对一（未命名）
+  children: [{
+    path: &apos;emails&apos;,
+    component: UserEmailsSubscriptions
+  }, {
+    path: &apos;profile&apos;,
+    components: {            //二级路由，一对多（2个视图命名了）
+      default: UserProfile,
+      helper: UserProfilePreview
+    }
+  }]
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/07/view路由-视图/" data-id="cju6g673700101o7lb5dqivrn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（V）vue路由-视图/">（V）vue路由/视图</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-按需引入iview" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/07/按需引入iview/" class="article-date">
+  <time datetime="2019-04-07T04:40:56.000Z" itemprop="datePublished">2019-04-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/07/按需引入iview/">按需引入iview</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、安装iview"><a href="#1、安装iview" class="headerlink" title="1、安装iview"></a>1、安装iview</h3><p><code>$ npm install iview --save</code></p>
+<h3 id="2、借助插件-babel-plugin-import可以实现按需加载组件，减少文件体积。首先安装，并在文件-babelrc-中配置："><a href="#2、借助插件-babel-plugin-import可以实现按需加载组件，减少文件体积。首先安装，并在文件-babelrc-中配置：" class="headerlink" title="2、借助插件 babel-plugin-import可以实现按需加载组件，减少文件体积。首先安装，并在文件 .babelrc 中配置："></a>2、借助插件 babel-plugin-import可以实现按需加载组件，减少文件体积。首先安装，并在文件 .babelrc 中配置：</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">npm install babel-plugin-import --save-dev</span><br><span class="line"></span><br><span class="line">// .babelrc</span><br><span class="line">&#123;</span><br><span class="line">  &quot;plugins&quot;: [[&quot;import&quot;, &#123;</span><br><span class="line">    &quot;libraryName&quot;: &quot;iview&quot;,</span><br><span class="line">    &quot;libraryDirectory&quot;: &quot;src/components&quot;</span><br><span class="line">  &#125;]]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="记录-babelrc"><a href="#记录-babelrc" class="headerlink" title="记录.babelrc:"></a>记录.babelrc:</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;presets&quot;: [</span><br><span class="line">    [&quot;env&quot;, &#123;</span><br><span class="line">      &quot;modules&quot;: false,</span><br><span class="line">      &quot;targets&quot;: &#123;</span><br><span class="line">        &quot;browsers&quot;: [&quot;&gt; 1%&quot;, &quot;last 2 versions&quot;, &quot;not ie &lt;= 8&quot;]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;],</span><br><span class="line">    &quot;stage-2&quot;</span><br><span class="line">  ],</span><br><span class="line"></span><br><span class="line">  // 注意：plugins中是数组嵌套数组</span><br><span class="line"></span><br><span class="line">  &quot;plugins&quot;: [&quot;transform-vue-jsx&quot;, &quot;transform-runtime&quot;, [&quot;import&quot;, &#123;</span><br><span class="line">    &quot;libraryName&quot;: &quot;iview&quot;,</span><br><span class="line">    &quot;libraryDirectory&quot;: &quot;src/components&quot;</span><br><span class="line">  &#125;]],</span><br><span class="line">  &quot;env&quot;: &#123;</span><br><span class="line">    &quot;test&quot;: &#123;</span><br><span class="line">      &quot;presets&quot;: [&quot;env&quot;, &quot;stage-2&quot;],</span><br><span class="line">      &quot;plugins&quot;: [&quot;transform-vue-jsx&quot;, &quot;transform-es2015-modules-commonjs&quot;, &quot;dynamic-import-node&quot;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="3、一般在main-js中引入"><a href="#3、一般在main-js中引入" class="headerlink" title="3、一般在main.js中引入"></a>3、一般在main.js中引入</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// import  iView from &apos;iview&apos;	//全部引入</span><br><span class="line">import  &#123;Tabs, TabPane&#125; from &apos;iview&apos;</span><br><span class="line">import &apos;iview/dist/styles/iview.css&apos;</span><br><span class="line"></span><br><span class="line">// Vue.use(iView)</span><br><span class="line">Vue.component(&apos;Tabs&apos;, Tabs)</span><br><span class="line">Vue.component(&apos;TabPane&apos;, TabPane)</span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 直接在某一文件中加入</span><br><span class="line">&lt;Tabs value=&quot;name1&quot;&gt;</span><br><span class="line">    &lt;TabPane label=&quot;标签一&quot; name=&quot;name1&quot;&gt;标签一的内容&lt;/TabPane&gt;</span><br><span class="line">    &lt;TabPane label=&quot;标签二&quot; name=&quot;name2&quot;&gt;标签二的内容&lt;/TabPane&gt;</span><br><span class="line">    &lt;TabPane label=&quot;标签三&quot; name=&quot;name3&quot;&gt;标签三的内容&lt;/TabPane&gt;</span><br><span class="line">    &lt;/Tabs&gt;</span><br></pre></td></tr></table></figure>
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/07/按需引入iview/" data-id="cju6g673j001b1o7lfzw4tife" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（V）iview/">（V）iview</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-归并排序（递归" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/10/21/归并排序（递归/" class="article-date">
@@ -138,7 +284,7 @@ console.log(arr)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/10/21/归并排序（递归/" data-id="cjojhwp0200102g7l8nnljnck" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/10/21/归并排序（递归/" data-id="cju6g673g00171o7l15277cu8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（S）归并排序/">（S）归并排序</a></li></ul>
@@ -240,7 +386,7 @@ class B extends A{
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/10/05/JS实现继承的几种方法/" data-id="cjojhwoyo00092g7lkv4gwk8u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/10/05/JS实现继承的几种方法/" data-id="cju6g6724000b1o7l0iqeurzd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（J）继承/">（J）继承</a></li></ul>
@@ -352,7 +498,7 @@ console.log(f6)   //{b:2}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/28/JS构造函数（含new做了什么）/" data-id="cjojhwoyz000f2g7l5hrf1pvd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/28/JS构造函数（含new做了什么）/" data-id="cju6g672j000j1o7lr7awjzgh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（JH）JS-构造函数、new做了什么/">（JH）JS-构造函数、new做了什么</a></li></ul>
@@ -480,7 +626,7 @@ mm.call(1,3,3,3)    //6，新传的参数不起作用
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/28/JS普通函数及调用/" data-id="cjojhwoyt000d2g7l98678b20" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/28/JS普通函数及调用/" data-id="cju6g672f000h1o7lhwyvq60u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（JH）JS-普通函数及调用/">（JH）JS-普通函数及调用</a></li></ul>
@@ -620,7 +766,7 @@ o3.f7.call(this)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/28/JS中的this指向/" data-id="cjojhwoyj00082g7ll930vlzy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/28/JS中的this指向/" data-id="cju6g671y00081o7l5reubai1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（JH）JS-this指向/">（JH）JS-this指向</a></li></ul>
@@ -759,7 +905,7 @@ o3.f7.call(this)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/24/总结垂直居中/" data-id="cjojhwp0500122g7lxa4gzqf0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/24/总结垂直居中/" data-id="cju6g673h00191o7l7i8cs9eb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（C）垂直居中/">（C）垂直居中</a></li></ul>
@@ -847,7 +993,7 @@ console.log(arr2)  //[0, 1, 3, 4, 5, 5, 6, 8, 9, 32]
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/23/正确快速排序学习/" data-id="cjojhwp0600132g7lnr03ghnb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/23/正确快速排序学习/" data-id="cju6g673l001d1o7l3s09pqbr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（S）快速排序-js/">（S）快速排序-js</a></li></ul>
@@ -1002,436 +1148,10 @@ console.log(arr2)  //[0, 1, 3, 4, 5, 5, 6, 8, 9, 32]
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/21/flex布局总结/" data-id="cjojhwozo000p2g7l4xl7zphv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/21/flex布局总结/" data-id="cju6g6731000u1o7l3ka3c52t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（C）flex布局/">（C）flex布局</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Promise学习" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/09/07/Promise学习/" class="article-date">
-  <time datetime="2018-09-07T11:40:44.000Z" itemprop="datePublished">2018-09-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/07/Promise学习/">Promise学习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="什么是-Promise？"><a href="#什么是-Promise？" class="headerlink" title="什么是 Promise？"></a>什么是 Promise？</h1><p>Promise作为ES6最重要的特性之一，它本身是一个构造函数，并拥有<code>resolve</code>、 <code>reject</code>、 <code>all</code>、 <code>race</code> 等方法。</p>
-<p><img src="https://ws1.sinaimg.cn/large/d826ea31gy1fx9r9ru3ttj20lf06wq3e.jpg" alt="打印Promise"></p>
-<h5 id="Promise-对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值。"><a href="#Promise-对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值。" class="headerlink" title="Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值。"></a>Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及其返回的值。</h5><h3 id="语法"><a href="#语法" class="headerlink" title="语法:"></a>语法:</h3><p><code>new Promimse( function(resolve, reject) {} )</code></p>
-<p>Promise构造函数接受一个函数，这个函数的参数为<code>resolve</code>和<code>reject</code>，<code>resolve</code>将<code>Promise</code>状态改为<code>fulfilled</code>,<code>reject</code>将其状态改为<code>rejected</code>，promise会根据不同状态执行不同操作。</p>
-<h3 id="一个Promise有以下几种状态："><a href="#一个Promise有以下几种状态：" class="headerlink" title="一个Promise有以下几种状态："></a>一个Promise有以下几种状态：</h3><ul>
-<li><code>pending</code>：初始状态，不成功也没失败</li>
-<li><code>fulfilled</code>：表示操作成功完成</li>
-<li><code>rejected</code>：表示操作失败</li>
-<li><code>settled</code>：完成状态，fulfilled和rejected的统称</li>
-</ul>
-<p><code>pending</code>状态的Promise可能触发<code>fulfilled</code>状态，并传递一个值给成功之后的操作；也可能触发<code>rejected</code>状态，并传递失败信息或失败原因给失败之后的操作。</p>
-<h1 id="改变状态之后的操作："><a href="#改变状态之后的操作：" class="headerlink" title="改变状态之后的操作："></a>改变状态之后的操作：</h1><p>打印Promise对象可以看到，它的原型方法<code>then()</code>、<code>catch()</code>、<code>finally()</code>，这些方法会表明Promise操作完成之后要做的事情。</p>
-<h3 id="1、Promise-prototype-then-onFulfilled-onRejected"><a href="#1、Promise-prototype-then-onFulfilled-onRejected" class="headerlink" title="1、Promise.prototype.then(onFulfilled, onRejected)"></a>1、Promise.prototype.then(onFulfilled, onRejected)</h3><p> then()方法最多接受两个参数，即成功之后调用的回调函数，和失败之后调用的回调函数，同时它返回一个Promise对象，使得Promise().then().then()这样的链式操作得以实现。</p>
-<pre><code>promise.then(
-    function(value){
-        //如果成功...
-    },
-    function(reason){
-        //失败...
-    }
-)
-</code></pre><p><code>then()</code>方法也可只接受成功的回调函数，那么失败情况就会由<code>catch()</code>方法处理。</p>
-<h3 id="2、Promise-prototype-catch-onRejected"><a href="#2、Promise-prototype-catch-onRejected" class="headerlink" title="2、Promise.prototype.catch(onRejected)"></a>2、Promise.prototype.catch(onRejected)</h3><p> <code>catch()</code>方法处理拒绝也就是失败的情况，同时返回一个Promise对象。</p>
-<pre><code>promise.catch(
-    function(reason){
-        //失败...
-    }
-)
-</code></pre><h3 id="3、Promise-prototype-finally"><a href="#3、Promise-prototype-finally" class="headerlink" title="3、Promise.prototype.finally()"></a>3、Promise.prototype.finally()</h3><p> <code>finall()</code>也返回一个Promise对象，then()和catch()执行之后都会执行finally()，可以避免重复书写同样的代码。</p>
-<pre><code>promise.finally(
-    function(){
-        //成功和失败都会执行...
-    }
-)
-</code></pre><p>要注意，就算是失败的Promise经过<code>then()</code>、<code>catch()</code>处理，返回的新的Promise状态是<strong>成功</strong>的，除非再次处理（<code>then</code>、<code>catch</code>）失败。</p>
-<p>同时形如<code>promise.then().then().then().catch()</code>，所有的失败情况都由最后的<code>catch()</code>处理，一旦某个地方失败，就会顺着操作链寻找到失败的回调函数。</p>
-<h2 id="那么现在就可以写一个Promise了"><a href="#那么现在就可以写一个Promise了" class="headerlink" title="那么现在就可以写一个Promise了"></a>那么现在就可以写一个Promise了</h2><p>先封装一个函数：</p>
-<pre><code>function test(num){
-    var p = new Promise(function(resolve, reject){
-        //设置延时，进行异步操作
-        setTimeout(function(){
-           if(num === 66){
-               console.log(&apos;顺利完成&apos;)
-               resolve(&apos;66大顺，成功&apos;) //resolve将状态改为fulfilled，完成
-           }else{
-               console.log(&apos;失败&apos;)
-               reject(&apos;不顺利，失败了&apos;)  //reject将状态改为rejected，拒绝
-           }
-        }, 3000)
-    })
-    return p
-}
-</code></pre><p>在上述代码中，我们封装了一个函数，这个函数返回一个promise对象。我们定义了一个异步操作，就是判断数值是否为66，等于成功，不等于就失败。</p>
-<p>为什么要封装函数？因为在new一个Promise对象时，传进去的函数会执行，封装函数之后我们就可以在调用函数时再执行它。</p>
-<p>接下来就可以调用函数，进行下一步操作：</p>
-<pre><code>//成功的情况：
-test(66).then(function(value){
-    console.log(&apos;成功信息：&apos;)
-    console.log(value)
-}).catch(function(reason){
-    console.log(&apos;失败信息：&apos;)
-    console.log(reason)
-})
-</code></pre><p>成功结果截图，3s之后输出：</p>
-<p><img src="https://ws1.sinaimg.cn/large/d826ea31gy1fx9rak3q9zj20ao055glo.jpg" alt="成功结果"></p>
-<pre><code>//失败的情况：
-test(55).then(function(value){
-    console.log(&apos;成功信息：&apos;)
-    console.log(value)
-}).catch(function(reason){
-    console.log(&apos;失败信息：&apos;)
-    console.log(reason)
-})
-</code></pre><p>失败结果截图，3s之后输出：</p>
-<p><img src="https://ws1.sinaimg.cn/large/d826ea31gy1fx9rbg8axej2099056mx7.jpg" alt="失败结果"></p>
-<h1 id="更多用法"><a href="#更多用法" class="headerlink" title="更多用法"></a>更多用法</h1><h3 id="1、Promise-resolve-value"><a href="#1、Promise-resolve-value" class="headerlink" title="1、Promise.resolve(value)"></a>1、Promise.resolve(value)</h3><p><code>resolve()</code>方法返回一个给定值解析之后的Promise对象。其中又分为几种情况：</p>
-<p>1、如果传入的值本身是一个Promise对象，那么就返回这个Promise对象</p>
-<p><img src="https://ws1.sinaimg.cn/large/d826ea31gy1fx9rbtn88vj209704xglm.jpg" alt="传入Promise对象"></p>
-<p>如图传入Promise对象为：test(55)，它的状态是失败，resolve()的返回值就是这个失败状态的promise，因此会调用失败的回调输出failed。</p>
-<p>2、如果传入的值是个thenable对象，即带有then方法，那么返回的是then之后最终状态的promise。</p>
-<p><img src="https://ws1.sinaimg.cn/large/d826ea31gy1fx9rcfj5n0j20cm08faac.jpg" alt="传入thenable"></p>
-<p>如图传入<code>test(55).then().catch()</code>，虽然<code>test(55)</code>是失败的，但是它经过<code>catch()</code>处理，最后返回的状态是成功，所以<code>resolve()</code>最后的<code>then()</code>会输出<code>success</code>。</p>
-<p>3、如果传入的是其他值，那么就以成功状态返回Promise。</p>
-<p><img src="https://ws1.sinaimg.cn/large/d826ea31ly1fx9rcpxasij209l05f0ss.jpg" alt="传入其他值"></p>
-<p>如图传入<code>‘abcde’</code>，最终状态是成功，输出<code>success</code>。</p>
-<h3 id="2、Promise-reject-reason"><a href="#2、Promise-reject-reason" class="headerlink" title="2、Promise.reject(reason)"></a>2、Promise.reject(reason)</h3><p><code>reject()</code>方法返回一个带有拒绝原因参数的Promise对象。</p>
-<p><img src="https://ws1.sinaimg.cn/large/d826ea31ly1fx9rcyvui3j209s04kq2y.jpg" alt="reject1"></p>
-<p>从上图可以看出这里的拒绝原因就是字符串‘abcde’本身。</p>
-<p><img src="https://ws1.sinaimg.cn/large/d826ea31ly1fx9rdega12j20bf04twek.jpg" alt="reject2"></p>
-<p>这里的原因是Error: failed。</p>
-<h3 id="3、Promise-all-iterable"><a href="#3、Promise-all-iterable" class="headerlink" title="3、Promise.all(iterable)"></a>3、Promise.all(iterable)</h3><p><code>all()</code>方法返回一个Pomise对象，它传入的参数（iterable译为可迭代的）是promise的数组，即多个promise，只有所有的Promise对象都为成功状态，<code>all()</code>才会返回成功状态的Promise对象。如果有一个失败，那么<code>all()</code>返回失败promise，且失败原因就是第一个失败promise的失败原因。</p>
-<pre><code>var promise1 = Promise.resolve(66)
-var promise2 = Promise.reject(55)
-var promise3 = &apos;abcde&apos;
-var promise4 = new Promise(function(resolve, reject) {
-    setTimeout(()=&gt;{resolve(&apos;success&apos;)}, 300)
-})
-var promise5 = new Promise(function(resolve, reject) {
-    setTimeout(()=&gt;{reject(&apos;failed&apos;)}, 300)
-})
-//promise4和promise5被创建的时候，传入的函数就开始执行，我验证时是直接在控制台粘贴本段所有代码再执行，影响不大，但最好封装成一个函数，将时间延迟增长至3s:
-var promise4 =function() {
-    return new Promise(function (resolve, reject) {
-        setTimeout(() =&gt; {
-            resolve(&apos;success&apos;)
-        }, 3000)
-    })
-}
-var promise5 =function() {
-    return new Promise(function (resolve, reject) {
-        setTimeout(() =&gt; {
-            reject(&apos;failed&apos;)
-        }, 3000)
-    })
-}
-
-function onFulfilled(value) {
-    console.log(&apos;成功：&apos;)
-    console.log(value)
-}
-function onRejected(reason){
-    console.log(&apos;失败：&apos; + reason)
-}
-
-//开始测试：
-Promise.all([promise1, promise2, promise3]).then(onFulfilled,onRejected)
-    //输出“失败：55”，因为promise1成功，promise2失败
-
-Promise.all([promise5(), promise2, promise3]).then(onFulfilled,onRejected)
-    //输出“失败：55”，因为promise2比promise5先处理完成，这里是看处理时间
-    //promise5设置了延时，这里要注意本人之前犯的错误：setTimeout(resolve(&apos;success&apos;),300)
-    //resolve(&apos;success&apos;)没有包在函数里，导致代码直接执行（原因同eval()）没有延迟，最终输出为“失败：failed”，得出错误的结论
-
-Promise.all([promise1, promise3, promise4()]).then(onFulfilled,onRejected)
-    //过3s输出：Array [66, &quot;abcde&quot;, &quot;success&quot;]，因为promise4有延时，等全部promise为成功状态时就会将值组成数组一起输出
-</code></pre><h3 id="3、Promise-race-iterable"><a href="#3、Promise-race-iterable" class="headerlink" title="3、Promise.race(iterable)"></a>3、Promise.race(iterable)</h3><p><code>race()</code>方法返回一个Promise对象，它与<code>all()</code>不同之处在于一旦迭代器中某个proise完成或拒绝，那么就返回完成或拒绝的Promise对象。</p>
-<pre><code>//沿用上面的代码
-Promise.race([promise1, promise2, promise3])
-    .then(onFulfilled,onRejected)
-//输出“成功：66”，第一个成功就返回成功值66。
-
-Promise.race([promise5(), promise2, promise3])
-    .then(onFulfilled,onRejected)
-//输出“失败：55”，因为promise5有延时，所以promise2最先处理完。
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/07/Promise学习/" data-id="cjojhwozl000m2g7lyeujlwib" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（J）Promise/">（J）Promise</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-canvas的使用" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/09/01/canvas的使用/" class="article-date">
-  <time datetime="2018-09-01T06:11:49.000Z" itemprop="datePublished">2018-09-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/01/canvas的使用/">canvas的使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、canvas的作用"><a href="#一、canvas的作用" class="headerlink" title="一、canvas的作用"></a>一、canvas的作用</h2><p>canvas是一个HTML元素，可以使用脚本（如JS）绘制图形，制作照片，动画，甚至实时视频处理渲染。</p>
-<h2 id="二、属性"><a href="#二、属性" class="headerlink" title="二、属性"></a>二、属性</h2><p>canvas和img元素很像，但是没有src和alt属性，只有width和height两个属性（默认300px，150px）</p>
-<h2 id="三、替代内容"><a href="#三、替代内容" class="headerlink" title="三、替代内容"></a>三、替代内容</h2><p>跟audio/vedio等标签很像，直接将替代内容写在标签里面。比较老的不支持canvas的浏览器会展示替代内容，支持的会忽略替代内容。</p>
-<pre><code>&lt;canvas id=&quot;canvas&quot; width=&quot;150&quot; height=&quot;150&quot;&gt;  
-    //这里写替代内容，文字或图片等等。
-&lt;/canvas&gt;
-</code></pre><h2 id="四、标签不可省"><a href="#四、标签不可省" class="headerlink" title="四、标签不可省"></a>四、标签不可省</h2><p>不同于img标签，canvas需要闭合。</p>
-<p><code>&lt;/canvas&gt;结束标签</code>没有时，后面的内容都将作为替代内容。</p>
-<h2 id="五、JS使用"><a href="#五、JS使用" class="headerlink" title="五、JS使用"></a>五、JS使用</h2><p>canvas创造了一块空白大小的空白画布（渲染上下文（名词）），它有一个 getContext()方法，可以获取到渲染上下文和绘画功能，它有一个参数，比如2D图形：</p>
-<pre><code>var canvas = document.getElementById(&apos;canvas&apos;)
-var ctx = canvas.getContext(&apos;2d&apos;)
-//or
-var ctx = document.getElementById(&apos;canvas&apos;).getContext(&apos;2d&apos;)
-</code></pre><p>也可以检查浏览器是否支持canvas，代码改为</p>
-<pre><code>if (canvas.getContext){
-      var ctx = canvas.getContext(&apos;2d&apos;);
-}else{}
-</code></pre><h2 id="六、绘制图形"><a href="#六、绘制图形" class="headerlink" title="六、绘制图形"></a>六、绘制图形</h2><p>首先要了解：如[100px*100px]的canvas画布的坐标空间，在左上角坐标为(0,0)，向右延申为x轴，向下为y轴，右下角坐标为(100,100)。</p>
-<h3 id="1、三个画矩形的方法"><a href="#1、三个画矩形的方法" class="headerlink" title="1、三个画矩形的方法"></a>1、三个画矩形的方法</h3><ol>
-<li>fillRect(x,y,width,height): 实心矩形。</li>
-<li>strokeRect(x,y,width,height)：空心矩形，即矩形边框。</li>
-<li>clearRect(x,y,width,height)：清除该矩形区域。</li>
-</ol>
-<h3 id="2、路径-画线"><a href="#2、路径-画线" class="headerlink" title="2、路径/画线"></a>2、路径/画线</h3><ol>
-<li>beginPath()：新建一条路径</li>
-<li>closePath()：关闭一条路径（非必需），（将笔触从当前移动到起始位置，可能会画一条直线）</li>
-<li>fill()：填充路径内容（会自动关闭路径）</li>
-<li>stroke()：路径描边</li>
-<li>moveTo(x,y)：移动笔触</li>
-<li>lineTo(x,y)：从当前位置画线到(x,y)</li>
-</ol>
-<p>code:</p>
-<pre><code>//画一个三角形
-ctx.beginPath()
-ctx.moveTo(100,100)
-ctx.lineTo(150,50)
-ctx.lineTo(150,150)
-ctx.fill()    //不写fill或stroke不会显示东西
-
-//不管画什么都要写ctx.fill()/stroke()
-//不管画什么都要写ctx.fill()/stroke()
-//不管画什么都要写ctx.fill()/stroke()
-</code></pre><h3 id="3、圆-圆弧"><a href="#3、圆-圆弧" class="headerlink" title="3、圆/圆弧"></a>3、圆/圆弧</h3><ul>
-<li>arcTo(x1, y1, x2, y2, radius)：不可靠不作介绍</li>
-</ul>
-<ul>
-<li><p>arc(x, y, radius, 起始弧度, 结束弧度, 方向)：</p>
-<ol>
-<li>弧度的计算：180°为Π（Math.PI），公式：角度/180*Math.PI = 弧度。</li>
-<li>弧度为零：圆心的水平向右方向。</li>
-<li>方向：true逆时针，false/不写 顺时针</li>
-</ol>
-</li>
-</ul>
-<p>举例</p>
-<pre><code>//画圆
-ctx.arc(100,100,50,0,Math.PI*2)
-//圆弧
-ctx.arc(100,100,50,0.3,6,true)
-//填充圆（弧）
-ctx.fill()
-//描边
-ctx.stroke()
-</code></pre><h3 id="3、二次-三次-贝塞尔曲线"><a href="#3、二次-三次-贝塞尔曲线" class="headerlink" title="3、二次/三次 贝塞尔曲线"></a>3、二次/三次 贝塞尔曲线</h3><ol>
-<li>quadraticCurveTo(x0,y0,x1,y1): 二次，起点（控制点）（x0,y0），终点（x1,y1）</li>
-<li>dezierCurveTo(x0,y0,x1,y1,x2,y2)：三次，控制点1/2：(x0,y0)/(x1,y1)，结束点：(x2,y2)</li>
-</ol>
-<p>虽然不熟悉贝塞尔曲线，但通过多次绘制它可以用来绘制有用的图形：</p>
-<pre><code>//二次
- ctx.beginPath();
- ctx.moveTo(75,25);
- ctx.quadraticCurveTo(25,25,25,62.5);
- ctx.quadraticCurveTo(25,100,50,100);
- ctx.quadraticCurveTo(50,120,30,125);
- ctx.quadraticCurveTo(60,120,65,100);
- ctx.quadraticCurveTo(125,100,125,62.5);
- ctx.quadraticCurveTo(125,25,75,25);
- ctx.stroke();
-</code></pre><p>结果图：</p>
-<p><img src="https://i.loli.net/2018/11/16/5bee35a1dd3e6.jpg" alt="对话框"></p>
-<p>还可以用三次贝塞尔曲线画心型等等。</p>
-<h3 id="4、Path2D"><a href="#4、Path2D" class="headerlink" title="4、Path2D"></a>4、Path2D</h3><p>可以把创建的图形存为path2D对象，再引用它们。</p>
-<p>code:</p>
-<pre><code>ctx.strokeStyle = &quot;red&quot;
-ctx.fillStyle = &quot;#00eeee&quot;
-//存对象
-var rectangle = new Path2D()
-rectangle.rect(10, 10, 50, 50)
-
-var circle = new Path2D();
-circle.arc(100, 35, 25, 0, 2 * Math.PI)
-//用对象
-ctx.stroke(rectangle);
-ctx.fill(circle);    
-</code></pre><p>结果：</p>
-<p><img src="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qj7e0ypj2066034we9.jpg" alt="path2d"></p>
-<h3 id="5、使用SVG-paths"><a href="#5、使用SVG-paths" class="headerlink" title="5、使用SVG paths"></a>5、使用SVG paths</h3><p>获取路径时以svg或canvavs方式重用：</p>
-<pre><code>var p = new Path2D(&quot;M 80 20 h 20 v 80 h -80 Z&quot;);
-ctx.fill(p)
-//M 80 20 这条路径先移动到点（80，20），
-//h 20 向右移20
-//v 80 向下移80
-//h -80 向左移80
-//z  回到起点
-</code></pre><p>结果图：</p>
-<p><img src="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qjgm0flj204203o741.jpg" alt="svg"></p>
-<h2 id="七、指定颜色"><a href="#七、指定颜色" class="headerlink" title="七、指定颜色"></a>七、指定颜色</h2><p>如：</p>
-<pre><code>ctx.fillStyle = &quot;red&quot;    //指定填充颜色为红色
-ctx.strokeStyle = &quot;green&quot;   //指定描边为绿色
-</code></pre><h2 id="八、指定透明度"><a href="#八、指定透明度" class="headerlink" title="八、指定透明度"></a>八、指定透明度</h2><p>如：</p>
-<pre><code>ctx.fillStyle = &quot;rgba(0,0,0,0.5)&quot;
-</code></pre><h3 id="所有图形的透明度"><a href="#所有图形的透明度" class="headerlink" title="所有图形的透明度"></a>所有图形的透明度</h3><pre><code>ctx.globalAlpha =  0.2
-//透明度取值为0.0(完全透明)-1.0(完全不透明)
-</code></pre><h2 id="九、线条样式"><a href="#九、线条样式" class="headerlink" title="九、线条样式"></a>九、线条样式</h2><ol>
-<li>lineWidth=：线条宽度</li>
-<li>lineCap=：线条末端<ul>
-<li>（butt 默认，不加）</li>
-<li>（round 加半圆半径为线条宽度一半）</li>
-<li>（square 加方形）</li>
-</ul>
-</li>
-<li>lineJoin=：线条连接处<ul>
-<li>（miter 默认，尖角）</li>
-<li>（bevel 平）</li>
-<li>（round 圆弧）</li>
-</ul>
-</li>
-<li>miterLimit=：连接处最大长度（内角顶点~外角顶点）</li>
-<li>setLineDash()：虚线样式，接受一个数组，指定线段与间隙交替</li>
-<li>getLineDash()：返回含虚线样式的数组</li>
-<li>lineDashOffsest=：设置虚线偏移量。通过循环改变偏移量，有虚线在动的效果，通过延时函数控制速度。</li>
-</ol>
-<p>虚线例子：</p>
-<pre><code>ctx.setLineDash([4, 2])
-ctx.lineDashOffset = 10
-ctx.strokeRect(100,20, 100, 100)
-</code></pre><p>结果：</p>
-<p><img src="https://ws1.sinaimg.cn/large/d826ea31gy1fx9qk9q99qj206904edfl.jpg" alt="虚线"></p>
-<h2 id="九、渐变Gradient"><a href="#九、渐变Gradient" class="headerlink" title="九、渐变Gradient"></a>九、渐变Gradient</h2><ol>
-<li><p>创建Gradient对象（并定义渐变位置）</p>
-<ul>
-<li>createLInearGradient(x1,y1,x2,y2)：线性的渐变，参数为起点和终点。</li>
-<li>createRadiusGradient(x1,y1,r1,x2,y2,r2)：圆形，参数为两个圆圆心和半径。</li>
-</ul>
-</li>
-<li><p>渐变颜色</p>
-<ul>
-<li>gradient.addColorStop(position,color)：参数为欸位置（0.0~1.0）和颜色。</li>
-</ul>
-</li>
-<li><p>把gradient对象赋给fillStyle/strokeStyle</p>
-</li>
-</ol>
-<p>举例：</p>
-<pre><code>//1.创建对象，定义位置
-var gradient = ctx.createLinearGradient(0,0,0,150)
-//2、定义颜色
-//0-0.5：蓝-绿
-//0.5-1：红-白-黑
-gradient.addColorStop(0, &apos;#0000ff&apos;)
-gradient.addColorStop(0.5, &apos;#00ff00&apos;)
-  gradient.addColorStop(0.5, &apos;#ff0000&apos;)
-gradient.addColorStop(0.75, &apos;#fff&apos;)
-  gradient.addColorStop(1, &apos;#000&apos;)
-
-  // 3、将 渐变对象 赋给fillStyle
-  ctx.fillStyle = gradient
-ctx.strokeStyle = gradient
-
-  // 4、画图
-  ctx.fillRect(10,10,100,130)
-ctx.strokeRect(130,10,100,130);
-</code></pre><p>结果图：</p>
-<p><img src="https://ws1.sinaimg.cn/large/d826ea31gy1fx9qknvff6j208u054t8j.jpg" alt="渐变"></p>
-<h2 id="十、添加图案-Pattern"><a href="#十、添加图案-Pattern" class="headerlink" title="十、添加图案 Pattern"></a>十、添加图案 Pattern</h2><p>将image对象赋给图案，将图案作为填充样式：代码</p>
-<pre><code>//1、创建image对象
-var img = new Image();
-  img.src = &apos;图片路径&apos;;
-  img.onload = function(){
-    // 2、用image，创建图案
-    var ptrn = ctx.createPattern(img,&apos;repeat&apos;);
-    // 3、用图案作填充样式
-    ctx.fillStyle = ptrn;
-    ctx.fillRect(0,0,350,350);
-  }
-</code></pre><p>结果：</p>
-<p><img src="https://ws1.sinaimg.cn/large/d826ea31ly1fx9qjh5fiqj20a40a7whm.jpg" alt="图案"></p>
-<h2 id="十一、阴影shadows"><a href="#十一、阴影shadows" class="headerlink" title="十一、阴影shadows"></a>十一、阴影shadows</h2><ol>
-<li>shadowOffsetX = float<br>shadowOffsetX 和 shadowOffsetY ：向右延申距离</li>
-<li>shadowOffsetY = float：向下延申距离<br>3、shadowBlur = float：阴影模糊程度<br>4、shadowColor = color：阴影颜色</li>
-</ol>
-<h2 id="十二、绘制文本"><a href="#十二、绘制文本" class="headerlink" title="十二、绘制文本"></a>十二、绘制文本</h2><ol>
-<li>ctx.fillText(‘kakami’,10,10)：填充文字和位置</li>
-<li>ctx.strkeText(‘kakami’,10,10)：只描边的文字</li>
-<li>ctx.font = “48px serif”：设置font</li>
-<li>ctx.textAlign=start(默认)/end/left/right/center：文字对齐方式</li>
-<li>textBaseline = top/hanging/middle/bottom/alphabetic(默认)/ideographic：基线对齐方式</li>
-<li>direction = ltr/rtl/inherit(默认)</li>
-</ol>
-<h2 id="一些注意事项"><a href="#一些注意事项" class="headerlink" title="一些注意事项"></a>一些注意事项</h2><ol>
-<li>画完一个（描边）图形之后，没有再次写ctx.beginPath()就画一个填充图形，那第一个图形也会被填充。</li>
-<li>一定要写fill/stroke()</li>
-<li>使用封装函数对于减少代码量以及复杂度十分有用，如roundedRect()</li>
-<li>roundedRect(ctx,10,10,5,5,3)能画圆角矩形。</li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Drawing_text" target="_blank" rel="noopener">MDN有关canvas</a></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/01/canvas的使用/" data-id="cjojhwozu000u2g7ltfgsi6nu" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/（H）canvas的使用/">（H）canvas的使用</a></li></ul>
 
     </footer>
   </div>
@@ -1458,7 +1178,7 @@ var img = new Image();
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）css布局/">（C）css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）flex布局/">（C）flex布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）position/">（C）position</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）垂直居中/">（C）垂直居中</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（G）git入门/">（G）git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）canvas的使用/">（H）canvas的使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）html-常用标签/">（H）html-常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）html5-标签/">（H）html5-标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS-this指向/">（JH）JS-this指向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS-普通函数及调用/">（JH）JS-普通函数及调用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS-构造函数、new做了什么/">（JH）JS-构造函数、new做了什么</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）JS-数据类型/">（J）JS-数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）JS-数据结构/">（J）JS-数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）Promise/">（J）Promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）原型与原型链/">（J）原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）继承/">（J）继承</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）自己实现-jQuery-API/">（J）自己实现-jQuery API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（M）命令行基本命令/">（M）命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（S）归并排序/">（S）归并排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（S）快速排序-js/">（S）快速排序-js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（S）排序算法-js/">（S）排序算法-js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）HTTP（入门）/">（W）HTTP（入门）</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）Session/">（W）Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）Web-Storage/">（W）Web Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）ajax/">（W）ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）jsonp/">（W）jsonp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）登录注册、cookie/">（W）登录注册、cookie</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）css布局/">（C）css布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）flex布局/">（C）flex布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）position/">（C）position</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（C）垂直居中/">（C）垂直居中</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（G）git入门/">（G）git入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）canvas的使用/">（H）canvas的使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）html-常用标签/">（H）html-常用标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（H）html5-标签/">（H）html5-标签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS-this指向/">（JH）JS-this指向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS-普通函数及调用/">（JH）JS-普通函数及调用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（JH）JS-构造函数、new做了什么/">（JH）JS-构造函数、new做了什么</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）JS-数据类型/">（J）JS-数据类型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）JS-数据结构/">（J）JS-数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）Promise/">（J）Promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）原型与原型链/">（J）原型与原型链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）继承/">（J）继承</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（J）自己实现-jQuery-API/">（J）自己实现-jQuery API</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（M）命令行基本命令/">（M）命令行基本命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（S）归并排序/">（S）归并排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（S）快速排序-js/">（S）快速排序-js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（S）排序算法-js/">（S）排序算法-js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（V）iview/">（V）iview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（V）vue路由-视图/">（V）vue路由/视图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）HTTP（入门）/">（W）HTTP（入门）</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）Session/">（W）Session</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）Web-Storage/">（W）Web Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）ajax/">（W）ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）jsonp/">（W）jsonp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/（W）登录注册、cookie/">（W）登录注册、cookie</a></li></ul>
     </div>
   </div>
 
@@ -1468,7 +1188,7 @@ var img = new Image();
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/（C）css布局/" style="font-size: 10px;">（C）css布局</a> <a href="/tags/（C）flex布局/" style="font-size: 10px;">（C）flex布局</a> <a href="/tags/（C）position/" style="font-size: 10px;">（C）position</a> <a href="/tags/（C）垂直居中/" style="font-size: 10px;">（C）垂直居中</a> <a href="/tags/（G）git入门/" style="font-size: 10px;">（G）git入门</a> <a href="/tags/（H）canvas的使用/" style="font-size: 10px;">（H）canvas的使用</a> <a href="/tags/（H）html-常用标签/" style="font-size: 10px;">（H）html-常用标签</a> <a href="/tags/（H）html5-标签/" style="font-size: 10px;">（H）html5-标签</a> <a href="/tags/（JH）JS-this指向/" style="font-size: 10px;">（JH）JS-this指向</a> <a href="/tags/（JH）JS-普通函数及调用/" style="font-size: 10px;">（JH）JS-普通函数及调用</a> <a href="/tags/（JH）JS-构造函数、new做了什么/" style="font-size: 10px;">（JH）JS-构造函数、new做了什么</a> <a href="/tags/（J）JS-数据类型/" style="font-size: 10px;">（J）JS-数据类型</a> <a href="/tags/（J）JS-数据结构/" style="font-size: 10px;">（J）JS-数据结构</a> <a href="/tags/（J）Promise/" style="font-size: 10px;">（J）Promise</a> <a href="/tags/（J）原型与原型链/" style="font-size: 10px;">（J）原型与原型链</a> <a href="/tags/（J）继承/" style="font-size: 10px;">（J）继承</a> <a href="/tags/（J）自己实现-jQuery-API/" style="font-size: 10px;">（J）自己实现-jQuery API</a> <a href="/tags/（M）命令行基本命令/" style="font-size: 10px;">（M）命令行基本命令</a> <a href="/tags/（S）归并排序/" style="font-size: 10px;">（S）归并排序</a> <a href="/tags/（S）快速排序-js/" style="font-size: 10px;">（S）快速排序-js</a> <a href="/tags/（S）排序算法-js/" style="font-size: 10px;">（S）排序算法-js</a> <a href="/tags/（W）HTTP（入门）/" style="font-size: 10px;">（W）HTTP（入门）</a> <a href="/tags/（W）Session/" style="font-size: 10px;">（W）Session</a> <a href="/tags/（W）Web-Storage/" style="font-size: 10px;">（W）Web Storage</a> <a href="/tags/（W）ajax/" style="font-size: 10px;">（W）ajax</a> <a href="/tags/（W）jsonp/" style="font-size: 10px;">（W）jsonp</a> <a href="/tags/（W）登录注册、cookie/" style="font-size: 10px;">（W）登录注册、cookie</a>
+      <a href="/tags/（C）css布局/" style="font-size: 10px;">（C）css布局</a> <a href="/tags/（C）flex布局/" style="font-size: 10px;">（C）flex布局</a> <a href="/tags/（C）position/" style="font-size: 10px;">（C）position</a> <a href="/tags/（C）垂直居中/" style="font-size: 10px;">（C）垂直居中</a> <a href="/tags/（G）git入门/" style="font-size: 10px;">（G）git入门</a> <a href="/tags/（H）canvas的使用/" style="font-size: 10px;">（H）canvas的使用</a> <a href="/tags/（H）html-常用标签/" style="font-size: 10px;">（H）html-常用标签</a> <a href="/tags/（H）html5-标签/" style="font-size: 10px;">（H）html5-标签</a> <a href="/tags/（JH）JS-this指向/" style="font-size: 10px;">（JH）JS-this指向</a> <a href="/tags/（JH）JS-普通函数及调用/" style="font-size: 10px;">（JH）JS-普通函数及调用</a> <a href="/tags/（JH）JS-构造函数、new做了什么/" style="font-size: 10px;">（JH）JS-构造函数、new做了什么</a> <a href="/tags/（J）JS-数据类型/" style="font-size: 10px;">（J）JS-数据类型</a> <a href="/tags/（J）JS-数据结构/" style="font-size: 10px;">（J）JS-数据结构</a> <a href="/tags/（J）Promise/" style="font-size: 10px;">（J）Promise</a> <a href="/tags/（J）原型与原型链/" style="font-size: 10px;">（J）原型与原型链</a> <a href="/tags/（J）继承/" style="font-size: 10px;">（J）继承</a> <a href="/tags/（J）自己实现-jQuery-API/" style="font-size: 10px;">（J）自己实现-jQuery API</a> <a href="/tags/（M）命令行基本命令/" style="font-size: 10px;">（M）命令行基本命令</a> <a href="/tags/（S）归并排序/" style="font-size: 10px;">（S）归并排序</a> <a href="/tags/（S）快速排序-js/" style="font-size: 10px;">（S）快速排序-js</a> <a href="/tags/（S）排序算法-js/" style="font-size: 10px;">（S）排序算法-js</a> <a href="/tags/（V）iview/" style="font-size: 10px;">（V）iview</a> <a href="/tags/（V）vue路由-视图/" style="font-size: 10px;">（V）vue路由/视图</a> <a href="/tags/（W）HTTP（入门）/" style="font-size: 10px;">（W）HTTP（入门）</a> <a href="/tags/（W）Session/" style="font-size: 10px;">（W）Session</a> <a href="/tags/（W）Web-Storage/" style="font-size: 10px;">（W）Web Storage</a> <a href="/tags/（W）ajax/" style="font-size: 10px;">（W）ajax</a> <a href="/tags/（W）jsonp/" style="font-size: 10px;">（W）jsonp</a> <a href="/tags/（W）登录注册、cookie/" style="font-size: 10px;">（W）登录注册、cookie</a>
     </div>
   </div>
 
@@ -1477,7 +1197,7 @@ var img = new Image();
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
     </div>
   </div>
 
@@ -1490,6 +1210,14 @@ var img = new Image();
       <ul>
         
           <li>
+            <a href="/2019/04/07/view路由-视图/">vue路由/视图</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/07/按需引入iview/">按需引入iview</a>
+          </li>
+        
+          <li>
             <a href="/2018/10/21/归并排序（递归/">归并排序（递归&amp;迭代）</a>
           </li>
         
@@ -1499,14 +1227,6 @@ var img = new Image();
         
           <li>
             <a href="/2018/09/28/JS构造函数（含new做了什么）/">JS构造函数（含new做了什么）</a>
-          </li>
-        
-          <li>
-            <a href="/2018/09/28/JS普通函数及调用/">JS普通函数及调用</a>
-          </li>
-        
-          <li>
-            <a href="/2018/09/28/JS中的this指向/">JS中的this指向</a>
           </li>
         
       </ul>
@@ -1521,7 +1241,7 @@ var img = new Image();
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2018 lxiaox<br>
+      &copy; 2019 lxiaox<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
